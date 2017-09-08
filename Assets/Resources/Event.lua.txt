@@ -1,0 +1,15 @@
+local event = {}
+
+function addListener()
+end
+
+function removeListener()
+end
+
+function notify()
+
+end
+
+print("event required")
+
+return event
