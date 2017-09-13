@@ -8,11 +8,7 @@ using zcode.AssetBundlePacker;
 
 public class Main : MonoBehaviour
 {
-    //public string URL = "http://ovw9js99r.bkt.clouddn.com/";
-
     public string URL = "http://u3download.douzi.com/";
-
-    public const string PATH = "Assets/Version_1_0/AssetBundle";
 
     private int stage_index_ = 0;
     private Action[] stage_funcs_;
