@@ -1,8 +1,0 @@
-# ignore files
-
-# ignore directories
-.vs/
-Library/
-obj/
-publish/
-Temp/
