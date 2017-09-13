@@ -49,7 +49,10 @@ public class LuaBehaviour : MonoBehaviour {
             scriptEnv.Set(injection.name, injection.value);
         }
 
-        luaEnv.DoString(luaScript.text, "LuaBehaviour", scriptEnv);
+        TextAsset text_asset = zcode.AssetBundlePacker.ResourcesManager.Load<TextAsset>("Assets/Lua/Login/Login.lua.txt");
+
+        if(text_asset!=null)
+            luaEnv.DoString(text_asset.text, "LuaBehaviour", scriptEnv);
 
         Action luaAwake = scriptEnv.Get<Action>("awake");
         scriptEnv.Get("start", out luaStart);

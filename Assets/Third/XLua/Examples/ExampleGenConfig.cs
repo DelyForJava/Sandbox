@@ -44,7 +44,11 @@ public static class ExampleGenConfig
                 typeof(WWW),
                 typeof(System.Collections.Generic.List<int>),
                 typeof(Action<string>),
-                typeof(UnityEngine.Debug)
+                typeof(UnityEngine.Debug),
+
+                //custom
+                typeof(zcode.AssetBundlePacker.AssetBundleManager)
+
             };
 
     //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface

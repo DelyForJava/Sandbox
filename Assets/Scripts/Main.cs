@@ -1,27 +1,20 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.Networking;
 
 using zcode.AssetBundlePacker;
 
 public class Main : MonoBehaviour
 {
-    public string URL = "http://ovw9js99r.bkt.clouddn.com/";
+    //public string URL = "http://ovw9js99r.bkt.clouddn.com/";
+
+    public string URL = "http://u3download.douzi.com/";
 
     public const string PATH = "Assets/Version_1_0/AssetBundle";
-    //public const string PATH = "Assets/Version_1_1/AssetBundle";
-    //public const string PATH = "Assets/Version_1_2/AssetBundle";
-    //public const string PATH = "Assets/Version_1_3/AssetBundle";
 
-    //public const string PATH = "Assets/Version_2_0/AssetBundle";
-    //public const string PATH = "Assets/Version_3_0/AssetBundle";
-    //public const string PATH = "Assets/Version_4_0/AssetBundle";
-    //public const string PATH = "Assets/Version_5_0/AssetBundle";
-
-    private int stage_index_ = 1;
+    private int stage_index_ = 0;
     private Action[] stage_funcs_;
 
     void Awake()
@@ -48,16 +41,15 @@ public class Main : MonoBehaviour
     }
     void OnPrepare()
     {
-        if (Directory.Exists(zcode.AssetBundlePacker.Common.PATH))
-            Directory.Delete(zcode.AssetBundlePacker.Common.PATH, true);
-        if (Directory.Exists(zcode.AssetBundlePacker.Common.INITIAL_PATH))
-            Directory.Delete(zcode.AssetBundlePacker.Common.INITIAL_PATH, true);
+        //if (Directory.Exists(zcode.AssetBundlePacker.Common.PATH))
+        //    Directory.Delete(zcode.AssetBundlePacker.Common.PATH, true);
+        //if (Directory.Exists(zcode.AssetBundlePacker.Common.INITIAL_PATH))
+        //    Directory.Delete(zcode.AssetBundlePacker.Common.INITIAL_PATH, true);
 
-        zcode.FileHelper.CopyDirectoryAllChildren(PATH, zcode.AssetBundlePacker.Common.INITIAL_PATH);
-
+        //zcode.FileHelper.CopyDirectoryAllChildren(PATH, zcode.AssetBundlePacker.Common.INITIAL_PATH);
         ResourcesManager.LoadPattern = new AssetBundleLoadPattern();
 
-        SceneResourcesManager.LoadPattern = new AssetBundleLoadPattern();
+        //SceneResourcesManager.LoadPattern = new AssetBundleLoadPattern();
 
         stage_index_ = 1;
     }
@@ -77,7 +69,6 @@ public class Main : MonoBehaviour
         }
 
     }
-
 
     public static readonly string[] STATE_DESCRIBE_TABLE =
    {
@@ -119,21 +110,21 @@ public class Main : MonoBehaviour
 
     void Launching()
     {
-        GUI.Label(new Rect(0f, 0f, 200f, 20f), "AssetBundlePacker is launching！");
+        GUI.Label(new Rect(0f, 0f + 400, 200f, 20f), "AssetBundlePacker is launching！");
     }
 
     void Ready()
     {
         //启动成功
-        GUI.Label(new Rect(0f, 0f, Screen.width, 20f), "AssetBundlePacker launch succeed, Version is " + AssetBundleManager.Instance.Version);
+        GUI.Label(new Rect(0f, 0f+ 400, Screen.width, 20f), "AssetBundlePacker launch succeed, Version is " + AssetBundleManager.Instance.Version);
         //下载地址
-        GUI.Label(new Rect(0f, 20f, 100f, 20f), "下载地址：");
-        URL = GUI.TextField(new Rect(100f, 20f, Screen.width - 100f, 20f), URL);
+        GUI.Label(new Rect(0f, 20f + 400, 100f, 20f), "下载地址：");
+        URL = GUI.TextField(new Rect(100f, 20f + 400, Screen.width - 100f, 20f), URL);
 
         //启动更新器
         if (updater_ == null)
         {
-            if (GUI.Button(new Rect(0f, 40f, Screen.width, 30f), "启动更新器"))
+            if (GUI.Button(new Rect(0f, 40f + 400, Screen.width, 30f), "启动更新器"))
             {
                 LaunchUpdater();
             }
@@ -141,13 +132,13 @@ public class Main : MonoBehaviour
         else
         {
             //当前更新阶段
-            GUI.Label(new Rect(0, 40f, Screen.width, 20f), STATE_DESCRIBE_TABLE[(int)updater_.CurrentState]);
+            GUI.Label(new Rect(0, 40f + 400, Screen.width, 20f), STATE_DESCRIBE_TABLE[(int)updater_.CurrentState]);
             //当前阶段进度
-            GUI.HorizontalScrollbar(new Rect(0f, 60f, Screen.width, 30f), 0f, updater_.CurrentStateCompleteValue, 0f, updater_.CurrentStateTotalValue);
+            GUI.HorizontalScrollbar(new Rect(0f, 60f + 400, Screen.width, 30f), 0f, updater_.CurrentStateCompleteValue, 0f, updater_.CurrentStateTotalValue);
 
             if (!updater_.IsDone && !updater_.IsFailed)
             {
-                if (GUI.Button(new Rect(0, 80f, Screen.width, 20f), "中断更新"))
+                if (GUI.Button(new Rect(0, 80f + 400, Screen.width, 20f), "中断更新"))
                 {
                     Debug.Log("Abort Update");
                     updater_.AbortUpdate();
@@ -158,13 +149,13 @@ public class Main : MonoBehaviour
             {
                 if (updater_.IsFailed)
                 {
-                    if (GUI.Button(new Rect(0, 80f, Screen.width, 20f), "更新失败，重新开始"))
+                    if (GUI.Button(new Rect(0, 80f + 400, Screen.width, 20f), "更新失败，重新开始"))
                     {
                         Destroy(updater_);
                     }
                 }
                 else
-                    GUI.Label(new Rect(0, 80f, Screen.width, 20f), "更新成功");
+                    GUI.Label(new Rect(0, 80f + 400, Screen.width, 20f), "更新成功");
             }
         }
     }
@@ -173,7 +164,7 @@ public class Main : MonoBehaviour
     {
         //启动失败
         GUI.color = Color.red;
-        GUI.Label(new Rect(0f, 0f, 200f, 20f), "AssetBundlePacker launch occur error!");
+        GUI.Label(new Rect(0f, 0f + 400, 200f, 20f), "AssetBundlePacker launch occur error!");
     }
 
 }

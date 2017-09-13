@@ -164,6 +164,7 @@ namespace zcode
                     //以行的形式写入信息
                     sw.Write(bytes, 0, length);
                 }
+                sw.Close();
             }
         }
 
@@ -255,6 +256,15 @@ namespace zcode
             }
         }
 
+
+        public static IEnumerator CopyPersistentDataPathToFile(string src, string dest)
+        {
+            var bytes = File.ReadAllBytes(src);
+            yield return null;
+            zcode.FileHelper.WriteBytesToFile(dest, bytes, bytes.Length);
+            yield return null;
+
+        }
         /// <summary>
         ///   
         /// </summary>

@@ -161,9 +161,11 @@
     <Compile Include="Assets\Gen\XLuaTestMyStructWrap.cs" />
     <Compile Include="Assets\Gen\XLuaTestNoGcWrap.cs" />
     <Compile Include="Assets\Gen\XLuaTestPeddingWrap.cs" />
+    <Compile Include="Assets\Gen\zcodeAssetBundlePackerAssetBundleManagerWrap.cs" />
     <Compile Include="Assets\Scripts\Client.cs" />
     <Compile Include="Assets\Scripts\Fps.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
+    <Compile Include="Assets\Scripts\MyConsole.cs" />
     <Compile Include="Assets\Scripts\Net\Common\DebugInfo.cs" />
     <Compile Include="Assets\Scripts\Net\Common\DisableMeshRenderer.cs" />
     <Compile Include="Assets\Scripts\Net\Common\GameConfig.cs" />
@@ -484,6 +486,9 @@
     <None Include="Assets\AssetBundlePacker-Examples\Cache\Resources\Version_1\Text\text.txt" />
     <None Include="Assets\AssetBundlePacker-Examples\Cache\Scenes\SimpleScene.unityConfig.txt" />
     <None Include="Assets\Gen\link.xml" />
+    <None Include="Assets\Lua\Gaga1\Gaga1.lua.txt" />
+    <None Include="Assets\Lua\Gaga2\Gaga2.lua.txt" />
+    <None Include="Assets\Lua\Gaga3\Gaga3.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />
     <None Include="Assets\Lua\Hall\Avater\Avater.lua.txt" />

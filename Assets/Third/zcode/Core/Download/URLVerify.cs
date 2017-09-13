@@ -116,7 +116,9 @@ namespace zcode
 
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(url);
+                string uri = url + "ResourcesManifest.cfg";
+                request = (HttpWebRequest)WebRequest.Create(uri);
+                //request = (HttpWebRequest)WebRequest.Create(url);
                 request.KeepAlive = false;
                 request.Method = "HEAD";
                 request.Timeout = 5000;

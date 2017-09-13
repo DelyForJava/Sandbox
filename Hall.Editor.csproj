@@ -162,7 +162,6 @@
     <Compile Include="Assets\Art\Effect\partcleAndAnimation\Editor\ParticleAndAnimationInspector.cs" />
     <Compile Include="Assets\Art\ShaderForge\Editor\InternalResources\Inspectors\ShaderForgeInspector.cs" />
     <Compile Include="Assets\Art\ShaderForge\Editor\InternalResources\Inspectors\ShaderForgeMaterialInspector.cs" />
-    <Compile Include="Assets\Editor\BuildAssetBundle.cs" />
     <Compile Include="Assets\Third\XLua\Src\Editor\Generator.cs" />
     <Compile Include="Assets\Third\XLua\Src\Editor\Hotfix.cs" />
     <Compile Include="Assets\Third\XLua\Src\Editor\LinkXmlGen\LinkXmlGen.cs" />
@@ -382,6 +381,9 @@
     <None Include="Assets\AssetBundlePacker-Examples\Cache\Resources\Version_1\Text\text.txt" />
     <None Include="Assets\AssetBundlePacker-Examples\Cache\Scenes\SimpleScene.unityConfig.txt" />
     <None Include="Assets\Gen\link.xml" />
+    <None Include="Assets\Lua\Gaga1\Gaga1.lua.txt" />
+    <None Include="Assets\Lua\Gaga2\Gaga2.lua.txt" />
+    <None Include="Assets\Lua\Gaga3\Gaga3.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />
     <None Include="Assets\Lua\Hall\Avater\Avater.lua.txt" />

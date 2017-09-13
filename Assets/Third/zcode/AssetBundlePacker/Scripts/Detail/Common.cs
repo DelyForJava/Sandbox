@@ -73,7 +73,7 @@ namespace zcode.AssetBundlePacker
         {
             MAIN_MANIFEST_FILE_NAME,
             RESOURCES_MANIFEST_FILE_NAME,
-            RESOURCES_PACKAGE_FILE_NAME,
+            //RESOURCES_PACKAGE_FILE_NAME,
         };
 
         /// <summary>
@@ -103,11 +103,17 @@ namespace zcode.AssetBundlePacker
         /// <summary>
         ///   拷贝文件
         /// </summary>
+        public static IEnumerator StartCopyFile2(string str, string dest)
+        {
+            //yield return zcode.FileHelper.CopyStreamingAssetsToFile(str, dest);
+            yield return zcode.FileHelper.CopyPersistentDataPathToFile(str, dest);
+            
+        }
         public static IEnumerator StartCopyFile(string str, string dest)
         {
             yield return zcode.FileHelper.CopyStreamingAssetsToFile(str, dest);
-        }
 
+        }
         /// <summary>
         ///   拷贝文件
         /// </summary>

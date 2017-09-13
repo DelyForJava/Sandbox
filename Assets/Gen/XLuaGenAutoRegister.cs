@@ -101,6 +101,8 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.Debug), UnityEngineDebugWrap.__Register);
 				
+				translator.DelayWrapLoader(typeof(zcode.AssetBundlePacker.AssetBundleManager), zcodeAssetBundlePackerAssetBundleManagerWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(Tutorial.BaseClass), TutorialBaseClassWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(Tutorial.TestEnum), TutorialTestEnumWrap.__Register);

@@ -521,7 +521,8 @@ namespace zcode.AssetBundlePacker
                 string str = Common.GetCacheFileFullName(Common.MAIN_CONFIG_NAME_ARRAY[i]);
                 string dest = Common.GetFileFullName(Common.MAIN_CONFIG_NAME_ARRAY[i]);
                 UpdateCompleteValue(i, Common.MAIN_CONFIG_NAME_ARRAY.Length);
-                yield return Common.StartCopyFile(str, dest);
+                yield return Common.StartCopyFile2(str, dest);
+                yield return null;
             }
         }
         #endregion
