@@ -1,3 +1,6 @@
+# ignore files
+
+# ignore directories
 .vs/
 Library/
 obj/
