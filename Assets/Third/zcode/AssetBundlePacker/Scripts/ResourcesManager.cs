@@ -13,7 +13,7 @@ namespace zcode.AssetBundlePacker
     /// <summary>
     ///   资源加载器
     /// </summary>
-    public static class ResourcesManager
+    public  class ResourcesManager
     {
         /// <summary>
         ///   资源相对目录

@@ -15,7 +15,7 @@ using XLua;
 public static class ExampleGenConfig
 {
     //lua中要使用到C#库的配置，比如C#标准库，或者Unity API，第三方库等。
-    [LuaCallCSharp]
+    //[LuaCallCSharp]
     public static List<Type> LuaCallCSharp = new List<Type>() {
                 typeof(System.Object),
                 typeof(UnityEngine.Object),
@@ -52,7 +52,7 @@ public static class ExampleGenConfig
             };
 
     //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface
-    [CSharpCallLua]
+    //[CSharpCallLua]
     public static List<Type> CSharpCallLua = new List<Type>() {
                 typeof(Action),
                 typeof(Func<double, double, double>),
@@ -63,7 +63,7 @@ public static class ExampleGenConfig
             };
 
     //黑名单
-    [BlackList]
+    //[BlackList]
     public static List<List<string>> BlackList = new List<List<string>>()  {
                 new List<string>(){"UnityEngine.WWW", "movie"},
     #if UNITY_WEBGL
