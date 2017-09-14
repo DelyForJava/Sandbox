@@ -6,17 +6,20 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 */
 
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
 using UnityEngine;
+
 using XLua;
 
-//配置的详细介绍请看Doc下《XLua的配置.doc》
-public static class BindingGenConfig
+namespace Bean.Hall
 {
-    //lua中要使用到C#库的配置，比如C#标准库，或者Unity API，第三方库等。
-    [LuaCallCSharp]
-    public static List<Type> LuaCallCSharp = new List<Type>() {
+
+    public static class BindingGenConfig
+    {
+        [LuaCallCSharp]
+        public static List<Type> LuaCallCSharp = new List<Type>() {
                 typeof(System.Object),
                 typeof(UnityEngine.Object),
                 typeof(Vector2),
@@ -51,9 +54,9 @@ public static class BindingGenConfig
 
             };
 
-    //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface
-    [CSharpCallLua]
-    public static List<Type> CSharpCallLua = new List<Type>() {
+        //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface
+        [CSharpCallLua]
+        public static List<Type> CSharpCallLua = new List<Type>() {
                 typeof(Action),
                 typeof(Func<double, double, double>),
                 typeof(Action<string>),
@@ -62,9 +65,9 @@ public static class BindingGenConfig
                 typeof(System.Collections.IEnumerator)
             };
 
-    //黑名单
-    [BlackList]
-    public static List<List<string>> BlackList = new List<List<string>>()  {
+        //黑名单
+        [BlackList]
+        public static List<List<string>> BlackList = new List<List<string>>()  {
                 new List<string>(){"UnityEngine.WWW", "movie"},
     #if UNITY_WEBGL
                 new List<string>(){"UnityEngine.WWW", "threadPriority"},
@@ -87,5 +90,7 @@ public static class BindingGenConfig
                 new List<string>(){"System.IO.DirectoryInfo", "Create", "System.Security.AccessControl.DirectorySecurity"},
                 new List<string>(){"UnityEngine.MonoBehaviour", "runInEditMode"},
             };
+
+    }
 
 }
