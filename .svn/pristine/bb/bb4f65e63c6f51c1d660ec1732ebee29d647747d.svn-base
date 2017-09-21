@@ -1,0 +1,115 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using HedgehogTeam.EasyTouch;
+using odao.scmahjong;
+
+public class MahjongUserPlayer : MahjongPlayer {
+
+	List<MahjongTile> _clicked = new List<MahjongTile>();
+	public List<MahjongTile> Clicked
+	{
+		get
+		{
+			return _clicked;
+		}
+	}
+
+	public override void Reset()
+	{
+		base.Reset ();
+		_clicked.Clear ();
+	}
+
+	#region easy touch
+	void On_TouchStart (Gesture gesture)
+	{
+		if (Proxy.WinState)
+			return;
+
+		if (Proxy != null) {
+			odao.scmahjong.NetworkPlayer net = Proxy as odao.scmahjong.NetworkPlayer;
+			if (net != null) {
+				net.TrusteeShip (0);
+			}
+		}
+
+		if (gesture.pickedObject == null) {
+			_willPlay = null;
+			return;
+		}
+
+		_willPlay = gesture.pickedObject.GetComponent<MahjongTile> ();
+	}
+
+	void On_TouchDown (Gesture gesture)
+	{
+	}
+
+	void On_TouchUp (Gesture gesture)
+	{
+
+		if(_willPlay == null)
+		{
+			UIGameHuPromptController.Instance.Close ();
+			//关闭需要点击其他地方需要关闭的ui
+		}
+		if (Proxy.WinState)
+			return;
+
+		if (MahjongTile.TotalClickCount < 0) {
+			return;
+		}
+		
+		if(_willPlay != null && _willPlay.Enabled())
+		{
+			if(_willPlay.ClickCount > 0)
+			{
+				if (Proxy.YourTurn) {
+					if (Play (_willPlay)) {
+						_willPlay.ClickCount = 0;
+						_clicked.Remove (_willPlay);
+						_willPlay.transform.localScale = Vector3.one;
+						Proxy.YourTurn = false;
+						_willPlay = null;
+						SortPocketListAfterPlay ();
+					} else {
+						//TODO
+						UnityEngine.Debug.LogError ("play failed");
+					}
+				} else {
+					_willPlay.clickPlay ();
+					_clicked.Remove (_willPlay);
+				}
+			}
+			else
+			{
+				_willPlay.clickPlay();			
+				_clicked.Add (_willPlay);
+			}
+
+			while (_clicked.Count - MahjongTile.TotalClickCount > 0) {
+				var lastTile = _clicked [0];
+				lastTile.clickPlay ();
+				_clicked.RemoveAt(0);
+			}
+		}
+	}
+	#endregion
+
+	#region mono behaviour
+	void OnEnable ()
+	{
+		EasyTouch.On_TouchStart += On_TouchStart;
+		EasyTouch.On_TouchDown += On_TouchDown;
+		EasyTouch.On_TouchUp += On_TouchUp;
+	}
+
+	void OnDisable ()
+	{
+		EasyTouch.On_TouchStart -= On_TouchStart;
+		EasyTouch.On_TouchDown -= On_TouchDown;
+		EasyTouch.On_TouchUp -= On_TouchUp;
+	}
+	#endregion
+}

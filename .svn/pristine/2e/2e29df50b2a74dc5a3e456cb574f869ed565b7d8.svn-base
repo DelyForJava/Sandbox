@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 417076097
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: logo
+      Dependencies: {}

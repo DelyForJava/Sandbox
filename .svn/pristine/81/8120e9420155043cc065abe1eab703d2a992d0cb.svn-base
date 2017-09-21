@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 575674554
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 61adb05a2dfd94df9922ab7a797a5c1f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f2891accb02704babbf95370967ba96e
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/ArtResource/UI/loading/logo.png
+Dependencies: []

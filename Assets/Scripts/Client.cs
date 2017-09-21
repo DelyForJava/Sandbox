@@ -1,161 +1,112 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 
 using UnityEngine;
+
+using LitJson;
 
 namespace Bean.Hall
 {
     public class Client : MonoBehaviour
     {
-        public string URL = "http://u3download.Bean.com/";
+        int channelId;
+        int appId;
+        string currentVersionId;
+        string verifyVersionId;
+        string channelName;
+        string downloadUrl;
+        string lobbyConfigUrl;
+        string updateDesription;
+        string modifyTime;
+        int switchDns;
 
-        private int stage_index_ = 0;
-        private Action[] stage_funcs_;
+        private Hotupdate hotupdate_;
+        private Fullscreen fullscreen_;
+
+        private string url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
 
         void Awake()
         {
-            stage_funcs_ = new Action[2];
-            stage_funcs_[0] = OnPrepare;
-            stage_funcs_[1] = OnWork;
+            DontDestroyOnLoad(gameObject);
+
+            hotupdate_ = transform.Find("Hotupdate").GetComponent<Hotupdate>();
+            fullscreen_ = transform.Find("Fullscreen").GetComponent<Fullscreen>();
+
         }
         void Start()
         {
-            DontDestroyOnLoad(gameObject);
+            hotupdate_.enabled = true;
+            //StartCoroutine(GetInfo(url));
         }
-
-
-
-        void OnGUI()
+        void OnDestroy()
         {
-            if (stage_funcs_[stage_index_] != null)
-                stage_funcs_[stage_index_]();
+            fullscreen_ = null;
+            hotupdate_ = null;
         }
-        void OnPrepare()
+        // -------------------------------------------------  logic ---------------------------------------------------------//
+        IEnumerator GetInfo(string url)
         {
-            //if (Directory.Exists(zcode.AssetBundlePacker.Common.PATH))
-            //    Directory.Delete(zcode.AssetBundlePacker.Common.PATH, true);
-            //if (Directory.Exists(zcode.AssetBundlePacker.Common.INITIAL_PATH))
-            //    Directory.Delete(zcode.AssetBundlePacker.Common.INITIAL_PATH, true);
-
-            //zcode.FileHelper.CopyDirectoryAllChildren(PATH, zcode.AssetBundlePacker.Common.INITIAL_PATH);
-            ResourcesManager.LoadPattern = new AssetBundleLoadPattern();
-
-            //SceneResourcesManager.LoadPattern = new AssetBundleLoadPattern();
-
-            stage_index_ = 1;
-        }
-
-        void OnWork()
-        {
-            if (!AssetBundleManager.Instance.WaitForLaunch())
+            OnToggleFullscreen(true);
+            WWW getData = new WWW(url);
+            yield return getData;
+            if (getData.isDone && getData.error == null)
             {
-                Launching();
+                Debug.LogMsg(getData.text);
+                JsonData jd = JsonMapper.ToObject(getData.text);
+
+                //Debug.LogError("accountId=" + jd["result"]["accountId"]);
+                //Debug.LogError("loginToken=" + jd["result"]["loginToken"]);
+
+                int code = int.Parse(jd["code"].ToString());
+                if (code == 0)
+                {
+                    channelId = int.Parse(jd["result"]["channelId"].ToString());
+                    appId = int.Parse(jd["result"]["appId"].ToString());
+                    currentVersionId = jd["result"]["appId"].ToString();
+                    verifyVersionId = jd["result"]["verifyVersionId"].ToString();
+                    channelName = jd["result"]["channelName"].ToString();
+                    downloadUrl = jd["result"]["downloadUrl"].ToString();
+                    lobbyConfigUrl = jd["result"]["lobbyConfigUrl"].ToString();
+                    updateDesription = jd["result"]["updateDesription"].ToString();
+                    modifyTime = jd["result"]["modifyTime"].ToString();
+                    switchDns = int.Parse(jd["result"]["switchDns"].ToString());
+                }
+                else
+                {
+                    Debug.LogMsg("msg=" + jd["msg"].ToString());
+                }
+
             }
             else
             {
-                if (AssetBundleManager.Instance.IsReady)
-                    Ready();
-                else if (AssetBundleManager.Instance.IsFailed)
-                    Failed();
+                Debug.LogMsg("Error downloading: " + getData.error);
             }
+            OnToggleFullscreen(false);
 
         }
-
-        public static readonly string[] STATE_DESCRIBE_TABLE =
-       {
-        "",
-        "初始化更新信息",
-        "连接服务器",
-        "更新主配置文件",
-        "下载资源",
-        "解析资源",
-        "清理缓存目录数据",
-        "更新完成",
-        "更新失败",
-        "更新取消",
-        "更新中断",
-    };
-
-        /// <summary>
-        /// 更新器
-        /// </summary>
-        private Updater updater_;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void LaunchUpdater()
+        bool IsNeedHotupdate()
         {
-            updater_ = gameObject.GetComponent<Updater>();
-            if (updater_ == null)
-                updater_ = gameObject.AddComponent<Updater>();
-
-            List<string> url_group = new List<string>();
-            url_group.Add(URL);
-            updater_.StartUpdate(url_group);
+            return true;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-
-        void Launching()
+        IEnumerator Flow()
         {
-            GUI.Label(new Rect(0f, 0f + 200, 200f, 20f), "AssetBundlePacker is launching！");
-        }
-
-        void Ready()
-        {
-            //启动成功
-            GUI.Label(new Rect(0f, 0f + 200, Screen.width, 20f), "AssetBundlePacker launch succeed, Version is " + AssetBundleManager.Instance.Version);
-            //下载地址
-            GUI.Label(new Rect(0f, 20f + 200, 100f, 20f), "下载地址：");
-            URL = GUI.TextField(new Rect(100f, 20f + 200, Screen.width - 100f, 20f), URL);
-
-            //启动更新器
-            if (updater_ == null)
+            yield return GetInfo(url);
+            bool isNeed = IsNeedHotupdate();
+            if (isNeed)
             {
-                if (GUI.Button(new Rect(0f, 40f + 200, Screen.width, 30f), "启动更新器"))
-                {
-                    LaunchUpdater();
-                }
+                hotupdate_.enabled = true;
             }
-            else
-            {
-                //当前更新阶段
-                GUI.Label(new Rect(0, 40f + 200, Screen.width, 20f), STATE_DESCRIBE_TABLE[(int)updater_.CurrentState]);
-                //当前阶段进度
-                GUI.HorizontalScrollbar(new Rect(0f, 60f + 200, Screen.width, 30f), 0f, updater_.CurrentStateCompleteValue, 0f, updater_.CurrentStateTotalValue);
-
-                if (!updater_.IsDone && !updater_.IsFailed)
-                {
-                    if (GUI.Button(new Rect(0, 80f + 200, Screen.width, 20f), "中断更新"))
-                    {
-                        Debug.Log("Abort Update");
-                        updater_.AbortUpdate();
-                        Destroy(updater_);
-                    }
-                }
-                else if (updater_.IsDone)
-                {
-                    if (updater_.IsFailed)
-                    {
-                        if (GUI.Button(new Rect(0, 80f + 200, Screen.width, 20f), "更新失败，重新开始"))
-                        {
-                            Destroy(updater_);
-                        }
-                    }
-                    else
-                        GUI.Label(new Rect(0, 80f + 200, Screen.width, 20f), "更新成功");
-                }
-            }
+            yield return null;
         }
-
-        void Failed()
+        // -------------------------------------------------  event ---------------------------------------------------------//
+        void OnToggleFullscreen(bool onOrOff,int index=1)
         {
-            //启动失败
-            GUI.color = Color.red;
-            GUI.Label(new Rect(0f, 0f + 200, 200f, 20f), "AssetBundlePacker launch occur error!");
+            fullscreen_.TipIndex = index;
+            fullscreen_.enabled = onOrOff;
+        }
+        void OnScreenPointerDown()
+        {
+            Debug.LogMsg("OnScreenPointerDown");
+            OnToggleFullscreen(false);
         }
 
     }

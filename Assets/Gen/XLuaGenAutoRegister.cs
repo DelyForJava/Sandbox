@@ -77,6 +77,10 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(Bean.Hall.AssetBundleManager), BeanHallAssetBundleManagerWrap.__Register);
 				
+				translator.DelayWrapLoader(typeof(Bean.Hall.ResourcesManager), BeanHallResourcesManagerWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Bean.Hall.LuaClient), BeanHallLuaClientWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);

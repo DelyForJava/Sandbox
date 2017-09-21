@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+
+using UnityEngine;
+
+namespace Bean.Hall
+{
+    public class Client : MonoBehaviour
+    {
+        private Hotupdate hotupdate_;
+
+        void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+
+            hotupdate_ = transform.Find("Hotupdate").GetComponent<Hotupdate>();
+            
+
+        }
+        void Start()
+        {
+            hotupdate_.enabled = true;
+        }
+
+        void OnDestroy()
+        {
+            hotupdate_ = null;
+        }
+
+    }
+
+}

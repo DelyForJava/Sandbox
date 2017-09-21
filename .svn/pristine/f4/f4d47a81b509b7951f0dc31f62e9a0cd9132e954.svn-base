@@ -1,0 +1,397 @@
+﻿using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using PathologicalGames;
+using System;
+using System.Text;
+using System.Security.Cryptography;
+using System.Net;
+
+public class Loading : MonoBehaviour {
+	
+	public Slider slider;
+    public static Common2dRes _common2dRes = null;
+	int count = 0;
+	PathologicalGames.SpawnPool spawnPool;
+
+    public Text httpReturnMessageText;
+    public Text loadingMessageText;
+    private float loadspeed; 
+    /// <summary>
+    /// 大厅地址
+    /// </summary>
+    private string url;
+
+
+    /// <summary>
+    /// 解析域名
+    /// </summary>
+    private static string domain = "3dfish.douzi.com";
+    /// <summary>
+    /// D+秘钥
+    /// </summary>
+    private static string key;
+    /// <summary>
+    /// D+ ID
+    /// </summary>
+    private static string id;
+    /// <summary>
+    /// ip解析结果
+    /// </summary>
+    private string ipRes;
+
+
+    private string loginMessageStr;
+    private string loadingMessageStr= "loading...";
+    
+    private Image barImage;
+    private float fillAmount = 0.0f;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+	static void StartUp()
+	{
+	}
+
+	void OnEnable()
+	{
+		Debug.Log("Loading OnEnable...");
+		GameLoading.OnStartLoading += OnStartLoading;
+		GameLoading.OnLoading += OnLoading;
+		GameLoading.OnFinishLoading += OnFinishLoading;
+	}
+
+	void OnDisable()
+	{
+		Debug.Log("Loading OnDisable...");
+		GameLoading.OnStartLoading -= OnStartLoading;
+		GameLoading.OnLoading -= OnLoading;
+		GameLoading.OnFinishLoading -= OnFinishLoading;
+	}
+
+	void Awake()
+	{
+		Debug.Log("Loading Awake...");
+	}
+
+	// Use this for initialization
+	void Start () {
+		Debug.Log("Loading Start...");
+        var login = UILoginController.Instance;
+		var mainmenu = UIMainMenuController.Instance;
+
+        InitInfo();
+        StartCoroutine(HttpsReq());
+        LoadAssetBundles();
+    }
+		
+	void OnStartLoading(GameLoading gl)
+	{
+		Debug.Log ("start loading " + GameLoading.level);
+		if (slider != null) {
+			slider.maxValue = 100;
+		}
+
+		Resources.UnloadUnusedAssets ();
+
+		GameClient.Instance.AssetLoader.CheckVersion ("", delegate() {
+		});
+
+		CreateDontDestroy ();
+
+		switch (GameLoading.level)
+		{
+		case 0://
+			break;
+		case 1://login
+			{
+				
+			}
+			break;
+		case 2://mainmenu
+			break;
+		case 3://game
+			{		
+				var effectRes = new InGameEffectRes ();
+				Debug.Log ("current task count -> " + GameClient.Instance.AssetLoader.TaskCount());
+				var res0 = new MahjongGameRes ();
+				Debug.Log ("current task count -> " + GameClient.Instance.AssetLoader.TaskCount());
+				var res1 = new InGame2dRes ();
+				Debug.Log ("current task count -> " + GameClient.Instance.AssetLoader.TaskCount());
+			}
+			break;
+		default:
+			Debug.LogError("Unknown level :" + GameLoading.level);
+			break;
+		}
+	}
+
+	void OnLoading()
+	{
+		if (slider == null) {
+			//strange Start is called after OnLoading 
+			Debug.LogWarning("No Slider...");
+			return;
+		} 
+
+		//Debug.Log ("current task count -> " + ResourceManager.Instance.Loader.TaskCount());
+		slider.value = ++count*loadspeed % 100;
+
+		if (GameClient.Instance.AssetLoader.TaskCount() == 0) {
+			if (slider.value >= 99) {
+				GameLoading.FinishLoading = true;
+				slider.value = 100;
+
+                loadingMessageStr = "OK!";
+            }
+
+        }
+        loadingMessageText.text = loadingMessageStr + Convert.ToInt32(slider.value) +"%";
+        //loadingMessageText.text = savePath;
+
+    }
+
+	void OnFinishLoading(GameLoading gl)
+	{
+	}
+		
+	static bool _easytouch = false;
+	static bool _unitybridge = false;
+	static bool _debugcanvas = false;
+	void CreateDontDestroy()
+	{
+		/*
+		if (GameObject.Find ("EasyTouch") == null && _easytouch == false) {//Debug.LogError ("P.");
+			_easytouch = true;
+			ResourceManager.Instance.LoadAsync ("Prefabs_InGame", "EasyTouch", delegate(Object obj) {
+				GameObject prefab = (GameObject)obj;
+				GameObject go = GameObject.Instantiate (prefab) as GameObject; 
+				go.name = "EasyTouch";
+				GameObject.DontDestroyOnLoad (go);
+			});
+		}
+
+		if (GameObject.Find ("UnityBridge") == null && _unitybridge == false) {//Debug.LogError ("P..");
+			_unitybridge = true;
+			ResourceManager.Instance.LoadAsync ("Prefabs_InGame", "UnityBridge", delegate(Object obj) {
+				GameObject prefab = (GameObject)obj;
+				GameObject go = GameObject.Instantiate (prefab) as GameObject; 
+				go.name = "UnityBridge";
+				GameObject.DontDestroyOnLoad (go);
+			});
+		}
+		*/
+        Debug.Log("Canvas_Debug***");
+        if (null == _common2dRes)
+        {
+            _common2dRes = new Common2dRes();
+        }
+        
+		/*if (GameObject.Find ("Canvas_Debug") == null && _unitybridge == false) {
+            Debug.Log("Canvas_Debug ok***");
+			_unitybridge = true;
+			ResourceManager.Instance.LoadAsync ("Debug", "Canvas_Debug", delegate(Object obj) {
+				GameObject prefab = (GameObject)obj;
+				GameObject go = GameObject.Instantiate (prefab) as GameObject; 
+				go.name = "Canvas_Debug";
+				GameObject.DontDestroyOnLoad (go);
+			});
+		}*/
+	}
+
+    /// <summary>
+    /// 初始化配置信息
+    /// </summary>
+    private void InitInfo()
+    {
+        //url = "http://10.0.70.121:8081/odao-activity/cases2017/qzMaJiang/getBroadCastList.do";
+        url = "https://www.baidu.com/s?wd=unity%20www&rsv_spt=1&rsv_iqid=0x9a2965e600006b4b&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=unity%2520www%25E6%25B3%25A8%25E5%2586%258C&rsv_t=06e0TjDDQucsPkyV4y3GiTHx0HCgE8wt%2FttwuGI4DaEDS%2F%2BMxCpQsFVttCbEgME%2F5Rep&inputT=241&rsv_sug3=14&rsv_pq=88d483ef0000c4b1&rsv_sug1=11&rsv_sug7=100&rsv_sug2=0&rsv_sug4=840";
+        key = "x0qemCME";
+        id = "289";
+        loginMessageStr = "开始请求Https...";
+        loadspeed = 0.2f;
+    }
+
+    /// <summary>
+    /// 请求https大厅数据
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator HttpsReq()
+    {
+
+        WWW www = new WWW(url);
+        yield return www;
+        loginMessageStr = www.text;
+
+
+        /*
+        JsonData jd = JsonMapper.ToObject(www.text);
+        
+        Debug.Log("retCode=" + jd["retCode"]);
+        //Debug.Log("broadCastList=" + jd["broadCastList"]["getTime"]);
+        //Debug.Log("broadCastList=" + jd["broadCastList"]["giftName"]);
+        //Debug.Log("broadCastList=" + jd["broadCastList"]["headUrl"]);
+        //Debug.Log("broadCastList=" + jd["broadCastList"]["nickName"]);
+
+        JsonData jd2 = JsonMapper.ToObject(jd["broadCastList"].ToJson()); 
+        for (int i = 0; i < jd2.Count; i++)
+        {
+            //Debug.Log("retCode=" + jd[i]["retCode"]);
+            //Debug.Log("broadCastList=" + jd[i]["broadCastList"]);
+            Debug.Log("getTime=" + jd2["getTime"]);
+            //Debug.Log("giftName=" + jd["broadCastList"]["giftName"]);
+            //Debug.Log("headUrl=" + jd["broadCastList"]["headUrl"]);
+            //Debug.Log("nickName=" + jd["broadCastList"]["nickName"]);
+        }*/
+
+
+        StartCoroutine(ThirdPartyResolution(domain, key, id));
+        LocalResolution(domain);
+    }
+
+
+
+    public void Regist(string a)
+    {
+        Debug.Log("这是一个按钮点击事件！哈哈");
+        StartCoroutine(RegistReq());
+    }
+
+    IEnumerator RegistReq()
+    {
+        string urlRegist = "";
+        // Create a form object for sending high score data to the server
+        WWWForm form = new WWWForm();
+        form.AddField("ID", "123456");
+        form.AddField("Password", "abc");
+
+        PlayerPrefs.SetString("ID", "123456");
+        PlayerPrefs.SetString("Password", "abc");
+
+        // Create a download object
+        WWW webResPonse = new WWW(urlRegist, form);
+
+        // Wait until the download is done
+        yield return webResPonse;
+
+        if (!string.IsNullOrEmpty(webResPonse.error))
+        {
+            print("Error downloading: " + webResPonse.error);
+        }
+        else
+        {
+            Debug.Log(webResPonse.text);
+        }
+    }
+
+
+    /// <summary>
+    /// D+第三方域名解析
+    /// </summary>
+    private IEnumerator ThirdPartyResolution(string domainAddress, string key, string id)
+    {
+        string encryptStr = ECBEncrypt(domainAddress, key);
+        string thirdPartyUrl = "http://119.29.29.29/d?dn=" + encryptStr + "&id=" + id + "&ttl=1";
+        WWW www = new WWW(thirdPartyUrl);
+        yield return www;
+        string returnCode = www.text;
+        string decryptStr = ECBDecrypt(returnCode, key);
+        string ip = decryptStr.Split(',')[0];
+        ipRes = ip;
+        Debug.Log("第三方IP解析结果：" + decryptStr);
+    }
+
+    /// <summary>
+    /// 本地域名解析
+    /// </summary>
+    private void LocalResolution(string domainAddress)
+    {
+        IPHostEntry host = Dns.GetHostEntry(domainAddress);
+        IPAddress ip = host.AddressList[0];
+        ipRes = ip.ToString();
+        Debug.Log("本地IP解析结果：" + ip.ToString());
+    }
+
+
+
+    /// <summary>  
+    /// DES加密  ECB
+    /// </summary>  
+    /// <param name="pToEncrypt"></param>  
+    /// <param name="sKey"></param>  
+    /// <returns></returns>  
+    public string ECBEncrypt(string pToEncrypt, string sKey)
+    {
+        DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+        byte[] inputByteArray = Encoding.Default.GetBytes(pToEncrypt);
+        des.Key = ASCIIEncoding.ASCII.GetBytes(sKey);
+        des.IV = ASCIIEncoding.ASCII.GetBytes(sKey);
+        des.Mode = CipherMode.ECB;
+        MemoryStream ms = new MemoryStream();
+        CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
+        cs.Write(inputByteArray, 0, inputByteArray.Length);
+        cs.FlushFinalBlock();
+        StringBuilder ret = new StringBuilder();
+        foreach (byte b in ms.ToArray())
+        {
+            ret.AppendFormat("{0:X2}", b);
+        }
+        ret.ToString();
+        return ret.ToString();
+    }
+
+    /// <summary>  
+    /// DES解密  ECB
+    /// </summary>  
+    /// <param name="pToDecrypt"></param>  
+    /// <param name="sKey"></param>  
+    /// <returns></returns>  
+    public string ECBDecrypt(string pToDecrypt, string sKey)
+    {
+        DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+        byte[] inputByteArray = new byte[pToDecrypt.Length / 2];
+        for (int x = 0; x < pToDecrypt.Length / 2; x++)
+        {
+            int i = (Convert.ToInt32(pToDecrypt.Substring(x * 2, 2), 16));
+            inputByteArray[x] = (byte)i;
+        }
+        des.Key = ASCIIEncoding.ASCII.GetBytes(sKey);
+        des.IV = ASCIIEncoding.ASCII.GetBytes(sKey);
+        des.Mode = CipherMode.ECB;
+        MemoryStream ms = new MemoryStream();
+        CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
+        cs.Write(inputByteArray, 0, inputByteArray.Length);
+        cs.FlushFinalBlock();
+        //StringBuilder ret = new StringBuilder();
+        return System.Text.Encoding.Default.GetString(ms.ToArray());
+    }
+
+    private string savePath;
+    private void LoadAssetBundles()
+    {
+        //savePath = Application.dataPath + "!assets/"; 
+        savePath = Application.persistentDataPath;
+        //ShowTip.Instance.ShowMessage(savePath);
+
+        //本地测试成功  ftp://10.0.70.79/StreamingAssets   http://ov0u5wsye.bkt.clouddn.com/StreamingAssets          
+        try
+        {
+            LoadAssetBundle.Instance.DownLoadAssets2LocalWithDependencies("http://ov0u5wsye.bkt.clouddn.com/StreamingAssets", "StreamingAssets", "logo", savePath, () =>
+            {
+                AssetBundle assetTarget = LoadAssetBundle.Instance.GetLoadAssetFromLocalFile("StreamingAssets", "logo", "logo", Application.persistentDataPath);
+                //GameObject.Instantiate(obj);
+                //Sprite sprite = GameObject.Find("logo").GetComponent<Image>().sprite;
+                Texture2D loadTexture = assetTarget.LoadAsset("logo") as Texture2D;
+                Sprite loadSprite = Sprite.Create(loadTexture, new Rect(0, 0, loadTexture.width, loadTexture.height), new Vector2(0f, 0f));
+                GameObject.Find("logo").GetComponent<Image>().sprite = loadSprite;
+            });
+
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+    }
+}

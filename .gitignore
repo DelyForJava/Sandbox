@@ -1,0 +1,10 @@
+# directories
+Library/
+obj/
+publish/
+Temp/
+
+# files
+Assembly*
+develop*
+

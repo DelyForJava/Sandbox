@@ -1,0 +1,23 @@
+require 'Login/Login'
+require 'Hall/Hall'
+require 'Game/Game'
+
+local speed =1
+
+function Awake()
+	CS.UnityEngine.Debug.Log("lua Awake:"..speed..", :"..CS.Bean.Hall.AssetBundleManager.Instance.Version)
+	-- print("lua Awake:"..speed..", :"..CS.Bean.Hall.AssetBundleManager.Instance.Version)
+end
+
+function Start()
+	print("lua Start")
+end
+
+function Update()
+    -- print("lua Update")
+
+end
+
+function OnDestroy()
+    print("lua OnDestroy")
+end
