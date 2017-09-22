@@ -36,7 +36,9 @@ namespace Bean.Hall
 
             shieldClient_ = GetComponent<ShieldClient>();
             shieldClient_.enabled = true;
-            Event.SendMessage(shieldClient_,Event.OnShieldChanged);
+            //shieldClient_.CurrentWaitType = ShieldClient.WaitType.Local;
+            //shieldClient_.OnOrOff = true;
+            shieldClient_.ChangeModel(true);
             yield return null;
         }
         IEnumerator GetInfo()
@@ -76,7 +78,7 @@ namespace Bean.Hall
         {
             Debug.LogMsg(Event.HotupdateToClient);
 
-            Global.SendMessage(gameObject, Event.UIMessage.Hotupdate);
+            //Global.SendMessage(gameObject, Event.UIMessage.Hotupdate);
 
         }
 

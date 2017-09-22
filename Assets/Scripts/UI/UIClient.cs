@@ -55,19 +55,19 @@ namespace Bean.Hall
 
         void OnViewChanged()
         {
-            if (Data.FullscreenChanged)
+            if (Event.FullscreenChanged)
             {
-                if (Data.StepIndex >= Data.Step.Max || Data.StepIndex == Data.Step.Download)
+                if (Event.StepIndex >= Event.Step.Max || Event.StepIndex == Event.Step.Download)
                 {
                     fullscreen_.gameObject.SetActive(false);
                 }
                 else
                 {
-                    tip_.text = Data.StepTips[(int)Data.StepIndex];
+                    tip_.text = Event.StepTips[(int)Event.StepIndex];
                 }
 
             }
-            if (Data.HotChanged)
+            if (Event.HotChanged)
                 hot_.gameObject.SetActive(true);
         }
 

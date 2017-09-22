@@ -53,13 +53,15 @@ namespace Bean.Hall
             shield_.gameObject.SetActive(OnOrOff);
         }
 
-        void ChangeModel()
+        public void ChangeModel(bool onOrOff,WaitType waitType=WaitType.Local)
         {
+            OnOrOff = onOrOff;
+            CurrentWaitType = waitType;
+            ChangeView();
         }
 
         void OnShieldToggle()
         {
-            ChangeModel();
             ChangeView();
         }
 
