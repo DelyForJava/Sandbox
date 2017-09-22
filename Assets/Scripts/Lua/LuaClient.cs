@@ -15,6 +15,7 @@ namespace Bean.Hall
 
     public class LuaClient : MonoBehaviour
     {
+        private string mainPath = "Assets/Lua/Client.lua.txt";
         public TextAsset luaScript;
         public Injection[] injections;
 
@@ -62,6 +63,7 @@ namespace Bean.Hall
                 scriptTable.Set(injection.name, injection.value);
             }
 
+            luaScript = ResourcesManager.Load<TextAsset>(mainPath);
             luaEnv.DoString(luaScript.text, "Client", scriptTable);
 
             Action luaAwake = scriptTable.Get<Action>("Awake");

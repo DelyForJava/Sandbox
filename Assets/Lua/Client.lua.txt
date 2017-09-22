@@ -1,4 +1,4 @@
-require 'Login/Login'
+--require 'Login/Login'
 require 'Hall/Hall'
 require 'Game/Game'
 

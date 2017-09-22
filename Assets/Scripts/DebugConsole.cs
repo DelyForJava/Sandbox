@@ -46,8 +46,9 @@ namespace Bean.Hall
             //绘制控制台窗口
             if (IsShow)
             {
-                v2 = GUILayout.BeginScrollView(v2, GUILayout.MinWidth(Screen.width - 5), GUILayout.MaxHeight(400));
-                GUILayout.TextArea(Str, GUILayout.MinWidth(Screen.width - 100));
+                v2 = GUILayout.BeginScrollView(v2, GUILayout.Width(1024), GUILayout.Height(640));
+                GUILayout.TextArea(Str, GUILayout.Width(960), GUILayout.Height(60));
+                //GUILayout.TextArea(Str, GUILayout.Width(600), GUILayout.Height(60));
                 GUILayout.EndScrollView();
             }
 
