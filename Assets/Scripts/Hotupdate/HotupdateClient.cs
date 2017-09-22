@@ -50,12 +50,12 @@ namespace Bean.Hall
             {
                 if (!AssetBundleManager.Instance.WaitForLaunch())
                 {
-                    if( Data.CompressIndex != compress_index_ )
+                    if( Event.CompressIndex != compress_index_ )
                     {
                         changed_ = true;
                     }
-                    compress_index_ = Data.CompressIndex;
-                    Data.CompressIndex = 0;
+                    compress_index_ = Event.CompressIndex;
+                    Event.CompressIndex = 0;
 
                 }
                 else
@@ -66,7 +66,7 @@ namespace Bean.Hall
                         Failed();
                 }
                 if (changed_)
-                    gameObject.SendMessage(Data.HotupdateToClient, SendMessageOptions.DontRequireReceiver);
+                    gameObject.SendMessage(Event.HotupdateToClient, SendMessageOptions.DontRequireReceiver);
                 changed_ = false;
                 yield return null;
             }
@@ -82,18 +82,18 @@ namespace Bean.Hall
                 updater_ = gameObject.AddComponent<Updater>();
 
             List<string> url_group = new List<string>();
-            url_group.Add(Data.cdn);
+            url_group.Add(Event.cdn);
             updater_.StartUpdate(url_group);
         }
 
         void Ready()
         {
-            if (Data.CompressIndex != compress_index_)
+            if (Event.CompressIndex != compress_index_)
             {
                 changed_ = true;
             }
-            compress_index_ = Data.CompressIndex;
-            Data.CompressIndex = 1;
+            compress_index_ = Event.CompressIndex;
+            Event.CompressIndex = 1;
 
             if (updater_ == null)
             {
@@ -142,12 +142,12 @@ namespace Bean.Hall
 
         void Failed()
         {
-            if (Data.CompressIndex != compress_index_)
+            if (Event.CompressIndex != compress_index_)
             {
                 changed_ = true;
             }
-            compress_index_ = Data.CompressIndex;
-            Data.CompressIndex = 2;
+            compress_index_ = Event.CompressIndex;
+            Event.CompressIndex = 2;
         }
 
         void OnClickOk()
