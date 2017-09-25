@@ -7,7 +7,7 @@ using LitJson;
 namespace Bean.Hall
 {
 
-    public  class GlobalData
+    public class GlobalData
     {
         public static string Url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
         public static int ChannelId;
@@ -26,7 +26,7 @@ namespace Bean.Hall
 
 
         public static string[] HotupdateTips =
-{
+        {
             "",
             "初始化更新信息",
             "连接服务器",
@@ -62,7 +62,7 @@ namespace Bean.Hall
             get; set;
         }
     }
-    public  static class Event 
+    public static class Event
     {
         // -------------------------------------------------  mono ---------------------------------------------------------//
         // -------------------------------------------------  data ---------------------------------------------------------//
@@ -122,7 +122,7 @@ namespace Bean.Hall
 
         }
         // -------------------------------------------------  event ---------------------------------------------------------//
-        
+
 
         public static string OnHotupdateChanged = "OnHotupdateChanged";
         public static string OnShieldChanged = "OnShieldChanged";

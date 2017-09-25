@@ -48,7 +48,7 @@ namespace Bean.Hall
         void Awake()
         {
             Debug.LogMsg("LuaClient Awake");
-
+            
             LuaEnv.CustomLoader custom = Require;
             luaEnv.AddLoader(custom);
 

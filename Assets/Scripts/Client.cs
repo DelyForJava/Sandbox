@@ -38,7 +38,8 @@ namespace Bean.Hall
         }
         IEnumerator GetInfo()
         {
-            yield return Event.GetInfo();
+            //yield return Event.GetInfo();
+            yield return null;
         }
         IEnumerator Download()
         {
@@ -64,7 +65,6 @@ namespace Bean.Hall
             }
             yield return null;
             Event.StepIndex = Event.Step.Max;
-            Debug.LogMsg("Where am I");
 
 
         }
@@ -72,8 +72,11 @@ namespace Bean.Hall
         // -------------------------------------------------  event ---------------------------------------------------------//
         void HotupdateCompleted()
         {
-            luaClient_ = gameObject.AddComponent<LuaClient>();
+            Debug.LogMsg("Where am I");
 
+            luaClient_ = gameObject.AddComponent<LuaClient>();
+            var resReload = GameObject.Find("Canvas/Origin").GetComponent<ResReload>();
+            resReload.gameObject.SendMessage("OnReload");
         }
 
     }
