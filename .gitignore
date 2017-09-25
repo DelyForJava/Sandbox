@@ -3,6 +3,7 @@ Library/
 obj/
 publish/
 Temp/
+.svn/
 
 # files
 Assembly*

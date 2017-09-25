@@ -8,8 +8,6 @@ namespace Bean.Hall
     {
         HotupdateClient hotupdateClient_;
 
-        ShieldClient shieldClient_;
-
         LuaClient luaClient_;
 
         void Awake()
@@ -20,7 +18,7 @@ namespace Bean.Hall
         }
         void OnDestroy()
         {
-            shieldClient_ = null;
+            luaClient_ = null;
             hotupdateClient_ = null;
         }
 
@@ -34,11 +32,8 @@ namespace Bean.Hall
             hotupdateClient_ = GetComponent<HotupdateClient>();
             hotupdateClient_.enabled = true;
 
-            shieldClient_ = GetComponent<ShieldClient>();
-            shieldClient_.enabled = true;
             //shieldClient_.CurrentWaitType = ShieldClient.WaitType.Local;
             //shieldClient_.OnOrOff = true;
-            shieldClient_.ChangeModel(true);
             yield return null;
         }
         IEnumerator GetInfo()
@@ -47,10 +42,7 @@ namespace Bean.Hall
         }
         IEnumerator Download()
         {
-            while (true)
-            {
-                yield return hotupdateClient_.Flow();
-            }
+                    yield return hotupdateClient_.Flow();
 
         }
         IEnumerator Flow()
@@ -65,20 +57,22 @@ namespace Bean.Hall
             if (isNeed)
             {
                 Event.StepIndex = Event.Step.Download;
-                yield return Download();
-            }
 
+                yield return hotupdateClient_.Flow();
+
+                //yield return Download();
+            }
+            yield return null;
             Event.StepIndex = Event.Step.Max;
+            Debug.LogMsg("Where am I");
 
 
         }
 
         // -------------------------------------------------  event ---------------------------------------------------------//
-        void HotupdateToClient()
+        void HotupdateCompleted()
         {
-            Debug.LogMsg(Event.HotupdateToClient);
-
-            //Global.SendMessage(gameObject, Event.UIMessage.Hotupdate);
+            luaClient_ = gameObject.AddComponent<LuaClient>();
 
         }
 

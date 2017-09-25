@@ -77,7 +77,8 @@ namespace zcode.AssetBundlePacker
         {
             get
             {
-                return emLoadPattern.AssetBundle;
+                return emLoadPattern.All;
+                //return emLoadPattern.AssetBundle;
             }
         }
 

@@ -6,43 +6,27 @@ using LitJson;
 
 namespace Bean.Hall
 {
-    public static class Event
+
+    public  class GlobalData
     {
-        public  enum Step
-        {
-            Prepare,
-            GetInfo,
-            Download,
-            Max,
-        }
+        public static string Url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
+        public static int ChannelId;
+        public static int AppId;
+        public static string CurrentVersionId;
+        public static string VerifyVersionId;
+        public static string ChannelName;
+        public static string DownloadUrl;
+        public static string LobbyConfigUrl;
+        public static string UpdateDesription;
+        public static string ModifyTime;
+        public static int SwitchDns;
 
-        public static string[] StepTips =
-        {
-            "准备中。。。",
-            "正在获取信息。。。",
-            "正在下载文件。。。",//解压文件  下载  覆盖
-            "准备完毕。。。",
-            //"网络正在请求。。。",
-        };
-        public static Step StepIndex
-        {
-            get; set;
-        }
-        public static string cdn = "http://u3download.douzi.com/";
 
-        public static string[] CompressTips =
-        {
-            "正在解压......",
-            "解压完成",
-            "解压失败",
-        };
-        public static int CompressIndex
-        {
-            get;set;
-        }
+        public Dictionary<string, string> Localization = new Dictionary<string, string>();
+
 
         public static string[] HotupdateTips =
-        {
+{
             "",
             "初始化更新信息",
             "连接服务器",
@@ -55,22 +39,56 @@ namespace Bean.Hall
             "更新取消",
             "更新中断",
         };
+        public static string[] StepTips =
+{
+            "准备中。。。",
+            "正在获取信息。。。",
+            "正在下载文件。。。",//解压文件  下载  覆盖
+            "准备完毕。。。",
+            //"网络正在请求。。。",
+        };
+
+
+        public static string Cdn = "http://u3download.douzi.com/";
+
+        public static string[] CompressTips =
+        {
+            "正在解压......",
+            "解压完成",
+            "解压失败",
+        };
+        public static int CompressIndex
+        {
+            get; set;
+        }
+    }
+    public  static class Event 
+    {
+        // -------------------------------------------------  mono ---------------------------------------------------------//
+        // -------------------------------------------------  data ---------------------------------------------------------//
+
+        public enum Step
+        {
+            Prepare,
+            GetInfo,
+            Download,
+            Max,
+        }
+
+
+        public static Step StepIndex
+        {
+            get; set;
+        }
+
+
+
         // -------------------------------------------------  event ---------------------------------------------------------//
-        public static string url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
-        public static int channelId;
-        public static int appId;
-        public static string currentVersionId;
-        public static string verifyVersionId;
-        public static string channelName;
-        public static string downloadUrl;
-        public static string lobbyConfigUrl;
-        public static string updateDesription;
-        public static string modifyTime;
-        public static int switchDns;
+
 
         public static IEnumerator GetInfo()
         {
-            WWW getData = new WWW(url);
+            WWW getData = new WWW(GlobalData.Url);
             yield return getData;
             if (getData.isDone && getData.error == null)
             {
@@ -80,16 +98,16 @@ namespace Bean.Hall
                 int code = int.Parse(jd["code"].ToString());
                 if (code == 0)
                 {
-                    channelId = int.Parse(jd["result"]["channelId"].ToString());
-                    appId = int.Parse(jd["result"]["appId"].ToString());
-                    currentVersionId = jd["result"]["appId"].ToString();
-                    verifyVersionId = jd["result"]["verifyVersionId"].ToString();
-                    channelName = jd["result"]["channelName"].ToString();
-                    downloadUrl = jd["result"]["downloadUrl"].ToString();
-                    lobbyConfigUrl = jd["result"]["lobbyConfigUrl"].ToString();
-                    updateDesription = jd["result"]["updateDesription"].ToString();
-                    modifyTime = jd["result"]["modifyTime"].ToString();
-                    switchDns = int.Parse(jd["result"]["switchDns"].ToString());
+                    GlobalData.ChannelId = int.Parse(jd["result"]["channelId"].ToString());
+                    GlobalData.AppId = int.Parse(jd["result"]["appId"].ToString());
+                    GlobalData.CurrentVersionId = jd["result"]["appId"].ToString();
+                    GlobalData.VerifyVersionId = jd["result"]["verifyVersionId"].ToString();
+                    GlobalData.ChannelName = jd["result"]["channelName"].ToString();
+                    GlobalData.DownloadUrl = jd["result"]["downloadUrl"].ToString();
+                    GlobalData.LobbyConfigUrl = jd["result"]["lobbyConfigUrl"].ToString();
+                    GlobalData.UpdateDesription = jd["result"]["updateDesription"].ToString();
+                    GlobalData.ModifyTime = jd["result"]["modifyTime"].ToString();
+                    GlobalData.SwitchDns = int.Parse(jd["result"]["switchDns"].ToString());
                 }
                 else
                 {
@@ -105,52 +123,11 @@ namespace Bean.Hall
         }
         // -------------------------------------------------  event ---------------------------------------------------------//
         
-        public static string HotupdateToClient = "HotupdateToClient";
-        public static string ClientToHotupdate = "ClientToHotupdate";
 
-        public static string UIToClient = "UIToClient";
         public static string OnHotupdateChanged = "OnHotupdateChanged";
         public static string OnShieldChanged = "OnShieldChanged";
-        
-        public  enum UIMessage
-        {
-            Fullscreen,
-            Hotupdate,
-        }
-
-        public static bool HotChanged
-        {
-            get;set;
-        }
-        public static bool FullscreenChanged
-        {
-            get; set;
-        }
-        public static void SendMessage<T>(T t, string msg,params object[] objs) where T : MonoBehaviour
-        {
-            if (msg == OnShieldChanged)
-            {
-                bool first;
-                ShieldClient.WaitType second;
-                first = (bool)objs[0];
-                second = (ShieldClient.WaitType)objs[1];
-                //t.gameObject.SendMessage(msg,first,second SendMessageOptions.DontRequireReceiver);
-
-            }
-            else if (msg == OnHotupdateChanged)
-            {
-
-            }
-
-
-
-        }
-    }
-
-    public class Global
-    {
-
 
     }
+
 
 }

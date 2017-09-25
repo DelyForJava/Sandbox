@@ -47,6 +47,8 @@ namespace Bean.Hall
 
         void Awake()
         {
+            Debug.LogMsg("LuaClient Awake");
+
             LuaEnv.CustomLoader custom = Require;
             luaEnv.AddLoader(custom);
 
@@ -58,10 +60,10 @@ namespace Bean.Hall
             meta.Dispose();
 
             scriptTable.Set("self", this);
-            foreach (var injection in injections)
-            {
-                scriptTable.Set(injection.name, injection.value);
-            }
+            //foreach (var injection in injections)
+            //{
+            //    scriptTable.Set(injection.name, injection.value);
+            //}
 
             luaScript = ResourcesManager.Load<TextAsset>(mainPath);
             luaEnv.DoString(luaScript.text, "Client", scriptTable);
