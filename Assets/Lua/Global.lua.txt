@@ -1,0 +1,5 @@
+ULog = CS.UnityEngine.Debug.Log
+
+UGameObject = CS.UnityEngine.GameObject
+
+USceneManager=CS.UnityEngine.SceneManagement.SceneManager
