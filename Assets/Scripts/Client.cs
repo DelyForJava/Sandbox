@@ -29,11 +29,8 @@ namespace Bean.Hall
         }
         IEnumerator Prepare()
         {
-            hotupdateClient_ = GetComponent<HotupdateClient>();
-            hotupdateClient_.enabled = true;
+            AssetBundleManager.Instance.WaitForLaunch();
 
-            //shieldClient_.CurrentWaitType = ShieldClient.WaitType.Local;
-            //shieldClient_.OnOrOff = true;
             yield return null;
         }
         IEnumerator GetInfo()
@@ -43,7 +40,7 @@ namespace Bean.Hall
         }
         IEnumerator Download()
         {
-                    yield return hotupdateClient_.Flow();
+            yield return hotupdateClient_.Flow();
 
         }
         IEnumerator Flow()
@@ -58,7 +55,9 @@ namespace Bean.Hall
             if (isNeed)
             {
                 Event.StepIndex = Event.Step.Download;
-
+                GameObject.Find("Canvas").transform.Find("Download").gameObject.SetActive(true);
+                hotupdateClient_ = gameObject.AddComponent<HotupdateClient>();
+                hotupdateClient_.enabled = true;
                 yield return hotupdateClient_.Flow();
 
                 //yield return Download();
@@ -66,17 +65,15 @@ namespace Bean.Hall
             yield return null;
             Event.StepIndex = Event.Step.Max;
 
-
+            luaClient_ = gameObject.AddComponent<LuaClient>();
+            var resReload = GameObject.Find("Canvas/Origin").GetComponent<ResReload>();
+            resReload.gameObject.SendMessage("OnReload");
         }
 
         // -------------------------------------------------  event ---------------------------------------------------------//
         void HotupdateCompleted()
         {
-            Debug.LogMsg("Where am I");
-
-            luaClient_ = gameObject.AddComponent<LuaClient>();
-            var resReload = GameObject.Find("Canvas/Origin").GetComponent<ResReload>();
-            resReload.gameObject.SendMessage("OnReload");
+            //Debug.LogMsg("Where am I");
         }
 
     }

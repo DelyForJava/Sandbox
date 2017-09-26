@@ -75,6 +75,14 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.Debug), UnityEngineDebugWrap.__Register);
 				
+				translator.DelayWrapLoader(typeof(UnityEngine.UI.Image), UnityEngineUIImageWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.UI.Text), UnityEngineUITextWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.UI.Button), UnityEngineUIButtonWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.SceneManagement.SceneManager), UnityEngineSceneManagementSceneManagerWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(Bean.Hall.AssetBundleManager), BeanHallAssetBundleManagerWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(Bean.Hall.ResourcesManager), BeanHallResourcesManagerWrap.__Register);

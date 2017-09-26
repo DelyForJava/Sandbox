@@ -49,6 +49,12 @@ namespace Bean.Hall
                 typeof(Action<string>),
                 typeof(UnityEngine.Debug),
 
+                typeof(UnityEngine.UI.Image),
+                typeof(UnityEngine.UI.Text),
+                typeof(UnityEngine.UI.Button),
+
+                 typeof(UnityEngine.SceneManagement.SceneManager),
+
                 //custom
                 typeof(Bean.Hall.AssetBundleManager),
                 typeof(Bean.Hall.ResourcesManager),

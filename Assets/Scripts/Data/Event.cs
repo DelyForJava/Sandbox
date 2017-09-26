@@ -123,10 +123,6 @@ namespace Bean.Hall
         }
         // -------------------------------------------------  event ---------------------------------------------------------//
 
-
-        public static string OnHotupdateChanged = "OnHotupdateChanged";
-        public static string OnShieldChanged = "OnShieldChanged";
-
     }
 
 

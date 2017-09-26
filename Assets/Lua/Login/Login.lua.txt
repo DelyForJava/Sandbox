@@ -1,17 +1,26 @@
-local speed = 7
+local Login = {}
+Login.name = "Scenes/Login"
 
+local index = 0
 
-function start()
-	print("login lua start")
+function Login.Start()
+	print("-------------------------------- Login Start --------------------------------")
 end
 
-function update()
-	--local r = CS.UnityEngine.Vector3.up * CS.UnityEngine.Time.deltaTime * speed
-	--self.transform:Rotate(r)
+function Login.Update()
+	-- print("-------------------------------- Login Update --------------------------------")
+	index = index + 1
+	if index==300 then
+		local bt = CS.UnityEngine.GameObject.Find("Canvas/TouristBtn"):GetComponent("Button")
+		bt.onClick:AddListener(function()
+				print("on tourist clicked")
+		end)
+		print(bt)
+	end
 end
 
-function ondestroy()
-    print("lua destroy")
+function Login.OnDestroy()
+	print("-------------------------------- Login OnDestroy --------------------------------")
 end
 
-start()
+return Login

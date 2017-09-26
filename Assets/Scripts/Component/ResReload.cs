@@ -14,7 +14,6 @@ namespace Bean.Hall
         void Awake()
         {
             images_ = transform.GetComponentsInChildren<Image>();
-
         }
 
         // Use this for initialization
@@ -31,13 +30,13 @@ namespace Bean.Hall
 
         void OnReload()
         {
-            Debug.LogMsg("Where am I 222");
+            //Debug.LogMsg("Where am I 222");
 
             foreach (Image image in images_)
             {
                 var name = image.mainTexture.name;
 
-                if (name!="logoo")
+                if (name!="logoo" || name!="fishh")
                     continue;
                 var name2 = image.sprite.texture.name;
                 var path = "Assets/Art/" + name+".png";

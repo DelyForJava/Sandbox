@@ -47,7 +47,7 @@ namespace Bean.Hall
 
         void Awake()
         {
-            Debug.LogMsg("LuaClient Awake");
+            //Debug.LogMsg("LuaClient Awake");
             
             LuaEnv.CustomLoader custom = Require;
             luaEnv.AddLoader(custom);
@@ -73,6 +73,7 @@ namespace Bean.Hall
             scriptTable.Get("Update", out luaUpdate);
             scriptTable.Get("OnDestroy", out luaOnDestroy);
 
+
             if (luaAwake != null)
             {
                 luaAwake();
@@ -82,6 +83,7 @@ namespace Bean.Hall
         // Use this for initialization
         void Start()
         {
+            //UnityEngine.SceneManagement.SceneManager.
             if (luaStart != null)
             {
                 luaStart();

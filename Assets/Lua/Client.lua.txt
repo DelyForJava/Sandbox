@@ -1,23 +1,33 @@
---require 'Login/Login'
-require 'Hall/Hall'
-require 'Game/Game'
 
-local speed =1
+
+require 'Global'
+
+--require 'Hall/Hall'
+--require 'Game/Game'
+
+
+local currentScene
+local index=0
 
 function Awake()
-	CS.UnityEngine.Debug.Log("lua Awake:"..speed..", :"..CS.Bean.Hall.AssetBundleManager.Instance.Version)
-	-- print("lua Awake:"..speed..", :"..CS.Bean.Hall.AssetBundleManager.Instance.Version)
+	print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
+	currentScene = require 'Login/Login'
+
+	USceneManager.LoadScene(currentScene.name);
 end
 
 function Start()
-	print("lua Start")
+	--print("-------------------------------- Start --------------------------------")
+	currentScene.Start()
 end
 
 function Update()
-    -- print("lua Update")
-
+    -- print("-------------------------------- Update --------------------------------")
+	currentScene.Update()
 end
 
 function OnDestroy()
-    print("lua OnDestroy")
+    -- print("-------------------------------- OnDestroy --------------------------------")
+	currentScene.OnDestroy()
 end
+
