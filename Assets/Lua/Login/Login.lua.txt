@@ -1,26 +1,25 @@
+local Model = require 'Login/LoginModel'
+local View = require 'Login/LoginView'
+
 local Login = {}
 Login.name = "Scenes/Login"
 
 local index = 0
 
 function Login.Start()
-	print("-------------------------------- Login Start --------------------------------")
+		print("-------------------------------- Login Start --------------------------------")
 end
 
 function Login.Update()
-	-- print("-------------------------------- Login Update --------------------------------")
-	index = index + 1
-	if index==300 then
-		local bt = CS.UnityEngine.GameObject.Find("Canvas/TouristBtn"):GetComponent("Button")
-		bt.onClick:AddListener(function()
-				print("on tourist clicked")
-		end)
-		print(bt)
-	end
+		-- print("-------------------------------- Login Update --------------------------------")
+		index = index + 1
+		if index==100 then
+				View.Init()
+		end
 end
 
 function Login.OnDestroy()
-	print("-------------------------------- Login OnDestroy --------------------------------")
+		print("-------------------------------- Login OnDestroy --------------------------------")
 end
 
 return Login

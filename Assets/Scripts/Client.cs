@@ -10,14 +10,20 @@ namespace Bean.Hall
 
         LuaClient luaClient_;
 
+       Transform canvas_;
+
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            canvas_ = GameObject.Find("Canvas").transform;
+
 
             StartCoroutine(Flow());
         }
         void OnDestroy()
         {
+            canvas_ = null;
+
             luaClient_ = null;
             hotupdateClient_ = null;
         }
@@ -66,7 +72,7 @@ namespace Bean.Hall
             Event.StepIndex = Event.Step.Max;
 
             luaClient_ = gameObject.AddComponent<LuaClient>();
-            var resReload = GameObject.Find("Canvas/Origin").GetComponent<ResReload>();
+            var resReload = canvas_.Find("Origin").gameObject.GetComponent<ResReload>();
             resReload.gameObject.SendMessage("OnReload");
         }
 

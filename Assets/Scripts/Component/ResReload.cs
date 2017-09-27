@@ -36,8 +36,8 @@ namespace Bean.Hall
             {
                 var name = image.mainTexture.name;
 
-                if (name!="logoo" || name!="fishh")
-                    continue;
+                //if (name!="logoo" || name!="fishh")
+                //    continue;
                 var name2 = image.sprite.texture.name;
                 var path = "Assets/Art/" + name+".png";
                 var newSprite = ResourcesManager.Load<Sprite>(path);

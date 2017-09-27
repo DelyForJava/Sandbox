@@ -1,0 +1,7 @@
+local config_exp_vip = require 'Config/config_exp_vip'
+
+ConfigData = {}
+
+function ConfigData.GetVipUpgradeExpByLevel(level)
+	return config_exp_vip[tostring(level)].upgrade_exp
+end

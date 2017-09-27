@@ -1,0 +1,15 @@
+local LoginView = {}
+LoginView.name = "LoginView"
+
+function LoginView.Init()
+		local bt = UGameObject.Find("Canvas/TouristBtn"):GetComponent("Button")
+		bt.onClick:AddListener(function()
+				-- print("on tourist clicked")
+				print( ConfigData.GetVipUpgradeExpByLevel(7) )
+				USceneManager.LoadScene("Scenes/Hall");
+		end)
+		print(bt)
+end
+
+--print("LoginView")
+return LoginView

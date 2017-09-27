@@ -245,7 +245,7 @@ namespace XLua.CSObjectWrap
                 
                 {
                     
-                    __cl_gen_to_be_invoked.OnRebuildRequested(  );
+                    //__cl_gen_to_be_invoked.OnRebuildRequested(  );
                     
                     
                     

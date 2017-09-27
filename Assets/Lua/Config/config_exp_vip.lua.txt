@@ -1,0 +1,18 @@
+﻿--[[config_exp_vip
+--]]
+
+local config_exp_vip = 
+{
+	['1'] = { level = 1, upgrade_exp = 10, },
+	['2'] = { level = 2, upgrade_exp = 50, },
+	['3'] = { level = 3, upgrade_exp = 200, },
+	['4'] = { level = 4, upgrade_exp = 500, },
+	['5'] = { level = 5, upgrade_exp = 1000, },
+	['6'] = { level = 6, upgrade_exp = 3000, },
+	['7'] = { level = 7, upgrade_exp = 5000, },
+	['8'] = { level = 8, upgrade_exp = 20000, },
+	['9'] = { level = 9, upgrade_exp = 50000, },
+	['10'] = { level = 10, upgrade_exp = 100000, },
+}
+
+return config_exp_vip

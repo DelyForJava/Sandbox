@@ -1,3 +1,5 @@
+require 'Config/ConfigData'
+
 ULog = CS.UnityEngine.Debug.Log
 
 UGameObject = CS.UnityEngine.GameObject

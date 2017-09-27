@@ -1,5 +1,3 @@
-
-
 require 'Global'
 
 --require 'Hall/Hall'
@@ -10,24 +8,23 @@ local currentScene
 local index=0
 
 function Awake()
-	print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
-	currentScene = require 'Login/Login'
+		print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
+		currentScene = require 'Login/Login'
 
-	USceneManager.LoadScene(currentScene.name);
+		USceneManager.LoadScene(currentScene.name);
 end
 
 function Start()
-	--print("-------------------------------- Start --------------------------------")
-	currentScene.Start()
+		--print("-------------------------------- Start --------------------------------")
+		currentScene.Start()
 end
 
 function Update()
-    -- print("-------------------------------- Update --------------------------------")
-	currentScene.Update()
+		-- print("-------------------------------- Update --------------------------------")
+		currentScene.Update()
 end
 
 function OnDestroy()
-    -- print("-------------------------------- OnDestroy --------------------------------")
-	currentScene.OnDestroy()
+		-- print("-------------------------------- OnDestroy --------------------------------")
+		currentScene.OnDestroy()
 end
-
