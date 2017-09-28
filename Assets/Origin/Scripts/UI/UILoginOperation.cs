@@ -26,7 +26,7 @@ enum Platform
 }
 public partial class UIOperation : SingletonBehaviour<UIOperation> {
 
-    public bool isTestModel=false;
+    public bool isTestModel=true;
 
     public List<Sprite> _wanSprites = new List<Sprite>();
 	public List<Sprite> _tiaoSprites = new List<Sprite>();
@@ -118,7 +118,8 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
     {
         if (isTestModel)
         {
-            Resolution(domain, 30, "53029574b9ca", "9ad88f1554640d3d1cee249");
+            Resolution(domain, 34, "6558a4e4e8d8", "f93f88bbd26aff9d7f7689faff32ced035e1cf19");
+            return;
         }
         //Regist();//test 22 afac70d97abe
         UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");

@@ -1,0 +1,20 @@
+local HallView = {}
+local self = HallView
+
+self.name = "Hall"
+self.loaded = false
+
+function HallView.Init()
+
+end
+
+function HallView.Update()
+		local gameObject = UGameObject.Find( "HallCanvas" )
+		if false==self.loaded and gameObject then
+				self.loaded = true
+				Reloadd("Hall",gameObject)
+		end
+end
+
+
+return HallView

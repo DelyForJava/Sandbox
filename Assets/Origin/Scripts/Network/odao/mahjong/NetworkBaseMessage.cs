@@ -153,6 +153,38 @@ namespace odao.scmahjong
 		    });
 
 
+
+		    _gsProxy.on(BaseMessage.LOBBY_PACKAGE_INFO_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.PackageInfoResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_PACKAGE_INFO_RES_MSG: " + BaseMessage.LOBBY_PACKAGE_INFO_RES_MSG + ", ItemInfoList.Count:" + data.ItemInfoList.Count);
+		        if (data.ItemInfoList.Count != 0)
+		        {
+		            Loom.QueueOnMainThread(delegate () {
+		                PackageDataManager.Instance.LoadDataToPanel(data.ItemInfoList);
+		            });
+		        }
+
+            });
+
+		    _gsProxy.on(BaseMessage.LOBBY_PACKAGE_ADD_ITEM_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.PackageAddItemResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_PACKAGE_ADD_ITEM_RES_MSG: " + BaseMessage.LOBBY_PACKAGE_ADD_ITEM_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iItemID:" + data.iItemID + ", iAddNum:" + data.iAddNum + ", LExpireTime:" + data.LExpireTime + ", LGetTime:" + data.LGetTime);
+
+
+		    });
+
+
+
+
+            #region Old
+
+
+
+
             _gsProxy.on (BaseMessage.AUTHEN_RES_MSG, delegate (Message obj) {
 				OdaoMessage msg = (OdaoMessage)obj;
 				BaseMessage.AuthenResDef data = XConvert.ConvertToObject<BaseMessage.AuthenResDef> (msg.data);
@@ -600,6 +632,8 @@ namespace odao.scmahjong
 			_gsProxy.on (BaseMessage.GAME_CLIENT_SITE_TYPE_MSG, delegate (Message obj) {
 				Debug.Log ("NotImplementedException : GAME_CLIENT_SITE_TYPE_MSG");
 			});
-		}
-	}
+
+		    #endregion
+        }
+    }
 }

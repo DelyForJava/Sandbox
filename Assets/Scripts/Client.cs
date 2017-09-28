@@ -15,8 +15,9 @@ namespace Bean.Hall
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(GameObject.Find("EventSystem"));
             canvas_ = GameObject.Find("Canvas").transform;
-
+            DontDestroyOnLoad(canvas_);
 
             StartCoroutine(Flow());
         }
@@ -72,8 +73,8 @@ namespace Bean.Hall
             Event.StepIndex = Event.Step.Max;
 
             luaClient_ = gameObject.AddComponent<LuaClient>();
-            var resReload = canvas_.Find("Origin").gameObject.GetComponent<ResReload>();
-            resReload.gameObject.SendMessage("OnReload");
+            var resReload = canvas_.Find("Loading").gameObject.AddComponent<ResReload>();
+            resReload.SendMessage("OnReload","Main");
         }
 
         // -------------------------------------------------  event ---------------------------------------------------------//

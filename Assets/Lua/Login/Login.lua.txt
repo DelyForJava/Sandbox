@@ -2,9 +2,12 @@ local Model = require 'Login/LoginModel'
 local View = require 'Login/LoginView'
 
 local Login = {}
-Login.name = "Scenes/Login"
+local self = Login
+self.name = "Login"
 
-local index = 0
+function Login.Awake()
+		USceneManager.LoadSceneAsync( "Scenes/"..self.name)
+end
 
 function Login.Start()
 		print("-------------------------------- Login Start --------------------------------")
@@ -12,14 +15,17 @@ end
 
 function Login.Update()
 		-- print("-------------------------------- Login Update --------------------------------")
-		index = index + 1
-		if index==100 then
-				View.Init()
+		if false==View.loaded then
+				View.Update()
 		end
 end
 
 function Login.OnDestroy()
 		print("-------------------------------- Login OnDestroy --------------------------------")
+end
+
+function Login.GetLoaded()
+		return View.loaded
 end
 
 return Login

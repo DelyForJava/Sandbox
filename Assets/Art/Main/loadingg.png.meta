@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7f4b821b44fab234cad4787537923472
-timeCreated: 1506421249
+timeCreated: 1506578668
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -94,5 +94,5 @@ TextureImporter:
     physicsShape: []
   spritePackingTag: 
   userData: 
-  assetBundleName: 
+  assetBundleName: assets/art/main/loadingg.png.ab
   assetBundleVariant: 

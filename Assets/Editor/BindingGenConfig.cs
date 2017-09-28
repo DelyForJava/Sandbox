@@ -49,17 +49,22 @@ namespace Bean.Hall
                 typeof(Action<string>),
                 typeof(UnityEngine.Debug),
 
-                typeof(UnityEngine.UI.Image),
-                typeof(UnityEngine.UI.Text),
-                typeof(UnityEngine.UI.Button),
+                typeof(RectTransform),
+
+                //typeof(UnityEngine.UI.Image),
+                //typeof(UnityEngine.UI.Text),
+                //typeof(UnityEngine.UI.Button),
 
                  typeof(UnityEngine.SceneManagement.SceneManager),
 
                 //custom
                 typeof(Bean.Hall.AssetBundleManager),
+           
+                //typeof(zcode.AssetBundlePacker.ResourcesManager),
                 typeof(Bean.Hall.ResourcesManager),
                 typeof(Bean.Hall.LuaClient),
-                
+                typeof(Bean.Hall.ResReload),
+
             };
 
         //C#静态调用Lua的配置（包括事件的原型），仅可以配delegate，interface

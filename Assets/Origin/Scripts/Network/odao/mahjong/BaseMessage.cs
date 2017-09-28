@@ -1,6 +1,7 @@
 ﻿
 using MsgPack.Serialization;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 //考虑到其他地方调用 消息ID 先放在BaseMessage外
@@ -16,6 +17,17 @@ public class BaseMessage
     public const ushort LOBBY_MODIFY_NICK_NAME_RES_MSG = 0x9105;
     public const ushort LOBBY_MODIFY_GENDER_REQ_MSG = 0x9108;
     public const ushort LOBBY_MODIFY_GENDER_RES_MSG = 0x9109;
+
+    public const ushort LOBBY_PACKAGE_INFO_REQ_MSG = 0xA000;
+    public const ushort LOBBY_PACKAGE_INFO_RES_MSG = 0xA001;
+    public const ushort LOBBY_PACKAGE_ADD_ITEM_REQ_MSG = 0xA002;
+    public const ushort LOBBY_PACKAGE_ADD_ITEM_RES_MSG = 0xA003;
+    public const ushort LOBBY_PACKAGE_UPDATE_ITEM_REQ_MSG = 0xA004;
+    public const ushort LOBBY_PACKAGE_UPDATE_ITEM_RES_MSG = 0xA005;
+    public const ushort LOBBY_PACKAGE_REMOVE_ITEM_REq_MSG = 0xA006;
+    public const ushort LOBBY_PACKAGE_REMOVE_ITEM_RES_MSG = 0xA007;
+
+
 
     public const ushort AUTHEN_REQ_MSG = 0xA0;
     public const ushort AUTHEN_RES_MSG = 0xA1;
@@ -275,7 +287,144 @@ public class BaseMessage
         public sbyte cGender;
     };
 
+    /// <summary>
+    /// 获取背包道具信息发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageInfoReqDef
+    {
+        public PackageInfoReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iUserID;
+    };
 
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class ItemInfo
+    {
+        [MessagePackMember(0)]
+        public int iItemID;
+        [MessagePackMember(1)]
+        public int iItemNum;
+        [MessagePackMember(2)]
+        public long LExpireTime;
+        [MessagePackMember(3)]
+        public long LGetTime;
+        [MessagePackMember(4)]
+        public sbyte cIsNew;
+    }
+
+    /// <summary>
+    /// 获取背包道具信息收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageInfoResDef
+    {
+        public PackageInfoResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public List<ItemInfo> ItemInfoList;
+    };
+
+    /// <summary>
+    /// 添加背包道具信息发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageAddItemReqDef
+    {
+        public PackageAddItemReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iItemID;
+        [MessagePackMember(1)]
+        public int iAddNum;
+    };
+
+    /// <summary>
+    /// 添加背包道具信息收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageAddItemResDef
+    {
+        public PackageAddItemResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;
+        [MessagePackMember(1)]
+        public int iItemID;
+        [MessagePackMember(2)]
+        public int iAddNum;
+        [MessagePackMember(3)]
+        public long LExpireTime;
+        [MessagePackMember(4)]
+        public long LGetTime;
+    };
+
+    /// <summary>
+    /// 删除背包道具信息发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageRemoveItemReqDef
+    {
+        public PackageRemoveItemReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iItemID;
+        [MessagePackMember(1)]
+        public int iRemoveNum;
+    };
+
+    /// <summary>
+    /// 删除背包道具信息收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageRemoveItemResDef
+    {
+        public PackageRemoveItemResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;
+        [MessagePackMember(1)]
+        public int iItemID;
+        [MessagePackMember(2)]
+        public int iRemoveNum;
+    };
+
+    /// <summary>
+    /// 更新背包道具信息发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageUpdateItemReqDef
+    {
+        public PackageUpdateItemReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iItemID;
+        [MessagePackMember(1)]
+        public sbyte cIsNew;
+    };
+
+    /// <summary>
+    /// 更新背包道具信息收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class PackageUpdateItemResDef
+    {
+        public PackageUpdateItemResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iItemID;
+        [MessagePackMember(1)]
+        public sbyte cIsNew;
+    };
 
 
     public class AuthenType

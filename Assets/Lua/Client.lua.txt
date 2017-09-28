@@ -1,30 +1,62 @@
 require 'Global'
 
---require 'Hall/Hall'
---require 'Game/Game'
-
+local login
+local hall
 
 local currentScene
-local index=0
+local index = 0
 
 function Awake()
 		print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
-		currentScene = require 'Login/Login'
+		login = require 'Login/Login'
+		login:Awake()
 
-		USceneManager.LoadScene(currentScene.name);
+		hall = require 'Hall/Hall'
+		hall.Awake()
+
+		currentScene = login
 end
 
 function Start()
 		--print("-------------------------------- Start --------------------------------")
-		currentScene.Start()
+		-- currentScene.Start()
+		login.Start()
+		hall.Start()
+
 end
 
 function Update()
 		-- print("-------------------------------- Update --------------------------------")
-		currentScene.Update()
+		-- currentScene.Update()
+		login.Update()
+		local  loginLoaded = login.GetLoaded()
+
+		hall.Update()
+		local  hallLoaded = hall.GetLoaded()
+
+		local gameObject = UGameObject.Find("Canvas")
+		if true==loginLoaded and true==hallLoaded and gameObject then
+				gameObject:SetActive(false)
+		end
+
 end
 
 function OnDestroy()
 		-- print("-------------------------------- OnDestroy --------------------------------")
-		currentScene.OnDestroy()
+		-- currentScene.OnDestroy()
+		login.OnDestroy()
+		hall.OnDestroy()
+end
+
+function SetActiveScene(name)
+	local scene = USceneManager.GetSceneByName(name)
+
+	if name=="Login" then
+		currentScene = login
+	elseif name=="Hall" then
+		currentScene = hall
+	end
+
+	CS.UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene)
+
 end

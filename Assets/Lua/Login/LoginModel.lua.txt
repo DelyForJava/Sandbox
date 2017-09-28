@@ -1,5 +1,5 @@
 local LoginModel = {}
-LoginModel.name = "LoginModel"
+LoginModel.name = "Login"
 
 
 

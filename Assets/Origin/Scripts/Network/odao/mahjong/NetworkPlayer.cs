@@ -95,8 +95,27 @@ namespace odao.scmahjong
             Debug.Log("OnClickChangeGenderReqDef Success:  cGender:" + cGender);
         }
 
+        public void PackageInfoReqDef(int iUserID)
+        {
+            BaseMessage.PackageInfoReqDef PackageInfoReq = new BaseMessage.PackageInfoReqDef();
+            PackageInfoReq.iUserID = iUserID;
+            var serializer = MessagePackSerializer.Get<BaseMessage.PackageInfoReqDef>();
+            byte[] msg = serializer.PackSingleObject(PackageInfoReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_PACKAGE_INFO_REQ_MSG, msg);
+            Debug.Log("OnClick"+"PackageInfoReqDef    Success:  iUserID:" + iUserID);
+        }
 
-
+        public void PackageAddItemReqDef(int iItemID, int iAddNum)
+        {
+            BaseMessage.PackageAddItemReqDef PackageAddItemReq = new BaseMessage.PackageAddItemReqDef();
+            PackageAddItemReq.iItemID = iItemID;
+            PackageAddItemReq.iAddNum = iAddNum;
+            var serializer = MessagePackSerializer.Get<BaseMessage.PackageAddItemReqDef>();
+            byte[] msg = serializer.PackSingleObject(PackageAddItemReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_PACKAGE_ADD_ITEM_REQ_MSG, msg);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iItemID:" + iItemID);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iAddNum:" + iAddNum);
+        }
 
 
 

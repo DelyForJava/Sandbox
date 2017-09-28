@@ -1,7 +1,7 @@
 ﻿using System;
 
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using XLua;
 
 namespace Bean.Hall
@@ -72,7 +72,6 @@ namespace Bean.Hall
             scriptTable.Get("Start", out luaStart);
             scriptTable.Get("Update", out luaUpdate);
             scriptTable.Get("OnDestroy", out luaOnDestroy);
-
 
             if (luaAwake != null)
             {

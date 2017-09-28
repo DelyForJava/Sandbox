@@ -28,10 +28,15 @@ namespace Bean.Hall
 
         }
 
-        void OnReload()
+        void OnReload(string sceneName)
         {
             //Debug.LogMsg("Where am I 222");
+            StopCoroutine("Reload");
+            StartCoroutine( Reload(sceneName) );
+        }
 
+        IEnumerator Reload(string sceneName)
+        {
             foreach (Image image in images_)
             {
                 var name = image.mainTexture.name;
@@ -39,9 +44,10 @@ namespace Bean.Hall
                 //if (name!="logoo" || name!="fishh")
                 //    continue;
                 var name2 = image.sprite.texture.name;
-                var path = "Assets/Art/" + name+".png";
+                var path = "Assets/Art/" + sceneName + "/" + name + ".png";
                 var newSprite = ResourcesManager.Load<Sprite>(path);
                 image.sprite = newSprite;
+                yield return null;
             }
 
         }
