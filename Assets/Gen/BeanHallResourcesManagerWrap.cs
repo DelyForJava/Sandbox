@@ -29,8 +29,9 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(typeof(Bean.Hall.ResourcesManager), L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(typeof(Bean.Hall.ResourcesManager), L, __CreateInstance, 1, 0, 0);
-			
+		    Utils.BeginClassRegister(typeof(Bean.Hall.ResourcesManager), L, __CreateInstance, 2, 0, 0);
+			Utils.RegisterFunc(L, Utils.CLS_IDX, "Load", _m_Load_xlua_st_);
+            
 			
             
 			
@@ -67,6 +68,33 @@ namespace XLua.CSObjectWrap
         
         
         
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Load_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    string asset = LuaAPI.lua_tostring(L, 1);
+                    UnityEngine.Object result = (UnityEngine.Object)translator.GetObject(L, 2, typeof(UnityEngine.Object));
+                    
+                    Bean.Hall.ResourcesManager.Load( asset, result );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
         
         
         

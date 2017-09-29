@@ -28,7 +28,6 @@ function Awake()
 		require("Login/Login").Init(login)
 
 		loading = canvas:Find("Loading")
-		loading.gameObject:SetActive(false)
 		-- coroutine.resume(flow)
 		-- coroutine.resume(flow)
 		-- coroutine.resume(flow)
@@ -44,13 +43,10 @@ end
 
 function Update()
 		-- print("-------------------------------- Update --------------------------------")
-
-
-		local gameObject = UGameObject.Find("Canvas")
-		if true==loginLoaded and true==hallLoaded and gameObject then
-				gameObject:SetActive(false)
+		if index==600 then
+			loading.gameObject:SetActive(false)
 		end
-
+		index = index + 1
 end
 
 function OnDestroy()

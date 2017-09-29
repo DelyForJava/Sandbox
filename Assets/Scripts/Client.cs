@@ -72,9 +72,10 @@ namespace Bean.Hall
             yield return null;
             Event.StepIndex = Event.Step.Max;
 
-            luaClient_ = gameObject.AddComponent<LuaClient>();
             var resReload = canvas_.Find("Loading").gameObject.AddComponent<ResReload>();
-            resReload.SendMessage("OnReload","Main");
+            resReload.SendMessage("OnReload","Main",SendMessageOptions.DontRequireReceiver);
+            luaClient_ = gameObject.AddComponent<LuaClient>();
+
         }
 
         // -------------------------------------------------  event ---------------------------------------------------------//

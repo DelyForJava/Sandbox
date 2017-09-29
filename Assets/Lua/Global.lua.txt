@@ -27,17 +27,12 @@ function SetActiveScene(name)
 end
 
 function Reload(name,transform)
-		--SetActiveScene("Hall")
 		print("-------------------------------- Reload --------------------------------")
-		local images = transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
-		for i=0,images.Length-1 do
-				local textureName = images[i].mainTexture.name
-                local path = "Assets/Art/"..name.."/"..textureName..".png"
-				-- print("textureName:"..textureName..",path:"..path)
-				local sprite = images[i].sprite
-                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
-		end
-		-- self.Init()
+        local resReload = UGameObject.Find("Canvas/"..name):AddComponent( typeof(CS.Bean.Hall.ResReload) );
+        resReload:SendMessage("OnReload",name)
+		return
+            --resReload:SendMessage("OnReload",name,SendMessageOptions.DontRequireReceiver)
+
 end
 
 
@@ -53,3 +48,15 @@ ReloadAsync = coroutine.create(function (name,gameObject)
 		end
 		return coroutine.yield(true)
 end)
+
+--[[
+		local images = transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
+		for i=0,images.Length-1 do
+				local textureName = images[i].mainTexture.name
+                local path = "Assets/Art/"..name.."/"..textureName..".png"
+				 print("textureName:"..textureName..",path:"..path)
+				local sprite = images[i].sprite
+                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
+		end
+
+]]

@@ -35,32 +35,6 @@ namespace zcode.AssetBundlePacker
         /// </summary>
         public static ILoadPattern LoadPattern = new DefaultLoadPattern();
 
-        public static void  Load<T>(string asset,T result) where T : Object
-        {
-#if UNITY_EDITOR
-            if (LoadPattern.ResourcesLoadPattern == emLoadPattern.EditorAsset || LoadPattern.ResourcesLoadPattern == emLoadPattern.All)
-            {
-                result = ResourcesManager.LoadAssetAtPath<T>(asset);
-                if (result != null)
-                    return;
-            }
-#endif
-
-            if (LoadPattern.ResourcesLoadPattern == emLoadPattern.AssetBundle || LoadPattern.ResourcesLoadPattern == emLoadPattern.All)
-            {
-                result = AssetBundleManager.Instance.LoadAsset<T>(asset);
-                if (result != null)
-                    return;
-            }
-            if (LoadPattern.ResourcesLoadPattern == emLoadPattern.Original || LoadPattern.ResourcesLoadPattern == emLoadPattern.All)
-            {
-                result = ResourcesManager.LoadResources<T>(asset);
-                if (result != null)
-                    return;
-            }
-
-        }
-
         /// <summary>
         ///   加载一个资源
         /// <param name="asset">资源局部路径（"Assets/..."）</param>
