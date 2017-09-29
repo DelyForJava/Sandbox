@@ -1,4 +1,17 @@
-local Model = require 'Hall/HallModel'
+local Hall = {}
+local self = Hall
+self.name = "Hall"
+self.rootTransform = nil
+
+function Hall.Init(transform)
+		self.rootTransform = transform
+		Reload(self.name,self.rootTransform)
+end
+
+return Hall
+
+
+--[[local Model = require 'Hall/HallModel'
 local View = require 'Hall/HallView'
 
 local Hall = {}
@@ -28,4 +41,4 @@ function Hall.GetLoaded()
 		return View.loaded
 end
 
-return Hall
+return Hall]]

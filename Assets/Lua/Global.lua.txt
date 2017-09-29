@@ -1,3 +1,5 @@
+local coroutine = coroutine
+
 require 'Config/ConfigData'
 
 ULog = CS.UnityEngine.Debug.Log
@@ -24,9 +26,22 @@ function SetActiveScene(name)
 	CS.UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene)
 end
 
-function Reloadd(name,gameObject)
+function Reload(name,transform)
 		--SetActiveScene("Hall")
-		print("-------------------------------- HallView Reload --------------------------------")
+		print("-------------------------------- Reload --------------------------------")
+		local images = transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
+		for i=0,images.Length-1 do
+				local textureName = images[i].mainTexture.name
+                local path = "Assets/Art/"..name.."/"..textureName..".png"
+				-- print("textureName:"..textureName..",path:"..path)
+				local sprite = images[i].sprite
+                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
+		end
+		-- self.Init()
+end
+
+
+ReloadAsync = coroutine.create(function (name,gameObject)
 		local images = gameObject.transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
 		for i=0,images.Length-1 do
 				local textureName = images[i].mainTexture.name
@@ -34,6 +49,7 @@ function Reloadd(name,gameObject)
 				print("textureName:"..textureName..",path:"..path)
 				local sprite = images[i].sprite
                 CS.Bean.Hall.ResourcesManager.Load(path,sprite)
+				return coroutine.yield()
 		end
-		-- self.Init()
-end
+		return coroutine.yield(true)
+end)

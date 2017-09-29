@@ -1,4 +1,25 @@
-local Model = require 'Login/LoginModel'
+local Login = {}
+local self = Login
+self.name = "Login"
+self.rootTransform = nil
+
+function Login.Init(transform)
+		self.rootTransform = transform
+		Reload(self.name,self.rootTransform)
+
+		local bt = transform:Find("yk_bg"):GetComponent("Button")
+		bt.onClick:AddListener(function()
+				-- print("on tourist clicked")
+				print( ConfigData.GetVipUpgradeExpByLevel(7) )
+				transform.gameObject:SetActive(false)
+
+		end)
+
+end
+
+return Login
+
+--[[ local Model = require 'Login/LoginModel'
 local View = require 'Login/LoginView'
 
 local Login = {}
@@ -29,3 +50,4 @@ function Login.GetLoaded()
 end
 
 return Login
+]]

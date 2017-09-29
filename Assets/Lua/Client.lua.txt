@@ -1,15 +1,41 @@
+local coroutine = coroutine
+local flow = coroutine.create(function()
+		for i=1,10 do
+				print("coroutine:"..i)
+				return coroutine.yield()
+		end
+		return
+end)
+
 require 'Global'
 
-local login
+local canvas
 local hall
+local login
+local loading
+
 
 local currentScene
 local index = 0
 
 function Awake()
 		print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
-		login = require 'Login/Login'
-		hall = require 'Hall/Hall'
+		canvas = UGameObject.Find("Canvas").transform
+		hall = canvas:Find("Hall")
+		require("Hall/Hall").Init(hall)
+
+		login = canvas:Find("Login")
+		require("Login/Login").Init(login)
+
+		loading = canvas:Find("Loading")
+		loading.gameObject:SetActive(false)
+		-- coroutine.resume(flow)
+		-- coroutine.resume(flow)
+		-- coroutine.resume(flow)
+		-- coroutine.resume(flow)
+		-- coroutine.resume(flow)
+		-- login = require 'Login/Login'
+		-- hall = require 'Hall/Hall'
 end
 
 function Start()
