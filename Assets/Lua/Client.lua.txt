@@ -1,12 +1,3 @@
-local coroutine = coroutine
-local flow = coroutine.create(function()
-		for i=1,10 do
-				print("coroutine:"..i)
-				return coroutine.yield()
-		end
-		return
-end)
-
 require 'Global'
 
 local canvas
@@ -28,11 +19,7 @@ function Awake()
 		require("Login/Login").Init(login)
 
 		loading = canvas:Find("Loading")
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
+
 		-- login = require 'Login/Login'
 		-- hall = require 'Hall/Hall'
 end

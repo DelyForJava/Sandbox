@@ -32,7 +32,8 @@ public static class CoroutineConfig
             return new List<Type>()
             {
                 typeof(WaitForSeconds),
-                typeof(WWW)
+                typeof(WWW),
+                typeof(WaitForEndOfFrame)
             };
         }
     }

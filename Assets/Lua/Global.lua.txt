@@ -1,4 +1,25 @@
-local coroutine = coroutine
+local util = require 'xlua.util'
+
+local yield_return = (require 'cs_coroutine').yield_return
+
+local co = coroutine.create(function()
+    print('coroutine start!')
+    local s = os.time()
+    yield_return(CS.UnityEngine.WaitForSeconds(3))
+    print('wait interval:', os.time() - s)
+    
+    local www = CS.UnityEngine.WWW('http://www.qq.com')
+    yield_return(www)
+	if not www.error then
+        print(www.bytes)
+	else
+	    print('error:', www.error)
+	end
+end)
+
+-- assert(coroutine.resume(co))
+
+
 
 require 'Config/ConfigData'
 
@@ -30,24 +51,36 @@ function Reload(name,transform)
 		print("-------------------------------- Reload --------------------------------")
         local resReload = UGameObject.Find("Canvas/"..name):AddComponent( typeof(CS.Bean.Hall.ResReload) );
         resReload:SendMessage("OnReload",name)
-		return
+
             --resReload:SendMessage("OnReload",name,SendMessageOptions.DontRequireReceiver)
 
 end
 
 
-ReloadAsync = coroutine.create(function (name,gameObject)
+function ReloadAsync(name)
+		print("-------------------------------- ReloadAsync --------------------------------")
+		local gameObject = UGameObject.Find("Canvas/"..name)
+        local resReload = gameObject:AddComponent( typeof(CS.Bean.Hall.ResReload) );
+
 		local images = gameObject.transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
 		for i=0,images.Length-1 do
 				local textureName = images[i].mainTexture.name
                 local path = "Assets/Art/"..name.."/"..textureName..".png"
 				print("textureName:"..textureName..",path:"..path)
+				resReload.Path = path
 				local sprite = images[i].sprite
-                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
-				return coroutine.yield()
+				gameObject:SendMessage("OnStepReload",sprite)
+				yield_return( CS.UnityEngine.WaitForEndOfFrame() )
 		end
-		return coroutine.yield(true)
-end)
+
+
+
+		--local s = os.time()
+		--yield_return( CS.UnityEngine.WaitForEndOfFrame() )
+		--print('wait interval:', os.time() - s)
+
+end
+
 
 --[[
 		local images = transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )

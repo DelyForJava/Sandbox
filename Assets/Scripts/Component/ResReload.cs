@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using Bean.Hall;
-using Boo.Lang;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +7,7 @@ namespace Bean.Hall
     public class ResReload : MonoBehaviour
     {
         private Image[] images_;
+        public string Path;
 
         void Awake()
         {
@@ -26,6 +24,12 @@ namespace Bean.Hall
         void Update()
         {
 
+        }
+
+        public void OnStepReload(Image image)
+        {
+            var newSprite = ResourcesManager.Load<Sprite>(Path);
+            image.sprite = newSprite;
         }
 
         void OnReload(string sceneName)

@@ -5,7 +5,9 @@ self.rootTransform = nil
 
 function Hall.Init(transform)
 		self.rootTransform = transform
-		Reload(self.name,self.rootTransform)
+		-- Reload(self.name,self.rootTransform)
+		local co = coroutine.create( ReloadAsync(self.name) )
+		coroutine.resume( co )
 end
 
 return Hall

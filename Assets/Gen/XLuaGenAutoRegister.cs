@@ -21,6 +21,48 @@ namespace XLua.CSObjectWrap
         {
 		    XLua.LuaEnv.AddIniter((luaenv, translator) => {
 			    
+				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(XLuaTest.MyStruct), XLuaTestMyStructWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(XLuaTest.MyEnum), XLuaTestMyEnumWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(XLuaTest.NoGc), XLuaTestNoGcWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Coroutine_Runner), Coroutine_RunnerWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.WaitForSeconds), UnityEngineWaitForSecondsWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.WWW), UnityEngineWWWWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.WaitForEndOfFrame), UnityEngineWaitForEndOfFrameWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Foo1Parent), Foo1ParentWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Foo2Parent), Foo2ParentWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Foo1Child), Foo1ChildWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Foo2Child), Foo2ChildWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Foo), FooWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(FooExtension), FooExtensionWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.BaseClass), TutorialBaseClassWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.TestEnum), TutorialTestEnumWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.DrivenClass), TutorialDrivenClassWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.DrivenClass.TestEnumInner), TutorialDrivenClassTestEnumInnerWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.Calc), TutorialCalcWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Tutorial.DrivenClassExtensions), TutorialDrivenClassExtensionsWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(object), SystemObjectWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.Object), UnityEngineObjectWrap.__Register);
@@ -69,8 +111,6 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.Renderer), UnityEngineRendererWrap.__Register);
 				
-				translator.DelayWrapLoader(typeof(UnityEngine.WWW), UnityEngineWWWWrap.__Register);
-				
 				translator.DelayWrapLoader(typeof(System.Collections.Generic.List<int>), SystemCollectionsGenericList_1_SystemInt32_Wrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.Debug), UnityEngineDebugWrap.__Register);
@@ -87,53 +127,15 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(Bean.Hall.ResReload), BeanHallResReloadWrap.__Register);
 				
-				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
 				
-				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(XLuaTest.MyStruct), XLuaTestMyStructWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(XLuaTest.MyEnum), XLuaTestMyEnumWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(XLuaTest.NoGc), XLuaTestNoGcWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Coroutine_Runner), Coroutine_RunnerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(UnityEngine.WaitForSeconds), UnityEngineWaitForSecondsWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Foo1Parent), Foo1ParentWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Foo2Parent), Foo2ParentWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Foo1Child), Foo1ChildWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Foo2Child), Foo2ChildWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Foo), FooWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(FooExtension), FooExtensionWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.BaseClass), TutorialBaseClassWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.TestEnum), TutorialTestEnumWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.DrivenClass), TutorialDrivenClassWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.DrivenClass.TestEnumInner), TutorialDrivenClassTestEnumInnerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.Calc), TutorialCalcWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Tutorial.DrivenClassExtensions), TutorialDrivenClassExtensionsWrap.__Register);
-				
-				
-				
-				translator.AddInterfaceBridgeCreator(typeof(System.Collections.IEnumerator), SystemCollectionsIEnumeratorBridge.__Create);
 				
 				translator.AddInterfaceBridgeCreator(typeof(InvokeLua.ICalc), InvokeLuaICalcBridge.__Create);
 				
 				translator.AddInterfaceBridgeCreator(typeof(XLuaTest.IExchanger), XLuaTestIExchangerBridge.__Create);
 				
 				translator.AddInterfaceBridgeCreator(typeof(CSCallLua.ItfD), CSCallLuaItfDBridge.__Create);
+				
+				translator.AddInterfaceBridgeCreator(typeof(System.Collections.IEnumerator), SystemCollectionsIEnumeratorBridge.__Create);
 				
 			});
 		}

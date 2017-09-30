@@ -5,7 +5,10 @@ self.rootTransform = nil
 
 function Login.Init(transform)
 		self.rootTransform = transform
-		Reload(self.name,self.rootTransform)
+		-- Reload(self.name,self.rootTransform)
+
+		local co = coroutine.create( ReloadAsync(self.name) )
+		coroutine.resume( co )
 
 		local bt = transform:Find("yk_bg"):GetComponent("Button")
 		bt.onClick:AddListener(function()

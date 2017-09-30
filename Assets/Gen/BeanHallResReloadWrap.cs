@@ -20,12 +20,15 @@ namespace XLua.CSObjectWrap
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			Utils.BeginObjectRegister(typeof(Bean.Hall.ResReload), L, translator, 0, 0, 0, 0);
+			Utils.BeginObjectRegister(typeof(Bean.Hall.ResReload), L, translator, 0, 1, 1, 1);
+			
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnStepReload", _m_OnStepReload);
 			
 			
-			
-			
-			
+			Utils.RegisterFunc(L, Utils.GETTER_IDX, "Path", _g_get_Path);
+            
+			Utils.RegisterFunc(L, Utils.SETTER_IDX, "Path", _s_set_Path);
+            
 			Utils.EndObjectRegister(typeof(Bean.Hall.ResReload), L, translator, null, null,
 			    null, null, null);
 
@@ -68,10 +71,67 @@ namespace XLua.CSObjectWrap
         
         
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_OnStepReload(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                Bean.Hall.ResReload __cl_gen_to_be_invoked = (Bean.Hall.ResReload)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    UnityEngine.UI.Image image = (UnityEngine.UI.Image)translator.GetObject(L, 2, typeof(UnityEngine.UI.Image));
+                    
+                    __cl_gen_to_be_invoked.OnStepReload( image );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
         
         
         
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_Path(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                Bean.Hall.ResReload __cl_gen_to_be_invoked = (Bean.Hall.ResReload)translator.FastGetCSObj(L, 1);
+                LuaAPI.lua_pushstring(L, __cl_gen_to_be_invoked.Path);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_Path(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                Bean.Hall.ResReload __cl_gen_to_be_invoked = (Bean.Hall.ResReload)translator.FastGetCSObj(L, 1);
+                __cl_gen_to_be_invoked.Path = LuaAPI.lua_tostring(L, 2);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
         
 		
 		
