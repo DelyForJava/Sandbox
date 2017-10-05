@@ -21,6 +21,7 @@ function Login.Init(transform)
 		local images = self.resReload.images
 		self.max = images.Length-1
 
+
 		local bt = transform:Find("yk_bg"):GetComponent("Button")
 		bt.onClick:AddListener(function()
 				-- print("on tourist clicked")

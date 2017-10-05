@@ -101,6 +101,8 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.WaitForSeconds), UnityEngineWaitForSecondsWrap.__Register);
 				
+				translator.DelayWrapLoader(typeof(UnityEngine.WaitForEndOfFrame), UnityEngineWaitForEndOfFrameWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(Foo1Parent), Foo1ParentWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(Foo2Parent), Foo2ParentWrap.__Register);

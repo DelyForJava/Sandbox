@@ -30,7 +30,7 @@ namespace zcode.AssetBundlePacker
         ///   编辑器环境下默认打包路径
         /// </summary>
         //public static readonly string BUILD_PATH = System.IO.Directory.GetCurrentDirectory() + "\\" + Common.ROOT_FOLDER_NAME;
-        public static readonly string BUILD_PATH = System.IO.Directory.GetCurrentDirectory() + "/../server-persistent-path/" + Common.ROOT_FOLDER_NAME;
+        public static readonly string BUILD_PATH = System.IO.Directory.GetCurrentDirectory() + "/../../server-persistent-path/" + Common.ROOT_FOLDER_NAME;
 
         /// <summary>
         ///   编辑器环镜下资源起始路径

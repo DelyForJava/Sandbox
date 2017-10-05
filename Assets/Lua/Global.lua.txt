@@ -1,4 +1,3 @@
-local coroutine = coroutine
 
 require 'Config/ConfigData'
 
@@ -16,16 +15,3 @@ function StartReload(gameObject)
     return resReload
 end
 
-
-ReloadAsync = coroutine.create(function (gameObject)
-		local images = gameObject.transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
-		for i=0,images.Length-1 do
-				local textureName = images[i].mainTexture.name
-                local path = "Assets/Art/"..name.."/"..textureName..".png"
-				print("textureName:"..textureName..",path:"..path)
-				local sprite = images[i].sprite
-                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
-				return coroutine.yield()
-		end
-		return coroutine.yield()
-end)

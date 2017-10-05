@@ -33,6 +33,7 @@ function Hall.Update()
 	print("I am in the coroutine:"..self.index)
 	coroutine.resume(co,self.index)
 	self.index = self.index + 1
+
 end
 
 return Hall
