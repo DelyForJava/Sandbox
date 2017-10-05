@@ -41,7 +41,7 @@ function Start()
 end
 
 function Update()
-		-- print("-------------------------------- Update --------------------------------")
+	print("current index:"..currentScene.index..",max:"..currentScene.max)
 
 	currentScene.Update()
 	--loginScene.Update()

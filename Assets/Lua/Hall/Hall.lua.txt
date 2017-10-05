@@ -5,8 +5,8 @@ self.transform = nil
 
 self.resReload = nil
 
-local index = 0
-local max = 0
+self.index = 0
+self.max = 0
 self.reloaded = false
 
 local co = coroutine.create(function(index)
@@ -21,18 +21,18 @@ function Hall.Init(transform)
 		self.resReload = StartReload(transform.gameObject)
 
 		local images = self.resReload.images
-		max = images.Length-1
+		self.max = images.Length-1
 end
 
 function Hall.Update()
-	if index>max then
+	if self.index>self.max then
 		self.reloaded = true
 		return
 	end
 	print("-------------------------------- Hall Update --------------------------------")
-	print("I am in the coroutine:"..index)
-	coroutine.resume(co,index)
-	index = index + 1
+	print("I am in the coroutine:"..self.index)
+	coroutine.resume(co,self.index)
+	self.index = self.index + 1
 end
 
 return Hall
