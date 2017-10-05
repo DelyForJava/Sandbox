@@ -8,35 +8,16 @@ UGameObject = CS.UnityEngine.GameObject
 
 USceneManager=CS.UnityEngine.SceneManagement.SceneManager
 
-function SetActiveScene(name)
-		local scene = USceneManager.GetSceneByName(name)
 
-	if name=="Login" then
-			UGameObject.Find("HallCanvas"):SetActive(false)
-			UGameObject.Find("LoginCanvas"):SetActive(true)
-		
-			--currentScene = login
-	elseif name=="Hall" then
-			--currentScene = hall
-
-			UGameObject.Find("LoginCanvas"):SetActive(false)
-			UGameObject.Find("HallCanvas"):SetActive(true)
-	end
-
-	CS.UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene)
-end
-
-function Reload(name,transform)
-		print("-------------------------------- Reload --------------------------------")
-        local resReload = UGameObject.Find("Canvas/"..name):AddComponent( typeof(CS.Bean.Hall.ResReload) );
-        resReload:SendMessage("OnReload",name)
-		return
-            --resReload:SendMessage("OnReload",name,SendMessageOptions.DontRequireReceiver)
-
+function StartReload(gameObject)
+	print("-------------------------------- Reload --------------------------------")
+    local resReload = UGameObject.Find("Canvas/"..gameObject.name):AddComponent( typeof(CS.Bean.Hall.ResReload) );
+    -- resReload:SendMessage("OnReload",name)
+    return resReload
 end
 
 
-ReloadAsync = coroutine.create(function (name,gameObject)
+ReloadAsync = coroutine.create(function (gameObject)
 		local images = gameObject.transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
 		for i=0,images.Length-1 do
 				local textureName = images[i].mainTexture.name
@@ -46,17 +27,5 @@ ReloadAsync = coroutine.create(function (name,gameObject)
                 CS.Bean.Hall.ResourcesManager.Load(path,sprite)
 				return coroutine.yield()
 		end
-		return coroutine.yield(true)
+		return coroutine.yield()
 end)
-
---[[
-		local images = transform:GetComponentsInChildren( typeof(CS.UnityEngine.UI.Image) )
-		for i=0,images.Length-1 do
-				local textureName = images[i].mainTexture.name
-                local path = "Assets/Art/"..name.."/"..textureName..".png"
-				 print("textureName:"..textureName..",path:"..path)
-				local sprite = images[i].sprite
-                CS.Bean.Hall.ResourcesManager.Load(path,sprite)
-		end
-
-]]

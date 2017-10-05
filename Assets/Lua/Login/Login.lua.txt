@@ -1,11 +1,25 @@
 local Login = {}
 local self = Login
 self.name = "Login"
-self.rootTransform = nil
+self.transform = nil
+self.resReload = nil
+
+local index = 0
+local max = 0
+self.reloaded = false
+
+local co = coroutine.create(function(index)
+	-- for i=0,images.Length-1 do
+		self.resReload:SendMessage("OnStepImage",index)
+		return coroutine.yield()
+	-- end
+end)
 
 function Login.Init(transform)
-		self.rootTransform = transform
-		Reload(self.name,self.rootTransform)
+		self.transform = transform
+		self.resReload = StartReload(transform.gameObject)
+		local images = self.resReload.images
+		max = images.Length-1
 
 		local bt = transform:Find("yk_bg"):GetComponent("Button")
 		bt.onClick:AddListener(function()
@@ -14,6 +28,20 @@ function Login.Init(transform)
 				transform.gameObject:SetActive(false)
 
 		end)
+
+end
+
+
+function Login.Update()
+	if index>max then
+		self.reloaded = true
+		return
+	end
+	print("-------------------------------- Login Update --------------------------------")
+
+	print("I am in the coroutine:"..index)
+	coroutine.resume(co,index)
+	index = index + 1
 
 end
 

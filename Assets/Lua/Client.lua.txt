@@ -14,27 +14,26 @@ local hall
 local login
 local loading
 
+local hallScene
+local loginScene
 
 local currentScene
 local index = 0
 
 function Awake()
-		print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
-		canvas = UGameObject.Find("Canvas").transform
-		hall = canvas:Find("Hall")
-		require("Hall/Hall").Init(hall)
+	print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
+	canvas = UGameObject.Find("Canvas").transform
+	hall = canvas:Find("Hall")
+	hallScene = require("Hall/Hall")
+	hallScene.Init(hall)
+	currentScene = hallScene
 
-		login = canvas:Find("Login")
-		require("Login/Login").Init(login)
+	login = canvas:Find("Login")
+	loginScene = require("Login/Login")
+	loginScene.Init(login)
 
-		loading = canvas:Find("Loading")
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- coroutine.resume(flow)
-		-- login = require 'Login/Login'
-		-- hall = require 'Hall/Hall'
+	loading = canvas:Find("Loading")
+
 end
 
 function Start()
@@ -43,10 +42,17 @@ end
 
 function Update()
 		-- print("-------------------------------- Update --------------------------------")
-		if index==600 then
+
+	currentScene.Update()
+	--loginScene.Update()
+	--hallScene.Update()
+	if true==hallScene.reloaded then
+		if false==loginScene.reloaded then
+			currentScene = loginScene
+		else
 			loading.gameObject:SetActive(false)
 		end
-		index = index + 1
+	end
 end
 
 function OnDestroy()

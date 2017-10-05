@@ -123,8 +123,6 @@ namespace zcode.AssetBundlePacker
                         AssetBundle ab = LoadAssetBundleAndDependencies(assetbundlesname[i]);
                         if (ab != null)
                         {
-                            Bean.Hall.Debug.LogMsg("where am 3333");
-
                             result = ab.LoadAsset<T>(asset);
                             break;
                         }

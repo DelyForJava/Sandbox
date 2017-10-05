@@ -5,42 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Origin/Scenes/Loading.unity
-    guid: a9001e8a810158e4d9c5f43bd80ca083
-  - enabled: 0
-    path: Assets/Origin/Scenes/Login.unity
-    guid: a9c1855651fea194bab0fdfbd841e3b3
-  - enabled: 0
-    path: Assets/Origin/Scenes/MainMenu.unity
-    guid: c9f8ff0f3abf46c409cb6369f7003b45
-  - enabled: 0
-    path: Assets/Origin/Scenes/SCMahjong.unity
-    guid: 47827d9360106534cbd1917514419f17
-  - enabled: 0
-    path: Assets/Origin/Scenes/Test.unity
-    guid: 744592adbf5a29a48a51c17215b62a84
-  - enabled: 0
-    path: Assets/ShareSDK-Unity.unity
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Origin/Scenes/Loading.unity
-    guid: a9001e8a810158e4d9c5f43bd80ca083
-  - enabled: 0
-    path: Assets/Origin/Scenes/Login.unity
-    guid: a9c1855651fea194bab0fdfbd841e3b3
-  - enabled: 0
-    path: Assets/Origin/Scenes/MainMenu.unity
-    guid: c9f8ff0f3abf46c409cb6369f7003b45
-  - enabled: 0
-    path: Assets/Origin/Scenes/SCMahjong.unity
-    guid: 47827d9360106534cbd1917514419f17
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 40beb1bd0f0754e4bb833ffb89e61828
-  - enabled: 0
-    path: Assets/Scenes/Login.unity
-    guid: 8d8241320f140e444bae8e0a5bf78628
-  - enabled: 0
-    path: Assets/Scenes/Hall.unity
-    guid: 3204c0978f634ef4aac1e5e3061461ea

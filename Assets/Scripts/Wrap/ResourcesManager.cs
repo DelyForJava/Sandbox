@@ -8,7 +8,6 @@ namespace Bean.Hall
     {
         public static void Load<T>(string asset, T result) where T : Object
         {
-            Debug.LogMsg("where am i");
 
 #if UNITY_EDITOR
             if (LoadPattern.ResourcesLoadPattern == emLoadPattern.EditorAsset || LoadPattern.ResourcesLoadPattern == emLoadPattern.All)
@@ -18,7 +17,6 @@ namespace Bean.Hall
                     return;
             }
 #endif
-            Debug.LogMsg("where am i1111");
             if (LoadPattern.ResourcesLoadPattern == emLoadPattern.AssetBundle || LoadPattern.ResourcesLoadPattern == emLoadPattern.All)
             {
                 result = AssetBundleManager.Instance.LoadAsset<T>(asset);

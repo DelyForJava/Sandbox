@@ -1,7 +1,0 @@
-local LoginModel = {}
-LoginModel.name = "Login"
-
-
-
--- print("LoginModel")
-return LoginModel

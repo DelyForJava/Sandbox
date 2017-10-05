@@ -1,7 +1,0 @@
-local HallModel = {}
-HallModel.name = "Hall"
-
-
-
--- print("HallModel")
-return HallModel
