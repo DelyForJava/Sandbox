@@ -4,12 +4,16 @@ local canvas
 local hall
 local login
 local loading
+local bar
+local barText
 
 local hallScene
 local loginScene
 
 local currentScene
 local index = 0
+local percent = 0
+local max = 1
 
 function Awake()
 
@@ -19,12 +23,18 @@ function Awake()
 	hallScene = require("Hall/Hall")
 	hallScene.Init(hall)
 	currentScene = hallScene
+	percent = hallScene.index
+	max = hallScene.max
 
 	login = canvas:Find("Login")
 	loginScene = require("Login/Login")
 	loginScene.Init(login)
+	percent = percent + loginScene.index
+	max = max + loginScene.max
 
 	loading = canvas:Find("Loading")
+	bar = loading:Find("Bar"):GetComponent(typeof(CS.UnityEngine.UI.Image))
+	barText = loading:Find("Text"):GetComponent(typeof(CS.UnityEngine.UI.Text))
 end
 
 function Start()
@@ -35,6 +45,10 @@ function Update()
 	print("current index:"..currentScene.index..",max:"..currentScene.max)
 
 	currentScene.Update()
+	percent = loginScene.index + hallScene.index
+	local p = percent/max
+	bar.fillAmount = p
+	barText.text = math.ceil(p*100)
 	--loginScene.Update()
 	--hallScene.Update()
 	if true==hallScene.reloaded then
