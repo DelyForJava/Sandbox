@@ -18,6 +18,10 @@ local max = 1
 function Awake()
 
 	print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
+	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.Url.."--")
+	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.ChannelId.."--")
+	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.Cdn.."--")
+
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")
 	hallScene = require("Hall/Hall")

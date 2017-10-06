@@ -6,7 +6,6 @@ using LitJson;
 
 namespace Bean.Hall
 {
-
     public class GlobalData
     {
         public static string Url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
