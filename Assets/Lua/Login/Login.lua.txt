@@ -1,3 +1,10 @@
+-- local ccreate = ccreate
+-- local cyield = cyield
+local cresume = cresume
+
+local ReloadImageAsync = ReloadImageAsync
+
+
 local Login = {}
 local self = Login
 self.name = "Login"
@@ -8,27 +15,19 @@ self.index = 0
 self.max = 0
 self.reloaded = false
 
-local co = coroutine.create(function(index)
-	-- for i=0,images.Length-1 do
-		self.resReload:SendMessage("OnStepImage",index)
-		return coroutine.yield()
-	-- end
-end)
-
 function Login.Init(transform)
-		self.transform = transform
-		self.resReload = StartReload(transform.gameObject)
-		local images = self.resReload.images
-		self.max = images.Length-1
+	self.transform = transform
+	self.resReload = StartReload(transform.gameObject)
+	local images = self.resReload.images
+	self.max = images.Length-1
 
 
-		local bt = transform:Find("yk_bg"):GetComponent("Button")
-		bt.onClick:AddListener(function()
-				-- print("on tourist clicked")
-				print( ConfigData.GetVipUpgradeExpByLevel(7) )
-				transform.gameObject:SetActive(false)
-
-		end)
+	local bt = transform:Find("yk_bg"):GetComponent( typeof(UButton) )
+	bt.onClick:AddListener(function()
+		-- print("on tourist clicked")
+		print( ConfigData.GetVipUpgradeExpByLevel(7) )
+		transform.gameObject:SetActive(false)
+	end)
 
 end
 
@@ -41,42 +40,9 @@ function Login.Update()
 	print("-------------------------------- Login Update --------------------------------")
 
 	print("I am in the coroutine:"..self.index)
-	coroutine.resume(co,self.index)
+	cresume(ReloadImageAsync,self.index)
 	self.index = self.index + 1
 
 end
 
 return Login
-
---[[ local Model = require 'Login/LoginModel'
-local View = require 'Login/LoginView'
-
-local Login = {}
-local self = Login
-self.name = "Login"
-
-function Login.Awake()
-		USceneManager.LoadSceneAsync( "Scenes/"..self.name)
-end
-
-function Login.Start()
-		print("-------------------------------- Login Start --------------------------------")
-end
-
-function Login.Update()
-		-- print("-------------------------------- Login Update --------------------------------")
-		if false==View.loaded then
-				View.Update()
-		end
-end
-
-function Login.OnDestroy()
-		print("-------------------------------- Login OnDestroy --------------------------------")
-end
-
-function Login.GetLoaded()
-		return View.loaded
-end
-
-return Login
-]]

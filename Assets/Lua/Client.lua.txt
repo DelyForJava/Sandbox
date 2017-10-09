@@ -17,10 +17,10 @@ local max = 1
 
 function Awake()
 
-	print("-------------------------------- Awake:"..CS.Bean.Hall.AssetBundleManager.Instance.Version.." --------------------------------")
-	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.Url.."--")
-	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.ChannelId.."--")
-	print("--CSharp Data:"..CS.Bean.Hall.GlobalData.Cdn.."--")
+	print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
+	print("--CSharp Data:"..BUrl.."--")
+	print("--CSharp Data:"..BChannelId.."--")
+	print("--CSharp Data:"..BCdn.."--")
 
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")
@@ -37,8 +37,8 @@ function Awake()
 	max = max + loginScene.max
 
 	loading = canvas:Find("Loading")
-	bar = loading:Find("Bar"):GetComponent(typeof(CS.UnityEngine.UI.Image))
-	barText = loading:Find("Text"):GetComponent(typeof(CS.UnityEngine.UI.Text))
+	bar = loading:Find("Bar"):GetComponent(typeof(UImage))
+	barText = loading:Find("Text"):GetComponent(typeof(UText))
 end
 
 function Start()
@@ -46,13 +46,13 @@ function Start()
 end
 
 function Update()
-	print("current index:"..currentScene.index..",max:"..currentScene.max)
+	-- print("current index:"..currentScene.index..",max:"..currentScene.max)
 
 	currentScene.Update()
 	percent = loginScene.index + hallScene.index
 	local p = percent/max
 	bar.fillAmount = p
-	barText.text = math.ceil(p*100)
+	barText.text = tostring(math.ceil(p*100))
 	--loginScene.Update()
 	--hallScene.Update()
 	if true==hallScene.reloaded then

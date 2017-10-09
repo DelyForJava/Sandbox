@@ -42,8 +42,8 @@ namespace Bean.Hall
         }
         IEnumerator GetInfo()
         {
-            //yield return Event.GetInfo();
-            yield return null;
+            yield return Event.GetInfo();
+            //yield return null;
         }
         IEnumerator Download()
         {

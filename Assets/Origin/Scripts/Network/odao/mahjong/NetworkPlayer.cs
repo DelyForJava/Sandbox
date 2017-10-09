@@ -95,6 +95,10 @@ namespace odao.scmahjong
             Debug.Log("OnClickChangeGenderReqDef Success:  cGender:" + cGender);
         }
 
+        /// <summary>
+        /// 请求背包信息
+        /// </summary>
+        /// <param name="iUserID"></param>
         public void PackageInfoReqDef(int iUserID)
         {
             BaseMessage.PackageInfoReqDef PackageInfoReq = new BaseMessage.PackageInfoReqDef();
@@ -105,6 +109,11 @@ namespace odao.scmahjong
             Debug.Log("OnClick"+"PackageInfoReqDef    Success:  iUserID:" + iUserID);
         }
 
+        /// <summary>
+        /// 增加背包物品
+        /// </summary>
+        /// <param name="iItemID"></param>
+        /// <param name="iAddNum"></param>
         public void PackageAddItemReqDef(int iItemID, int iAddNum)
         {
             BaseMessage.PackageAddItemReqDef PackageAddItemReq = new BaseMessage.PackageAddItemReqDef();
@@ -117,6 +126,57 @@ namespace odao.scmahjong
             Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iAddNum:" + iAddNum);
         }
 
+        /// <summary>
+        /// 删除道具
+        /// </summary>
+        /// <param name="iItemID"></param>
+        /// <param name="iRemoveNum"></param>
+        public void PackageRemoveItemReqDef(int iItemID, int iRemoveNum)
+        {
+            BaseMessage.PackageRemoveItemReqDef PackageRemoveItemReq = new BaseMessage.PackageRemoveItemReqDef();
+            PackageRemoveItemReq.iItemID = iItemID;
+            PackageRemoveItemReq.iRemoveNum = iRemoveNum;
+            var serializer = MessagePackSerializer.Get<BaseMessage.PackageRemoveItemReqDef>();
+            byte[] msg = serializer.PackSingleObject(PackageRemoveItemReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_PACKAGE_REMOVE_ITEM_REQ_MSG, msg);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iItemID:" + iItemID);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iRemoveNum:" + iRemoveNum);
+        }
+
+        /// <summary>
+        /// 更新道具状态
+        /// </summary>
+        /// <param name="iItemID"></param>
+        /// <param name="cIsNew"></param>
+        public void PackageUpdateItemReqDef(int iItemID, sbyte cIsNew)
+        {
+            BaseMessage.PackageUpdateItemReqDef PackageUpdateItemReq = new BaseMessage.PackageUpdateItemReqDef();
+            PackageUpdateItemReq.iItemID = iItemID;
+            PackageUpdateItemReq.cIsNew = cIsNew;
+            var serializer = MessagePackSerializer.Get<BaseMessage.PackageUpdateItemReqDef>();
+            byte[] msg = serializer.PackSingleObject(PackageUpdateItemReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_PACKAGE_UPDATE_ITEM_REQ_MSG, msg);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  iItemID:" + iItemID);
+            Debug.Log("OnClick" + "PackageAddItemReqDef    Success:  cIsNew:" + cIsNew);
+        }
+
+        public void ExchangeReqDef(UInt16 usType, UInt16 usItemIndex, string szUserMobile, string szUserTel, string szUserAddress)
+        {
+            BaseMessage.ExchangeReqDef ExchangeReq = new BaseMessage.ExchangeReqDef();
+            ExchangeReq.usType = usType;
+            ExchangeReq.usItemIndex = usItemIndex;
+            ExchangeReq.szUserMobile = szUserMobile;
+            ExchangeReq.szUserTel = szUserTel;
+            ExchangeReq.szUserAddress = szUserAddress;
+            var serializer = MessagePackSerializer.Get<BaseMessage.ExchangeReqDef>();
+            byte[] msg = serializer.PackSingleObject(ExchangeReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_GOLD_BEAN_EXCHANGE_REQ_MSG, msg);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  usType:" + usType);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  usItemIndex:" + usItemIndex);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  szUserMobile:" + szUserMobile);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  szUserTel:" + szUserTel);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  szUserAddress:" + szUserAddress);
+        }
 
 
         #region 历史

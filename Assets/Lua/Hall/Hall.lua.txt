@@ -1,3 +1,9 @@
+-- local ccreate = ccreate
+-- local cyield = cyield
+local cresume = cresume
+
+local ReloadImageAsync = ReloadImageAsync
+
 local Hall = {}
 local self = Hall
 self.name = "Hall"
@@ -9,12 +15,6 @@ self.index = 0
 self.max = 0
 self.reloaded = false
 
-local co = coroutine.create(function(index)
-	-- for i=0,images.Length-1 do
-		self.resReload:SendMessage("OnStepImage",index)
-		return coroutine.yield()
-	-- end
-end)
 
 function Hall.Init(transform)
 		self.transform = transform
@@ -31,42 +31,9 @@ function Hall.Update()
 	end
 	print("-------------------------------- Hall Update --------------------------------")
 	print("I am in the coroutine:"..self.index)
-	coroutine.resume(co,self.index)
+	cresume(ReloadImageAsync,self.index)
 	self.index = self.index + 1
 
 end
 
 return Hall
-
-
---[[local Model = require 'Hall/HallModel'
-local View = require 'Hall/HallView'
-
-local Hall = {}
-local self = Hall
-self.name = "Hall"
-
-function Hall.Awake()
-		USceneManager.LoadSceneAsync( "Scenes/"..self.name,CS.UnityEngine.SceneManagement.LoadSceneMode.Additive)
-end
-
-function Hall.Start()
-		print("-------------------------------- Hall Start --------------------------------")
-end
-
-function Hall.Update()
-		-- print("-------------------------------- Hall Update --------------------------------")
-		if false==View.loaded then
-				View.Update()
-		end
-end
-
-function Hall.OnDestroy()
-		print("-------------------------------- Hall OnDestroy --------------------------------")
-end
-
-function Hall.GetLoaded()
-		return View.loaded
-end
-
-return Hall]]

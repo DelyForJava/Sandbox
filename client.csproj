@@ -239,6 +239,7 @@
     <Compile Include="Assets\Origin\Scripts\Common\GameMode.cs" />
     <Compile Include="Assets\Origin\Scripts\Common\IClientEventHandler.cs" />
     <Compile Include="Assets\Origin\Scripts\Common\Loom.cs" />
+    <Compile Include="Assets\Origin\Scripts\Common\ShowMessage.cs" />
     <Compile Include="Assets\Origin\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\Origin\Scripts\Common\SingletonBehaviour.cs" />
     <Compile Include="Assets\Origin\Scripts\Common\SingletonMonoBehaviour.cs" />
@@ -267,7 +268,7 @@
     <Compile Include="Assets\Origin\Scripts\Network\common\SocketClient.cs" />
     <Compile Include="Assets\Origin\Scripts\Network\common\Transporter.cs" />
     <Compile Include="Assets\Origin\Scripts\Network\common\TransportState.cs" />
-    <Compile Include="Assets\Origin\Scripts\Network\lib\SimpleJson2.cs" />
+    <Compile Include="Assets\Origin\Scripts\Network\lib\SimpleJson.cs" />
     <Compile Include="Assets\Origin\Scripts\Network\MahjongPileDef.cs" />
     <Compile Include="Assets\Origin\Scripts\Network\odao\AesLib.cs" />
     <Compile Include="Assets\Origin\Scripts\Network\odao\Common.cs" />
@@ -298,6 +299,7 @@
     <Compile Include="Assets\Origin\Scripts\tools\BtnManager.cs" />
     <Compile Include="Assets\Origin\Scripts\tools\LoadAssetBundle.cs" />
     <Compile Include="Assets\Origin\Scripts\tools\MyConsole.cs" />
+    <Compile Include="Assets\Origin\Scripts\UI\ExchangeDataManager.cs" />
     <Compile Include="Assets\Origin\Scripts\UI\PackageDataManager.cs" />
     <Compile Include="Assets\Origin\Scripts\UI\PlayerDataManager.cs" />
     <Compile Include="Assets\Origin\Scripts\UI\SettingDataManager.cs" />

@@ -178,6 +178,57 @@ namespace odao.scmahjong
 		    });
 
 
+		    _gsProxy.on(BaseMessage.LOBBY_PACKAGE_REMOVE_ITEM_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.PackageRemoveItemResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_PACKAGE_REMOVE_ITEM_RES_MSG: " + BaseMessage.LOBBY_PACKAGE_REMOVE_ITEM_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iItemID:" + data.iItemID + ", iRemoveNum:" + data.iRemoveNum);
+		        //if (data.cErrorCode == 0)
+		        //{
+		        //    Loom.QueueOnMainThread(delegate () {
+		        //        PackageDataManager.Instance.OpenPackage();
+		        //    });
+          //      }
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_PACKAGE_UPDATE_ITEM_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.PackageUpdateItemResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_PACKAGE_UPDATE_ITEM_RES_MSG: " + BaseMessage.LOBBY_PACKAGE_UPDATE_ITEM_RES_MSG + ", cIsNew:" + data.cIsNew + ", iItemID:" + data.iItemID);
+
+
+		    });
+
+
+		    _gsProxy.on(BaseMessage.LOBBY_GOLD_BEAN_EXCHANGE_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.ExchangeResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_GOLD_BEAN_EXCHANGE_RES_MSG: " + BaseMessage.LOBBY_GOLD_BEAN_EXCHANGE_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iSubGoldBean:" + data.iSubGoldBean + ", iAddCoin:" + data.iAddCoin);
+		        switch (data.cErrorCode)
+		        {
+                    case 0:
+                        playerInfo.llGoldBean = playerInfo.llGoldBean - data.iSubGoldBean;
+                        playerInfo.llGameCoin = playerInfo.llGameCoin + data.iAddCoin;
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+		            case 5:
+		                break;
+                    default:
+                        break;
+                }
+
+
+		    });
 
 
             #region Old

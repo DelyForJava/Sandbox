@@ -92,14 +92,10 @@ public class ShopDataManager : MonoBehaviour {
                 }
                 Sprite goldSprite = Sprite.Create(goldTexture2D, new Rect(0, 0, goldTexture2D.width, goldTexture2D.height), new Vector2(0.5f, 0.5f));
                 goldGridObj.transform.Find("icon").GetComponent<Image>().sprite = goldSprite;
-                //print("ResourcesName:" + Resources.Load("Texture_InGame/" + "shop_gold_" + shopData.item_index).name);
-                //print("ResourcesType:" + Resources.Load("Texture_InGame/" + "shop_gold_" + shopData.item_index).GetType());
+                goldGridObj.transform.Find("icon").GetComponent<Image>().SetNativeSize();
 
                 goldGridObj.transform.Find("payBtn/payNum").GetComponent<Text>().text = shopData.need_money_num + "钻石";
-
                 
-                print("payBtn:" + goldGridObj.transform.Find("payBtn").name);
-
                 goldGridObj.transform.SetAsFirstSibling();
                 goldGridObj.name = "goldGrid" + shopData.item_index;
                 var goldGridObjInstantiate = Instantiate(goldGridObj, goldContextObj.transform);
@@ -148,8 +144,7 @@ public class ShopDataManager : MonoBehaviour {
                 }
                 Sprite diaSprite = Sprite.Create(diaTexture2D, new Rect(0, 0, diaTexture2D.width, diaTexture2D.height), new Vector2(0.5f, 0.5f));
                 diaGridObj.transform.Find("icon").GetComponent<Image>().sprite = diaSprite;
-                //print("ResourcesName:" + Resources.Load("Texture_InGame/" + "shop_gold_" + shopData.item_index).name);
-                //print("ResourcesType:" + Resources.Load("Texture_InGame/" + "shop_gold_" + shopData.item_index).GetType());
+                diaGridObj.transform.Find("icon").GetComponent<Image>().SetNativeSize();
 
                 diaGridObj.transform.Find("payBtn/payNum").GetComponent<Text>().text = shopData.need_money_num + "元";
 

@@ -116,14 +116,16 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
 
     public void OnClickTouristLogin(UIController ctrl)
     {
+
+        UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
+        source = Source.yk;
+
         if (isTestModel)
         {
             Resolution(domain, 34, "6558a4e4e8d8", "f93f88bbd26aff9d7f7689faff32ced035e1cf19");
             return;
         }
         //Regist();//test 22 afac70d97abe
-        UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
-        source = Source.yk;
         if (!isTouristAuthed)
         {
             Regist(Source.yk);

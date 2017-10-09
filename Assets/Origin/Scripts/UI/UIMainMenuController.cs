@@ -53,4 +53,18 @@ public class UIMainMenuController : SingletonBehaviour<UIMainMenuController>, UI
 	{
 
 	}
+
+    public void InstantiateMessagePanel(Transform parentTransform)
+    {
+        //if (!parentTransform.Find("Canvas/messagePanel"))
+        //{
+        var InstantiateMessagePanel = Instantiate(Resources.Load("Prefabs_InGame/messagePanel"), parentTransform) as GameObject;
+        InstantiateMessagePanel.name = "messagePanel";
+        InstantiateMessagePanel.transform.SetAsLastSibling();
+        InstantiateMessagePanel.GetComponent<RectTransform>().localPosition=new Vector3(0,0,-100);
+        InstantiateMessagePanel.GetComponent<RectTransform>().localScale=new Vector3(0.6f, 0.6f,1);
+        //}
+    }
+
+
 }

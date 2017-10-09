@@ -24,9 +24,11 @@ public class BaseMessage
     public const ushort LOBBY_PACKAGE_ADD_ITEM_RES_MSG = 0xA003;
     public const ushort LOBBY_PACKAGE_UPDATE_ITEM_REQ_MSG = 0xA004;
     public const ushort LOBBY_PACKAGE_UPDATE_ITEM_RES_MSG = 0xA005;
-    public const ushort LOBBY_PACKAGE_REMOVE_ITEM_REq_MSG = 0xA006;
+    public const ushort LOBBY_PACKAGE_REMOVE_ITEM_REQ_MSG = 0xA006;
     public const ushort LOBBY_PACKAGE_REMOVE_ITEM_RES_MSG = 0xA007;
 
+    public const ushort LOBBY_GOLD_BEAN_EXCHANGE_REQ_MSG = 0xA010;
+    public const ushort LOBBY_GOLD_BEAN_EXCHANGE_RES_MSG = 0xA011;
 
 
     public const ushort AUTHEN_REQ_MSG = 0xA0;
@@ -165,6 +167,8 @@ public class BaseMessage
         public sbyte cLevel;
         [MessagePackMember(16)]
         public sbyte iLevelExp;
+        [MessagePackMember(17)]
+        public sbyte cFllowWechat;
     };
 
     /// <summary>
@@ -425,6 +429,59 @@ public class BaseMessage
         [MessagePackMember(1)]
         public sbyte cIsNew;
     };
+
+    /// <summary>
+    /// 兑换发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class ExchangeReqDef
+    {
+        public ExchangeReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public UInt16 usType;
+        [MessagePackMember(1)]
+        public UInt16 usItemIndex;
+        [MessagePackMember(2)]
+        public string szUserMobile;
+        [MessagePackMember(3)]
+        public string szUserTel;
+        [MessagePackMember(4)]
+        public string szUserAddress;
+    };
+
+    /// <summary>
+    /// 兑换收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class ExchangeResDef
+    {
+        public ExchangeResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;//0,ok;1,noIni;3,notWhchat;4,noTel;5,noAdd
+        [MessagePackMember(1)]
+        public int iSubGoldBean;
+        [MessagePackMember(2)]
+        public int iAddCoin;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #region 历史
 
 
     public class AuthenType
@@ -1396,5 +1453,5 @@ public class Server2ClientIfOpenRecharge
 
 }
 
-
+#endregion
 

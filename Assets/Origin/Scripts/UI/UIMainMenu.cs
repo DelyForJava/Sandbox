@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 
 public class UIMainMenu : MonoBehaviour {
 
@@ -20,7 +24,7 @@ public class UIMainMenu : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //_btnMatchXL = GameObject.Find("Canvas/Button").GetComponent<Button>();
-        
+        ItemTest();
         playerInfoBtn.onClick.AddListener(delegate
         {
             personalInfoPanel.SetActive(true);
@@ -64,4 +68,36 @@ public class UIMainMenu : MonoBehaviour {
             headImage.sprite = loadSprite;
         }
     }
+
+    #region TestItem
+    
+    public Button addItemBtn;
+    public InputField IdInputField;
+    public InputField NumInputField;
+
+
+    public Button deleteItemBtn;
+    public Button updateItemBtn;
+
+    public void ItemTest()
+    {
+        var client = GameClient.Instance;
+        addItemBtn.onClick.AddListener(delegate()
+        {
+            client.MahjongGamePlayer.PackageAddItemReqDef(Convert.ToInt32(IdInputField.text), Convert.ToInt32(NumInputField.text));
+        });
+
+        deleteItemBtn.onClick.AddListener(delegate ()
+        {
+            client.MahjongGamePlayer.PackageRemoveItemReqDef(Convert.ToInt32(IdInputField.text), Convert.ToInt32(NumInputField.text));
+        });
+
+        updateItemBtn.onClick.AddListener(delegate ()
+        {
+            client.MahjongGamePlayer.PackageUpdateItemReqDef(Convert.ToInt32(IdInputField.text), (sbyte)Convert.ToInt32(NumInputField.text));
+        });
+    }
+
+    #endregion
+
 }

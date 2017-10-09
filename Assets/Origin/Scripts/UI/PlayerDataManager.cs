@@ -49,7 +49,14 @@ public class PlayerDataManager : SingletonBehaviour<PlayerDataManager> {
         });
         confirmEditNameBtn.onClick.AddListener(delegate
         {
-            client.MahjongGamePlayer.ChangeNameReqDef(nameInputField.text);
+            if (nameInputField.text !="")
+            {
+                client.MahjongGamePlayer.ChangeNameReqDef(nameInputField.text);
+            }
+            else
+            {
+                //弹窗 昵称不能为空
+            }
         });
         addGoldBtn.onClick.AddListener(delegate
         {

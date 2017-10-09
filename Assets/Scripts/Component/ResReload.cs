@@ -26,6 +26,8 @@ namespace Bean.Hall
         }
 
 
+
+
         void OnReload(string sceneName)
         {
             //Debug.LogMsg("Where am I 222");
@@ -38,7 +40,6 @@ namespace Bean.Hall
 			foreach (Image image in images)
 			{
 				var name = image.mainTexture.name;
-				var name2 = image.sprite.texture.name;
 				var path = "Assets/Art/" + sceneName + "/" + name + ".png";
 				var newSprite = ResourcesManager.Load<Sprite>(path);
 				image.sprite = newSprite;

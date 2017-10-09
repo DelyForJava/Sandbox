@@ -181,9 +181,25 @@ public class PackageDataManager : SingletonBehaviour<PackageDataManager> {
                         expire_time.text = "永 久";
                     }
                     useItemObj.SetActive(dataList[0].item_type == 1);
+
+                    useItemObj.GetComponent<Button>().onClick.RemoveAllListeners();
                     useItemObj.GetComponent<Button>().onClick.AddListener(delegate()
                     {
-                        //使用道具
+                        if (!gameObject.transform.parent.Find("messagePanel"))
+                        {
+                            UIMainMenuController.Instance.InstantiateMessagePanel(this.gameObject.transform.parent);
+                            //使用道具
+                            //ShowMessage.Instance.UseItemEventEvent += new ShowMessage.UseItemEventHandler(UseItem); // 订阅事件
+                            ShowMessage.Instance.messageText.text = "确定使用道具吗？";
+                            ShowMessage.Instance.confirmBtn.onClick.AddListener(delegate ()
+                            {
+                                GameClient.Instance.MahjongGamePlayer.PackageRemoveItemReqDef(dataList[0].item_id, 1);
+                                
+                                itemData.iItemNum = itemData.iItemNum - 1;
+                                print("itemData.iItemNum:" + itemData.iItemNum);
+                                itemObjInstantiate.transform.Find("Button/itemCount").GetComponent<Text>().text = "x" + (itemData.iItemNum);
+                            });
+                        }
                     });
 
                     //模型生成及切换
@@ -236,6 +252,11 @@ public class PackageDataManager : SingletonBehaviour<PackageDataManager> {
             }
         });
     }
+
+    //private void UseItem(int id,int count)
+    //{
+    //    GameClient.Instance.MahjongGamePlayer.PackageRemoveItemReqDef(id, count);
+    //}
 
     /// <summary>        
     /// 时间戳转为C#格式时间        

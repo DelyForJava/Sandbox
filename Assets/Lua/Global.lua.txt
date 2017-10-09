@@ -1,5 +1,10 @@
+ccreate = coroutine.create
+cyield = coroutine.yield
+cresume = coroutine.resume
+
 
 require 'Config/ConfigData'
+
 
 ULog = CS.UnityEngine.Debug.Log
 
@@ -7,11 +12,30 @@ UGameObject = CS.UnityEngine.GameObject
 
 USceneManager=CS.UnityEngine.SceneManagement.SceneManager
 
+UButton = CS.UnityEngine.UI.Button
+UImage = CS.UnityEngine.UI.Image
+UText = CS.UnityEngine.UI.Text
+
+
+BAssetBundleManager = CS.Bean.Hall.AssetBundleManager
+
+BResReload = CS.Bean.Hall.ResReload
+
+BUrl = CS.Bean.Hall.GlobalData.Url
+BChannelId = CS.Bean.Hall.GlobalData.ChannelId
+BCdn = CS.Bean.Hall.GlobalData.Cdn
+
 
 function StartReload(gameObject)
 	print("-------------------------------- Reload --------------------------------")
-    local resReload = UGameObject.Find("Canvas/"..gameObject.name):AddComponent( typeof(CS.Bean.Hall.ResReload) );
+    local resReload = UGameObject.Find("Canvas/"..gameObject.name):AddComponent( typeof(BResReload) );
     -- resReload:SendMessage("OnReload",name)
     return resReload
 end
 
+ReloadImageAsync = ccreate(function(index)
+	-- for i=0,images.Length-1 do
+		self.resReload:SendMessage("OnStepImage",index)
+		return cyield()
+	-- end
+end)
