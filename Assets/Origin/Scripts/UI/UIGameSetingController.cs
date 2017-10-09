@@ -398,11 +398,11 @@ public class UIGameSetingController : SingletonBehaviour<UIGameSetingController>
 
     IEnumerator LoadHeadImg(string str)
     {
-        using (UnityWebRequest www = UnityWebRequest.GetTexture(str))
+        using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(str))
         {
             yield return www.Send();
             
-            if (www.isError)
+            if (www.isNetworkError)
             {
                 Debug.Log(www.error);
             }
