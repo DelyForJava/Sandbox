@@ -19,8 +19,8 @@ public class UILoginController : SingletonBehaviour<UILoginController>, UIContro
 		_view = GameObject.Find ("Canvas").GetComponent<UILogin> ();
 
 		_view.touristBtn.onClick.RemoveAllListeners ();
-		_view.touristBtn.onClick.AddListener(delegate () { UIOperation.Instance.OnClickTouristLogin(this); });
-        _view.weChatBtn.onClick.AddListener(delegate () { UIOperation.Instance.OnClickWechatLogin(this); });
+		_view.touristBtn.onClick.AddListener(delegate () { UIOperation.Instance.OnClickTouristLogin(); });
+        _view.weChatBtn.onClick.AddListener(delegate () { UIOperation.Instance.OnClickWechatLogin(); });
         loadImgSprite ();
 		return true;
 	}

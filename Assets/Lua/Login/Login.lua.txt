@@ -1,12 +1,13 @@
 -- local ccreate = ccreate
 -- local cyield = cyield
-local cresume = cresume
+-- local cresume = cresume
 
-local ReloadImageAsync = ReloadImageAsync
-
+local StartReload = StartReload
+local ReloadImage = ReloadImage
 
 local Login = {}
 local self = Login
+
 self.name = "Login"
 self.transform = nil
 self.resReload = nil
@@ -17,18 +18,19 @@ self.reloaded = false
 
 function Login.Init(transform)
 	self.transform = transform
-	self.resReload = StartReload(transform.gameObject)
-	local images = self.resReload.images
-	self.max = images.Length-1
-
-
 	local bt = transform:Find("yk_bg"):GetComponent( typeof(UButton) )
+
+	--bt.onClick:AddListener(CS.UIOperation.OnClickTouristLogin)
 	bt.onClick:AddListener(function()
-		-- print("on tourist clicked")
+		print("on tourist clicked")
 		print( ConfigData.GetVipUpgradeExpByLevel(7) )
-		transform.gameObject:SetActive(false)
+		--transform.gameObject:SetActive(false)
+		CS.Bean.Hall.LoginEvent.Instance:OnClickTouristLogin()
 	end)
 
+	self.resReload = StartReload(self)
+	local images = self.resReload.images
+	self.max = images.Length-1
 end
 
 
@@ -40,7 +42,8 @@ function Login.Update()
 	print("-------------------------------- Login Update --------------------------------")
 
 	print("I am in the coroutine:"..self.index)
-	cresume(ReloadImageAsync,self.index)
+	-- cresume(ReloadImageAsync,self.index)
+	ReloadImage(self)
 	self.index = self.index + 1
 
 end

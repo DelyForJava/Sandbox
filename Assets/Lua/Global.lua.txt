@@ -26,14 +26,18 @@ BChannelId = CS.Bean.Hall.GlobalData.ChannelId
 BCdn = CS.Bean.Hall.GlobalData.Cdn
 
 
-function StartReload(gameObject)
+StartReload = function(self)
 	print("-------------------------------- Reload --------------------------------")
-    local resReload = UGameObject.Find("Canvas/"..gameObject.name):AddComponent( typeof(BResReload) );
+    local resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
     -- resReload:SendMessage("OnReload",name)
     return resReload
 end
 
-ReloadImageAsync = ccreate(function(index)
+ReloadImage = function(self)
+	self.resReload:SendMessage("OnStepImage",self.index)
+end
+
+ReloadImageAsync2 = ccreate(function(index)
 	-- for i=0,images.Length-1 do
 		self.resReload:SendMessage("OnStepImage",index)
 		return cyield()

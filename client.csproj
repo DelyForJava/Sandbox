@@ -154,6 +154,7 @@
     <Compile Include="Assets\ArtResource\TextMesh Pro\Examples\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Gen\BeanHallAssetBundleManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallGlobalDataWrap.cs" />
+    <Compile Include="Assets\Gen\BeanHallLoginEventWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallLuaClientWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResourcesManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResReloadWrap.cs" />
@@ -345,8 +346,9 @@
     <Compile Include="Assets\Scripts\Debug\Debug.cs" />
     <Compile Include="Assets\Scripts\Debug\DebugConsole.cs" />
     <Compile Include="Assets\Scripts\Debug\Fps.cs" />
-    <Compile Include="Assets\Scripts\Hotupdate\HotupdateClient.cs" />
-    <Compile Include="Assets\Scripts\Lua\LuaClient.cs" />
+    <Compile Include="Assets\Scripts\HotupdateClient.cs" />
+    <Compile Include="Assets\Scripts\Login\LoginEvent.cs" />
+    <Compile Include="Assets\Scripts\LuaClient.cs" />
     <Compile Include="Assets\Scripts\Wrap\AssetBundleManager.cs" />
     <Compile Include="Assets\Scripts\Wrap\LoadPattern.cs" />
     <Compile Include="Assets\Scripts\Wrap\ResourcesManager.cs" />

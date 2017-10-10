@@ -24,7 +24,7 @@ namespace odao.scmahjong
 			_gsProxy = client;
 		    var playerInfo = UIOperation.playerLobbyInfo;
 
-            _gsProxy.on(BaseMessage.LOGIN_REQ_MSG, delegate (Message obj) {
+            _gsProxy.on(BaseMessage.LOGIN_RES_MSG, delegate (Message obj) {
                 OdaoMessage msg = (OdaoMessage)obj;
                 //BaseMessage.LoginResDef data = XConvert.ConvertToObject<BaseMessage.LoginResDef>(msg.data);
                 var serializer = MsgPack.Serialization.MessagePackSerializer.Get<BaseMessage.LoginResDef>();
@@ -54,7 +54,7 @@ namespace odao.scmahjong
 #if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
                 Loom.QueueOnMainThread(delegate () {
                     //GameLoading.SwitchScene(2);
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+                    //UnityEngine.SceneManagement.SceneManager.LoadScene(2);
                 });
 
                 if (data.cErrorCode == 0)

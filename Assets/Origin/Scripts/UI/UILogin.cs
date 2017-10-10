@@ -24,8 +24,8 @@ public class UILogin : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        touristBtn = GameObject.Find("Canvas/TouristBtn").GetComponent<Button>();
-        weChatBtn = GameObject.Find("Canvas/WeChatBtn").GetComponent<Button>();
+        touristBtn = GameObject.Find("Canvas/Login/yk_bg").GetComponent<Button>();
+        weChatBtn = GameObject.Find("Canvas/Login/wx_bg").GetComponent<Button>();
 
         //      ssdk = gameObject.GetComponent<ShareSDK>();
 

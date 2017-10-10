@@ -72,9 +72,9 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
 
     void Start()
     {
-        touristBtn = GameObject.Find("Canvas/TouristBtn").GetComponent<Button>();
-        weChatBtn = GameObject.Find("Canvas/WeChatBtn").GetComponent<Button>();
-        message = GameObject.Find("Canvas/MessageText").GetComponent<Text>();
+        touristBtn = GameObject.Find("Canvas/Login/yk_bg").GetComponent<Button>();
+        weChatBtn = GameObject.Find("Canvas/Login/wx_bg").GetComponent<Button>();
+        //message = GameObject.Find("Canvas/MessageText").GetComponent<Text>();
         ssdk = GameObject.Find("Canvas").GetComponent<ShareSDK>();
 
         machineSerial = SystemInfo.deviceUniqueIdentifier;
@@ -97,9 +97,9 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
 
 
 
-    public void OnClickWechatLogin(UIController ctrl)
+    public void OnClickWechatLogin()
     {
-        UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
+        // UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
         //message.text = "WechatClicked";
         source = Source.wechat;
         if (!isWechatAuthed)
@@ -114,10 +114,10 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
         }
     }
 
-    public void OnClickTouristLogin(UIController ctrl)
+    public void OnClickTouristLogin()
     {
-
-        UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
+        Debug.Log("+++++++++++++++++++++++++++++++++++++++");
+        //UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
         source = Source.yk;
 
         if (isTestModel)
@@ -428,7 +428,7 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
         var client = GameClient.Instance;
         client.MahjongGamePlayer.ConnectGameServer(ipRes, 36667, delegate ()
         {
-            client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
+            //client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
         });
 
     }
@@ -446,7 +446,7 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
         var client = GameClient.Instance;
         client.MahjongGamePlayer.ConnectGameServer(ipRes, 36667, delegate ()
         {
-            client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
+            //client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
         });
     }
 

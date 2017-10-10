@@ -1,8 +1,9 @@
 -- local ccreate = ccreate
 -- local cyield = cyield
-local cresume = cresume
+-- local cresume = cresume
 
-local ReloadImageAsync = ReloadImageAsync
+local StartReload = StartReload
+local ReloadImage = ReloadImage
 
 local Hall = {}
 local self = Hall
@@ -17,11 +18,11 @@ self.reloaded = false
 
 
 function Hall.Init(transform)
-		self.transform = transform
-		self.resReload = StartReload(transform.gameObject)
+	self.transform = transform
+	self.resReload = StartReload(self)
 
-		local images = self.resReload.images
-		self.max = images.Length-1
+	local images = self.resReload.images
+	self.max = images.Length-1
 end
 
 function Hall.Update()
@@ -31,7 +32,8 @@ function Hall.Update()
 	end
 	print("-------------------------------- Hall Update --------------------------------")
 	print("I am in the coroutine:"..self.index)
-	cresume(ReloadImageAsync,self.index)
+	-- cresume(ReloadImageAsync,self.index)
+	ReloadImage(self)
 	self.index = self.index + 1
 
 end

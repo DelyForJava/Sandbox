@@ -22,20 +22,20 @@ namespace odao.scmahjong
         /// <param name="accountId"></param>
         /// <param name="token"></param>
         /// <param name="machineId"></param>
-        public void OriginMsgLoginReqDef(int accountId, string token, string machineId,Source source)
+        public void OriginMsgLoginReqDef(int accountId, string token, string machineId,Bean.Hall.Source source)
         {
             BaseMessage.LoginReqDef LoginReqDef = new BaseMessage.LoginReqDef();
             LoginReqDef.accountId = accountId;
             int sourceId = 0;
             switch (source)
             {
-                case Source.yk:
+                case Bean.Hall.Source.yk:
                     sourceId = 1;
                     break;
-                case Source.wechat:
+                case Bean.Hall.Source.wechat:
                     sourceId = 2;
                     break;
-                case Source.phoneNumber:
+                case Bean.Hall.Source.phoneNumber:
                     sourceId = 3;
                     break;
                 default:

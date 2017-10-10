@@ -25,35 +25,6 @@ namespace Bean.Hall
             image.sprite = newSprite;
         }
 
-
-
-
-        void OnReload(string sceneName)
-        {
-            //Debug.LogMsg("Where am I 222");
-            StopCoroutine("Reload");
-            StartCoroutine( Reload(sceneName) );
-        }
-
-		IEnumerator ReloadImage(string sceneName)
-		{
-			foreach (Image image in images)
-			{
-				var name = image.mainTexture.name;
-				var path = "Assets/Art/" + sceneName + "/" + name + ".png";
-				var newSprite = ResourcesManager.Load<Sprite>(path);
-				image.sprite = newSprite;
-				yield return null;
-			}
-
-		}
-
-        IEnumerator Reload(string sceneName)
-        {
-			yield return ReloadImage (sceneName);
-
-        }
-
     }
 
 }

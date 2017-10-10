@@ -32,6 +32,7 @@ namespace Bean.Hall
         // -------------------------------------------------  logic ---------------------------------------------------------//
         bool IsNeedHotupdate()
         {
+            //AssetBundleManager.Instance.Version
             return true;
         }
         IEnumerator Prepare()

@@ -11,6 +11,7 @@ local hallScene
 local loginScene
 
 local currentScene
+
 local index = 0
 local percent = 0
 local max = 1
@@ -47,7 +48,6 @@ end
 
 function Update()
 	-- print("current index:"..currentScene.index..",max:"..currentScene.max)
-
 	currentScene.Update()
 	percent = loginScene.index + hallScene.index
 	local p = percent/max
