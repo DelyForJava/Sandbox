@@ -440,6 +440,25 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1773497020505516, guid: 6bcc4fdc6bcf70340848d45d61c4a0fa, type: 2}
+      propertyPath: m_TagString
+      value: Waiting
+      objectReference: {fileID: 0}
+    - target: {fileID: 114668574778103102, guid: 6bcc4fdc6bcf70340848d45d61c4a0fa,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114503491155687596, guid: 6bcc4fdc6bcf70340848d45d61c4a0fa,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114503491155687596, guid: 6bcc4fdc6bcf70340848d45d61c4a0fa,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bcc4fdc6bcf70340848d45d61c4a0fa, type: 2}
   m_IsPrefabParent: 0
@@ -959,6 +978,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616830153591744, guid: 98756c44ceae3a749aeb827b7a80f91b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98756c44ceae3a749aeb827b7a80f91b, type: 2}

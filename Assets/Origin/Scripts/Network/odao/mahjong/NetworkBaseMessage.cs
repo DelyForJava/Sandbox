@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bean.Hall;
 #if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-using UnityEngine;
 #endif
 using NetworkInterface;
 using MP;
 using MsgPack;
 using MsgPack.Serialization;
+using Debug = UnityEngine.Debug;
 
 namespace odao.scmahjong
 {
@@ -60,7 +61,7 @@ namespace odao.scmahjong
                 if (data.cErrorCode == 0)
                 {
                     var gameClient = GameClient.Instance;
-                    gameClient.MahjongGamePlayer.ConnectGameServer(UIOperation.ipRes, 36665, delegate ()
+                    gameClient.MahjongGamePlayer.ConnectGameServer(LoginEvent.ipRes, 36665, delegate ()
                     {
                         gameClient.MahjongGamePlayer.LobbyLoginReqDef(data.iUserID, data.szPasswdToken);
                     });
@@ -79,6 +80,8 @@ namespace odao.scmahjong
                 Loom.QueueOnMainThread(delegate () {
                     //GameLoading.SwitchScene(2);
                     //UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+                    Callback.LuaOnClickTourist();
+
                 });
 #endif
             });

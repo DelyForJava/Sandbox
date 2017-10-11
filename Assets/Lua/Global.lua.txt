@@ -25,6 +25,32 @@ BUrl = CS.Bean.Hall.GlobalData.Url
 BChannelId = CS.Bean.Hall.GlobalData.ChannelId
 BCdn = CS.Bean.Hall.GlobalData.Cdn
 
+BCallback = CS.Bean.Hall.Callback
+
+-- ---------------------------------- callback ----------------------------------------
+
+OnClickTouristLuaCallCS = function()
+	local canvas = UGameObject.Find("Canvas").transform
+	local gameObject = canvas:Find("Waiting").gameObject
+	gameObject:SetActive(true)
+	BCallback.OnClickTourist()
+end
+
+OnClickTouristCSCallLua = function()
+	print("I am callback from csharp")
+	--UGameObject.Find("Canvas/Waiting"):SetActive(false)
+	local canvas = UGameObject.Find("Canvas").transform
+	local gameObject = canvas:Find("Waiting").gameObject
+	gameObject:SetActive(false)
+	require("Login/Login").Close()
+end
+-- ---------------------------------- callback ----------------------------------------
+
+
+
+
+
+
 
 StartReload = function(self)
 	print("-------------------------------- Reload --------------------------------")
@@ -34,7 +60,7 @@ StartReload = function(self)
 end
 
 ReloadImage = function(self)
-	self.resReload:SendMessage("OnStepImage",self.index)
+	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 end
 
 ReloadImageAsync2 = ccreate(function(index)
@@ -43,3 +69,4 @@ ReloadImageAsync2 = ccreate(function(index)
 		return cyield()
 	-- end
 end)
+

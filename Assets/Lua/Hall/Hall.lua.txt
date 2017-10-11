@@ -1,9 +1,3 @@
--- local ccreate = ccreate
--- local cyield = cyield
--- local cresume = cresume
-
-local StartReload = StartReload
-local ReloadImage = ReloadImage
 
 local Hall = {}
 local self = Hall
@@ -19,8 +13,9 @@ self.reloaded = false
 
 function Hall.Init(transform)
 	self.transform = transform
-	self.resReload = StartReload(self)
-
+	-- self.resReload = StartReload(self)
+	self.resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
+	-- print(self.resReload)
 	local images = self.resReload.images
 	self.max = images.Length-1
 end
@@ -33,7 +28,8 @@ function Hall.Update()
 	print("-------------------------------- Hall Update --------------------------------")
 	print("I am in the coroutine:"..self.index)
 	-- cresume(ReloadImageAsync,self.index)
-	ReloadImage(self)
+	-- ReloadImage(self)
+	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 	self.index = self.index + 1
 
 end

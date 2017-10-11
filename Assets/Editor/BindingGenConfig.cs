@@ -65,7 +65,8 @@ namespace Bean.Hall
                 typeof(Bean.Hall.LuaClient),
                 typeof(Bean.Hall.ResReload),
 				typeof(Bean.Hall.GlobalData),
-				typeof(Bean.Hall.LoginEvent),
+
+				typeof(Bean.Hall.Callback),
             
             };
 

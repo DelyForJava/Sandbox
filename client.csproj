@@ -153,8 +153,8 @@
     <Compile Include="Assets\ArtResource\TextMesh Pro\Examples\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\ArtResource\TextMesh Pro\Examples\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Gen\BeanHallAssetBundleManagerWrap.cs" />
+    <Compile Include="Assets\Gen\BeanHallCallbackWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallGlobalDataWrap.cs" />
-    <Compile Include="Assets\Gen\BeanHallLoginEventWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallLuaClientWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResourcesManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResReloadWrap.cs" />
@@ -346,8 +346,10 @@
     <Compile Include="Assets\Scripts\Debug\Debug.cs" />
     <Compile Include="Assets\Scripts\Debug\DebugConsole.cs" />
     <Compile Include="Assets\Scripts\Debug\Fps.cs" />
+    <Compile Include="Assets\Scripts\Event\Login.cs" />
+    <Compile Include="Assets\Scripts\Event\LoginEvent.cs" />
     <Compile Include="Assets\Scripts\HotupdateClient.cs" />
-    <Compile Include="Assets\Scripts\Login\LoginEvent.cs" />
+    <Compile Include="Assets\Scripts\Lua\Callback.cs" />
     <Compile Include="Assets\Scripts\LuaClient.cs" />
     <Compile Include="Assets\Scripts\Wrap\AssetBundleManager.cs" />
     <Compile Include="Assets\Scripts\Wrap\LoadPattern.cs" />
@@ -660,6 +662,7 @@
     <None Include="Assets\Lua\Client.lua.txt" />
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
+    <None Include="Assets\Lua\Config\config_shop.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Global.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />

@@ -1,9 +1,4 @@
--- local ccreate = ccreate
--- local cyield = cyield
--- local cresume = cresume
-
-local StartReload = StartReload
-local ReloadImage = ReloadImage
+local OnClickTouristLuaCallCS = OnClickTouristLuaCallCS
 
 local Login = {}
 local self = Login
@@ -16,6 +11,10 @@ self.index = 0
 self.max = 0
 self.reloaded = false
 
+function Login.Close()
+	self.transform.gameObject:SetActive(false)
+end
+
 function Login.Init(transform)
 	self.transform = transform
 	local bt = transform:Find("yk_bg"):GetComponent( typeof(UButton) )
@@ -25,10 +24,11 @@ function Login.Init(transform)
 		print("on tourist clicked")
 		print( ConfigData.GetVipUpgradeExpByLevel(7) )
 		--transform.gameObject:SetActive(false)
-		CS.Bean.Hall.LoginEvent.Instance:OnClickTouristLogin()
+		OnClickTouristLuaCallCS()
 	end)
 
-	self.resReload = StartReload(self)
+	-- self.resReload = StartReload(self)
+	self.resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
 	local images = self.resReload.images
 	self.max = images.Length-1
 end
@@ -43,7 +43,8 @@ function Login.Update()
 
 	print("I am in the coroutine:"..self.index)
 	-- cresume(ReloadImageAsync,self.index)
-	ReloadImage(self)
+	-- ReloadImage(self)
+	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 	self.index = self.index + 1
 
 end

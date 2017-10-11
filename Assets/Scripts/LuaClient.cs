@@ -73,10 +73,15 @@ namespace Bean.Hall
             scriptTable.Get("Update", out luaUpdate);
             scriptTable.Get("OnDestroy", out luaOnDestroy);
 
+            Callback.RegistLuaAction(scriptTable);
+
+
+            
             if (luaAwake != null)
             {
                 luaAwake();
             }
+
         }
 
         // Use this for initialization

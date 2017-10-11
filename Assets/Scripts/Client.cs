@@ -15,9 +15,9 @@ namespace Bean.Hall
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("EventSystem"));
             canvas_ = GameObject.Find("Canvas").transform;
-            DontDestroyOnLoad(canvas_);
+            //DontDestroyOnLoad(canvas_);
+            //DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
             StartCoroutine(Flow());
         }
@@ -43,8 +43,8 @@ namespace Bean.Hall
         }
         IEnumerator GetInfo()
         {
-            yield return Event.GetInfo();
-            //yield return null;
+            //yield return Event.GetInfo();
+            yield return null;
         }
         IEnumerator Download()
         {

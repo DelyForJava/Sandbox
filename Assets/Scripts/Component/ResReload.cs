@@ -15,9 +15,9 @@ namespace Bean.Hall
             images = transform.GetComponentsInChildren<Image>();
         }
 
-        void OnStepImage(int index)
+        public void OnStepImage(string index)
         {
-            var image = images[index];
+            var image = images[int.Parse(index)];
             var name = image.mainTexture.name;
             var path = "Assets/Art/" + gameObject.name + "/" + name + ".png";
 			Debug.LogMsg (path);

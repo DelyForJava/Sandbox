@@ -399,6 +399,7 @@
     <None Include="Assets\Lua\Client.lua.txt" />
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
+    <None Include="Assets\Lua\Config\config_shop.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Global.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />

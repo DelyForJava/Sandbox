@@ -20,8 +20,9 @@ namespace XLua.CSObjectWrap
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			Utils.BeginObjectRegister(typeof(Bean.Hall.ResReload), L, translator, 0, 0, 1, 1);
+			Utils.BeginObjectRegister(typeof(Bean.Hall.ResReload), L, translator, 0, 1, 1, 1);
 			
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnStepImage", _m_OnStepImage);
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "images", _g_get_images);
@@ -69,6 +70,34 @@ namespace XLua.CSObjectWrap
         
         
         
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_OnStepImage(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                Bean.Hall.ResReload __cl_gen_to_be_invoked = (Bean.Hall.ResReload)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    string index = LuaAPI.lua_tostring(L, 2);
+                    
+                    __cl_gen_to_be_invoked.OnStepImage( index );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
         
         
         
