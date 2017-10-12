@@ -90,25 +90,17 @@ namespace Bean.Hall
 
         public void OnClickWechatLogin()
         {
-            // UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
-            //message.text = "WechatClicked";
-            Debug.LogMsg("where am i");
             source = Source.wechat;
             if (!isWechatAuthed)
             {
-                Debug.LogMsg("where am i111");
-                Debug.LogMsg("where am i111"+ ssdk.name);
-
                 ssdk.Authorize(PlatformType.WeChat);
-
             }
             else
             {
-                Debug.LogMsg("where am i222");
-
                 Resolution(domain, Convert.ToInt32(PlayerPrefs.GetString("wechatAccountId")), PlayerPrefs.GetString("wechatLoginToken"), machineSerial);
                 //StartCoroutine(ThirdPartyResolution(domain, Convert.ToInt32(PlayerPrefs.GetString("accountId")), PlayerPrefs.GetString("loginToken"), machineSerial));
             }
+
         }
 
         public void OnClickTouristLogin()
