@@ -18,13 +18,18 @@ end
 function Login.Init(transform)
 	self.transform = transform
 	local bt = transform:Find("yk_bg"):GetComponent( typeof(UButton) )
-
-	--bt.onClick:AddListener(CS.UIOperation.OnClickTouristLogin)
 	bt.onClick:AddListener(function()
 		print("on tourist clicked")
 		print( ConfigData.GetVipUpgradeExpByLevel(7) )
 		--transform.gameObject:SetActive(false)
 		OnClickTouristLuaCallCS()
+	end)
+
+	local bt = transform:Find("wx_bg"):GetComponent( typeof(UButton) )
+	bt.onClick:AddListener(function()
+		print("on wechat clicked")
+		--transform.gameObject:SetActive(false)
+		OnClickWechatLuaCallCS()
 	end)
 
 	-- self.resReload = StartReload(self)
@@ -39,9 +44,9 @@ function Login.Update()
 		self.reloaded = true
 		return
 	end
-	print("-------------------------------- Login Update --------------------------------")
+	-- print("-------------------------------- Login Update --------------------------------")
 
-	print("I am in the coroutine:"..self.index)
+	-- print("I am in the coroutine:"..self.index)
 	-- cresume(ReloadImageAsync,self.index)
 	-- ReloadImage(self)
 	self.resReload:SendMessage("OnStepImage",tostring(self.index) )

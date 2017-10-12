@@ -31,14 +31,14 @@ namespace XLua.CSObjectWrap
 
 		    Utils.BeginClassRegister(typeof(Bean.Hall.Callback), L, __CreateInstance, 4, 1, 1);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "OnClickTourist", _m_OnClickTourist_xlua_st_);
-            Utils.RegisterFunc(L, Utils.CLS_IDX, "RegistLuaAction", _m_RegistLuaAction_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "OnClickWechat", _m_OnClickWechat_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "RegistLuaAction", _m_RegistLuaAction_xlua_st_);
             
 			
             
-			Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnClickTourist", _g_get_LuaOnClickTourist);
+			Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnLogin", _g_get_LuaOnLogin);
             
-			Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnClickTourist", _s_set_LuaOnClickTourist);
+			Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnLogin", _s_set_LuaOnLogin);
             
 			Utils.EndClassRegister(typeof(Bean.Hall.Callback), L, translator);
         }
@@ -80,6 +80,29 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_OnClickWechat_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    
+                    Bean.Hall.Callback.OnClickWechat(  );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_RegistLuaAction_xlua_st_(RealStatePtr L)
         {
 		    try {
@@ -105,38 +128,15 @@ namespace XLua.CSObjectWrap
             
         }
         
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_OnClickWechat_xlua_st_(RealStatePtr L)
-        {
-		    try {
-            
-            
-            
-                
-                {
-                    
-                    Bean.Hall.Callback.OnClickWechat(  );
-                    
-                    
-                    
-                    return 0;
-                }
-                
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
-            }
-            
-        }
-        
         
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _g_get_LuaOnClickTourist(RealStatePtr L)
+        static int _g_get_LuaOnLogin(RealStatePtr L)
         {
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			    translator.Push(L, Bean.Hall.Callback.LuaOnClickTourist);
+			    translator.Push(L, Bean.Hall.Callback.LuaOnLogin);
             } catch(System.Exception __gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
             }
@@ -146,11 +146,11 @@ namespace XLua.CSObjectWrap
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _s_set_LuaOnClickTourist(RealStatePtr L)
+        static int _s_set_LuaOnLogin(RealStatePtr L)
         {
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			    Bean.Hall.Callback.LuaOnClickTourist = translator.GetDelegate<System.Action>(L, 1);
+			    Bean.Hall.Callback.LuaOnLogin = translator.GetDelegate<System.Action>(L, 1);
             
             } catch(System.Exception __gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);

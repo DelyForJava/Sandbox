@@ -14,23 +14,22 @@ namespace Bean.Hall
             LoginEvent.Instance.OnClickTouristLogin();
 
         }
-
-        public static Action LuaOnClickTourist;
-        public static void RegistLuaAction(LuaTable table)
-        {
-            table.Get("OnClickTouristCSCallLua", out LuaOnClickTourist);
-
-        }
-
-
         public static void OnClickWechat()
         {
+            LoginEvent.Instance.OnClickWechatLogin();
 
         }
 
+        public static Action LuaOnLogin;
+        public static void RegistLuaAction(LuaTable table)
+        {
+            var l = LoginEvent.Instance;
+            table.Get("OnLoginCSCallLua", out LuaOnLogin);
+
+        }
         // -------------------------------------------------  hall ---------------------------------------------------------//
 
 
-}
+    }
 
 }

@@ -92,15 +92,21 @@ namespace Bean.Hall
         {
             // UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
             //message.text = "WechatClicked";
+            Debug.LogMsg("where am i");
             source = Source.wechat;
             if (!isWechatAuthed)
             {
+                Debug.LogMsg("where am i111");
+                Debug.LogMsg("where am i111"+ ssdk.name);
+
                 ssdk.Authorize(PlatformType.WeChat);
+
             }
             else
             {
-                Resolution(domain, Convert.ToInt32(PlayerPrefs.GetString("wechatAccountId")), PlayerPrefs.GetString("wechatLoginToken"),
-                    machineSerial);
+                Debug.LogMsg("where am i222");
+
+                Resolution(domain, Convert.ToInt32(PlayerPrefs.GetString("wechatAccountId")), PlayerPrefs.GetString("wechatLoginToken"), machineSerial);
                 //StartCoroutine(ThirdPartyResolution(domain, Convert.ToInt32(PlayerPrefs.GetString("accountId")), PlayerPrefs.GetString("loginToken"), machineSerial));
             }
         }
@@ -298,7 +304,7 @@ namespace Bean.Hall
                 PlayerPrefs.SetString("wechatAccountId", jd["result"]["accountId"].ToString());
                 PlayerPrefs.SetString("wechatLoginToken", jd["result"]["loginToken"].ToString());
 
-                UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
+                //UIDebugViewController.Instance.OpenLoadingDebug("微信登录中......");
 
                 Resolution(domain, Convert.ToInt32(jd["result"]["accountId"].ToString()), jd["result"]["loginToken"].ToString(), machineSerial);
             }

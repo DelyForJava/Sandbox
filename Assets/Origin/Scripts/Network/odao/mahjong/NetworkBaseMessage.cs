@@ -80,7 +80,7 @@ namespace odao.scmahjong
                 Loom.QueueOnMainThread(delegate () {
                     //GameLoading.SwitchScene(2);
                     //UnityEngine.SceneManagement.SceneManager.LoadScene(2);
-                    Callback.LuaOnClickTourist();
+                    Callback.LuaOnLogin();
 
                 });
 #endif

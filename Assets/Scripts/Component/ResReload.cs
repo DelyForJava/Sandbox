@@ -20,7 +20,7 @@ namespace Bean.Hall
             var image = images[int.Parse(index)];
             var name = image.mainTexture.name;
             var path = "Assets/Art/" + gameObject.name + "/" + name + ".png";
-			Debug.LogMsg (path);
+			//Debug.LogMsg (path);
             var newSprite = ResourcesManager.Load<Sprite>(path);
             image.sprite = newSprite;
         }

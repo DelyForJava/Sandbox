@@ -72,8 +72,8 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
 
     void Start()
     {
-        touristBtn = GameObject.Find("Canvas/Login/yk_bg").GetComponent<Button>();
-        weChatBtn = GameObject.Find("Canvas/Login/wx_bg").GetComponent<Button>();
+        touristBtn = GameObject.Find("Canvas/TouristBtn").GetComponent<Button>();
+        weChatBtn = GameObject.Find("CanvasWeChatBtn").GetComponent<Button>();
         //message = GameObject.Find("Canvas/MessageText").GetComponent<Text>();
         ssdk = GameObject.Find("Canvas").GetComponent<ShareSDK>();
 

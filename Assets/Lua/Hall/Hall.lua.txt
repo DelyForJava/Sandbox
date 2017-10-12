@@ -25,8 +25,8 @@ function Hall.Update()
 		self.reloaded = true
 		return
 	end
-	print("-------------------------------- Hall Update --------------------------------")
-	print("I am in the coroutine:"..self.index)
+	-- print("-------------------------------- Hall Update --------------------------------")
+	-- print("I am in the coroutine:"..self.index)
 	-- cresume(ReloadImageAsync,self.index)
 	-- ReloadImage(self)
 	self.resReload:SendMessage("OnStepImage",tostring(self.index) )

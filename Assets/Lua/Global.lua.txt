@@ -20,15 +20,15 @@ UText = CS.UnityEngine.UI.Text
 BAssetBundleManager = CS.Bean.Hall.AssetBundleManager
 
 BResReload = CS.Bean.Hall.ResReload
-
 BUrl = CS.Bean.Hall.GlobalData.Url
 BChannelId = CS.Bean.Hall.GlobalData.ChannelId
+
 BCdn = CS.Bean.Hall.GlobalData.Cdn
 
 BCallback = CS.Bean.Hall.Callback
 
--- ---------------------------------- callback ----------------------------------------
 
+-- ---------------------------------- callback ----------------------------------------
 OnClickTouristLuaCallCS = function()
 	local canvas = UGameObject.Find("Canvas").transform
 	local gameObject = canvas:Find("Waiting").gameObject
@@ -36,7 +36,14 @@ OnClickTouristLuaCallCS = function()
 	BCallback.OnClickTourist()
 end
 
-OnClickTouristCSCallLua = function()
+OnClickWechatLuaCallCS = function()
+	local canvas = UGameObject.Find("Canvas").transform
+	local gameObject = canvas:Find("Waiting").gameObject
+	gameObject:SetActive(true)
+	BCallback.OnClickWechat()
+end
+
+OnLoginCSCallLua = function()
 	print("I am callback from csharp")
 	--UGameObject.Find("Canvas/Waiting"):SetActive(false)
 	local canvas = UGameObject.Find("Canvas").transform
@@ -44,6 +51,7 @@ OnClickTouristCSCallLua = function()
 	gameObject:SetActive(false)
 	require("Login/Login").Close()
 end
+
 -- ---------------------------------- callback ----------------------------------------
 
 
