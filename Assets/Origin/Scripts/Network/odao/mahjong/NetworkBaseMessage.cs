@@ -23,7 +23,7 @@ namespace odao.scmahjong
 		public void InitBaseMessage(OdaoClient client)
 		{
 			_gsProxy = client;
-		    var playerInfo = UIOperation.playerLobbyInfo;
+            var playerInfo = UIOperation.playerLobbyInfo;
 
             _gsProxy.on(BaseMessage.LOGIN_RES_MSG, delegate (Message obj) {
                 OdaoMessage msg = (OdaoMessage)obj;
@@ -32,23 +32,23 @@ namespace odao.scmahjong
                 var data = serializer.UnpackSingleObject(msg.data);
                 Debug.LogError("LOGIN_RES_MSG: " + BaseMessage.LOGIN_REQ_MSG + ",cErrorCode:"+ data.cErrorCode + ", iUserID:" + data.iUserID + ",accountId:" + data.accountId + ",serviceId:" + data.serviceId + ",szPasswdToken:" + data.szPasswdToken + ",cGender:" + data.cGender + ",cVipLv:" + data.cVipLv + ",llGameCoin:" + data.llGameCoin + ",llBankCoin:" + data.llBankCoin + ",llDiamondNum:" + data.llDiamondNum + ",llGoldBean:" + data.llGoldBean + ",szNickName:" + data.szNickName + ",szWXIconURL:" + data.szWXIconURL + ",szWXNickName:" + data.szWXNickName + ",iVipExp:" + data.iVipExp + ",cLevel:" + data.cLevel + ",iLevelExp:" + data.iLevelExp);
 
-                
-                playerInfo.iUserID = data.iUserID;
-                playerInfo.accountId = data.accountId;
-                playerInfo.serviceId = data.serviceId;
-                playerInfo.szPasswdToken = data.szPasswdToken;
-                playerInfo.cGender = data.cGender;
-                playerInfo.cVipLv = data.cVipLv;
-                playerInfo.llGameCoin = data.llGameCoin;
-                playerInfo.llBankCoin = data.llBankCoin;
-                playerInfo.llDiamondNum = data.llDiamondNum;
-                playerInfo.llGoldBean = data.llGoldBean;
-                playerInfo.szNickName = data.szNickName;
-                playerInfo.szWXIconURL = data.szWXIconURL;
-                playerInfo.szWXNickName = data.szWXNickName;
-                playerInfo.iVipExp = data.iVipExp;
-                playerInfo.cLevel = data.cLevel;
-                playerInfo.iLevelExp = data.iLevelExp;
+
+                HallData.iUserID = data.iUserID;
+                HallData.accountId = data.accountId;
+                HallData.serviceId = data.serviceId;
+                HallData.szPasswdToken = data.szPasswdToken;
+                HallData.cGender = data.cGender;
+                HallData.cVipLv = data.cVipLv;
+                HallData.llGameCoin = data.llGameCoin;
+                HallData.llBankCoin = data.llBankCoin;
+                HallData.llDiamondNum = data.llDiamondNum;
+                HallData.llGoldBean = data.llGoldBean;
+                HallData.szNickName = data.szNickName;
+                HallData.szWXIconURL = data.szWXIconURL;
+                HallData.szWXNickName = data.szWXNickName;
+                HallData.iVipExp = data.iVipExp;
+                HallData.cLevel = data.cLevel;
+                HallData.iLevelExp = data.iLevelExp;
 
 
 

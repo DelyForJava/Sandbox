@@ -91,6 +91,8 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(Bean.Hall.Callback), BeanHallCallbackWrap.__Register);
 				
+				translator.DelayWrapLoader(typeof(Bean.Hall.HallData), BeanHallHallDataWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);

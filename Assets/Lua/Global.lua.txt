@@ -26,6 +26,7 @@ BChannelId = CS.Bean.Hall.GlobalData.ChannelId
 BCdn = CS.Bean.Hall.GlobalData.Cdn
 
 BCallback = CS.Bean.Hall.Callback
+BHallData = CS.Bean.Hall.HallData
 
 
 -- ---------------------------------- callback ----------------------------------------
@@ -50,6 +51,9 @@ OnLoginCSCallLua = function()
 	local gameObject = canvas:Find("Waiting").gameObject
 	gameObject:SetActive(false)
 	require("Login/Login").Close()
+	require("Hall/Hall").Show()
+
+
 end
 
 -- ---------------------------------- callback ----------------------------------------

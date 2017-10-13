@@ -155,6 +155,7 @@
     <Compile Include="Assets\Gen\BeanHallAssetBundleManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallCallbackWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallGlobalDataWrap.cs" />
+    <Compile Include="Assets\Gen\BeanHallHallDataWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallLuaClientWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResourcesManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResReloadWrap.cs" />
@@ -342,12 +343,13 @@
     <Compile Include="Assets\Scripts\Component\Mum.cs" />
     <Compile Include="Assets\Scripts\Component\PointerImplement.cs" />
     <Compile Include="Assets\Scripts\Component\ResReload.cs" />
-    <Compile Include="Assets\Scripts\Data\Event.cs" />
+    <Compile Include="Assets\Scripts\Data\HallData.cs" />
+    <Compile Include="Assets\Scripts\Data\Login.cs" />
+    <Compile Include="Assets\Scripts\Data\LoginEvent.cs" />
+    <Compile Include="Assets\Scripts\Data1\Event.cs" />
     <Compile Include="Assets\Scripts\Debug\Debug.cs" />
     <Compile Include="Assets\Scripts\Debug\DebugConsole.cs" />
     <Compile Include="Assets\Scripts\Debug\Fps.cs" />
-    <Compile Include="Assets\Scripts\Event\Login.cs" />
-    <Compile Include="Assets\Scripts\Event\LoginEvent.cs" />
     <Compile Include="Assets\Scripts\HotupdateClient.cs" />
     <Compile Include="Assets\Scripts\Lua\Callback.cs" />
     <Compile Include="Assets\Scripts\LuaClient.cs" />

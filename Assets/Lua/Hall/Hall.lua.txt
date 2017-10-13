@@ -9,26 +9,50 @@ self.resReload = nil
 self.index = 0
 self.max = 0
 self.reloaded = false
+self.hallGameObject  = nil
+self.coin = nil
+self.diamond  = nil
 
+function Hall.Show()
+	print( "Login iUserID:"..BHallData.iUserID )
+	print( "Login serviceId:"..BHallData.serviceId )
+	print( "Login szPasswdToken:"..BHallData.szPasswdToken )
+	print( "Login cGender:"..BHallData.cGender )
+	print( "Login cVipLv:"..BHallData.cVipLv )
+	print( "Login llGameCoin:"..BHallData.llGameCoin )
+	print( "Login llBankCoin:"..BHallData.llBankCoin )
+	print( "Login llDiamondNum:"..BHallData.llDiamondNum )
+	print( "Login llGoldBean:"..BHallData.llGoldBean )
+	print( "Login szNickName:"..BHallData.szNickName )
+	print( "Login szWXIconURL:"..BHallData.szWXIconURL )
+	print( "Login szWXNickName:"..BHallData.szWXNickName )
+	print( "Login iVipExp:"..BHallData.iVipExp )
+	print( "Login cLevel:"..BHallData.cLevel )
+	print( "Login iLevelExp:"..BHallData.iLevelExp )
+	self.coin.text = tostring(BHallData.llGameCoin)
+	self.diamond.text = tostring(BHallData.llDiamondNum)
+end
 
 function Hall.Init(transform)
+
 	self.transform = transform
-	-- self.resReload = StartReload(self)
 	self.resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
-	-- print(self.resReload)
 	local images = self.resReload.images
 	self.max = images.Length-1
+
+	self.hallGameObject = UGameObject.Find("Canvas/Hall")
+	self.coin = self.hallGameObject.transform:Find("background/goldPanel/coin/coinText"):GetComponent(typeof(UText))
+	self.diamond = self.hallGameObject.transform:Find("background/goldPanel/dia/diaText"):GetComponent(typeof(UText))
 end
 
 function Hall.Update()
+
 	if self.index>self.max then
 		self.reloaded = true
 		return
 	end
 	-- print("-------------------------------- Hall Update --------------------------------")
-	-- print("I am in the coroutine:"..self.index)
-	-- cresume(ReloadImageAsync,self.index)
-	-- ReloadImage(self)
+
 	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 	self.index = self.index + 1
 
