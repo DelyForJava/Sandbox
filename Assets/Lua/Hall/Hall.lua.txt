@@ -51,9 +51,9 @@ function Hall.Update()
 		self.reloaded = true
 		return
 	end
-	-- print("-------------------------------- Hall Update --------------------------------")
+	-- -- print("-------------------------------- Hall Update --------------------------------")
 
-	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
+	-- self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 	self.index = self.index + 1
 
 end

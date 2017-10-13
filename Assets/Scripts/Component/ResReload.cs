@@ -17,7 +17,7 @@ namespace Bean.Hall
 
         public void OnStepImage(string index)
         {
-            return;
+            //return;
             var image = images[int.Parse(index)];
             var name = image.mainTexture.name;
             var path = "Assets/Art/" + gameObject.name + "/" + name + ".png";
