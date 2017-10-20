@@ -2,6 +2,7 @@ ccreate = coroutine.create
 cyield = coroutine.yield
 cresume = coroutine.resume
 
+require 'Event'
 
 require 'Config/ConfigData'
 
@@ -15,6 +16,9 @@ USceneManager=CS.UnityEngine.SceneManagement.SceneManager
 UButton = CS.UnityEngine.UI.Button
 UImage = CS.UnityEngine.UI.Image
 UText = CS.UnityEngine.UI.Text
+UInputField = CS.UnityEngine.UI.InputField
+UToggle = CS.UnityEngine.UI.Toggle
+USlider = CS.UnityEngine.UI.Slider
 
 
 BAssetBundleManager = CS.Bean.Hall.AssetBundleManager
@@ -49,11 +53,21 @@ OnLoginCSCallLua = function()
 	--UGameObject.Find("Canvas/Waiting"):SetActive(false)
 	local canvas = UGameObject.Find("Canvas").transform
 	local gameObject = canvas:Find("Waiting").gameObject
-	gameObject:SetActive(false)
-	require("Login/Login").Close()
-	require("Hall/Hall").Show()
+	
+	--require("Login/Login").Close()
+	require("Hall/Hall").Show(gameObject)
+	-- gameObject:SetActive(false)
 
+end
 
+OnChangeGenderCSCallLua = function()
+	print("I am callback from csharp: LoadGenderImage")
+	require("Hall/Avater/Avater").LoadGenderImage()
+end
+
+OnChangeNameCSCallLua = function()
+	print("I am callback from csharp: change name")
+	require("Hall/Avater/Avater").Update()
 end
 
 -- ---------------------------------- callback ----------------------------------------

@@ -1,15 +1,233 @@
-local speed = 10
+local Avater = {}
+local self = Avater
 
-function start()
-	print("lua start...")
+self.name = "Avater"
+
+local client = CS.GameClient.Instance
+
+self.userId = nil
+self.nickName = nil
+self.goldNum = nil
+self.diaNum = nil
+self.beanNum = nil
+self.expText = nil
+self.vipLvText = nil
+self.goldNumTop = nil
+self.diaNumTop = nil
+
+self.editNameBtn = nil
+self.addGoldBtn = nil
+self.addDiaBtn = nil
+self.getBeanBtn = nil
+self.changeGenderBtn = nil
+self.confirmEditNameBtn = nil
+self.confirmGenderBtn = nil
+
+self.nameInputField = nil
+self.comfirmPanel = nil
+self.genderConfirmPanel = nil
+
+self.manToggle = nil
+self.womanToggle = nil
+
+self.headImage = nil
+self.sexImage = nil
+self.expSlider = nil
+
+
+function Avater.Init()
+	
+	print( "Login iUserID:"..BHallData.iUserID )
+	print( "Login serviceId:"..BHallData.serviceId )
+	print( "Login szPasswdToken:"..BHallData.szPasswdToken )
+	print( "Login cGender:"..BHallData.cGender )
+	print( "Login cVipLv:"..BHallData.cVipLv )
+	print( "Login llGameCoin:"..BHallData.llGameCoin )
+	print( "Login llBankCoin:"..BHallData.llBankCoin )
+	print( "Login llDiamondNum:"..BHallData.llDiamondNum )
+	print( "Login llGoldBean:"..BHallData.llGoldBean )
+	print( "Login szNickName:"..BHallData.szNickName )
+	print( "Login szWXIconURL:"..BHallData.szWXIconURL )
+	print( "Login szWXNickName:"..BHallData.szWXNickName )
+	print( "Login iVipExp:"..BHallData.iVipExp )
+	print( "Login cLevel:"..BHallData.cLevel )
+	print( "Login iLevelExp:"..BHallData.iLevelExp )
+	self.personalInfoPanelTransform = UGameObject.Find("Canvas/Hall/personalInfoPanel").transform
+
+	self.userId = UGameObject.Find("Canvas/Hall/personalInfoPanel/leftTab/upFlag/id/Text"):GetComponent(typeof(UText))
+	self.nickName = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/nickTab/value"):GetComponent(typeof(UText))
+	self.goldNum = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/goldTab/value"):GetComponent(typeof(UText))
+	self.diaNum = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/diaTab/value"):GetComponent(typeof(UText))
+	self.beanNum = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/beanTab/value"):GetComponent(typeof(UText))
+	self.expText = UGameObject.Find("Canvas/Hall/personalInfoPanel/leftTab/downFlag/MVP/expText"):GetComponent(typeof(UText))
+	self.vipLvText = UGameObject.Find("Canvas/Hall/personalInfoPanel/leftTab/downFlag/VIP/value"):GetComponent(typeof(UText))
+	self.goldNumTop = UGameObject.Find("Canvas/Hall/personalInfoPanel/titleTab/goldPanel/coin/coinText"):GetComponent(typeof(UText))
+	self.diaNumTop = UGameObject.Find("Canvas/Hall/personalInfoPanel/titleTab/goldPanel/dia/diaText"):GetComponent(typeof(UText))
+
+	self.comfirmPanel = self.personalInfoPanelTransform:Find("comfirmPanel")
+	self.genderConfirmPanel = self.personalInfoPanelTransform:Find("changeGenderPanel")
+
+	self.editNameBtn = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/nickTab/edit/editBtn"):GetComponent(typeof(UButton))
+	self.addGoldBtn = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/goldTab/edit/editBtn"):GetComponent(typeof(UButton))
+	self.addDiaBtn = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/diaTab/edit/editBtn"):GetComponent(typeof(UButton))
+	self.getBeanBtn = UGameObject.Find("Canvas/Hall/personalInfoPanel/rightTab/beanTab/edit/editBtn"):GetComponent(typeof(UButton))
+	self.changeGenderBtn = UGameObject.Find("Canvas/Hall/personalInfoPanel/leftTab/upFlag/sex"):GetComponent(typeof(UButton))	 
+	self.confirmEditNameBtn = self.comfirmPanel:Find("confirmBtn"):GetComponent(typeof(UButton))
+	self.confirmGenderBtn = self.genderConfirmPanel:Find("confirm"):GetComponent(typeof(UButton))
+
+	
+
+	self.nameInputField = self.comfirmPanel:Find("InputField"):GetComponent(typeof(UInputField))
+	self.manToggle = self.genderConfirmPanel:Find("chooseGroup/man"):GetComponent(typeof(UToggle))
+	self.womanToggle = self.genderConfirmPanel:Find("chooseGroup/woman"):GetComponent(typeof(UToggle))
+
+	self.headImage = self.personalInfoPanelTransform:Find("leftTab/upFlag/personInfoBtn/mask/headImage"):GetComponent(typeof(UImage))
+	self.sexImage = self.personalInfoPanelTransform:Find("leftTab/upFlag/sex/Image"):GetComponent(typeof(UImage))
+	self.expSlider = self.personalInfoPanelTransform:Find("leftTab/downFlag/MVP/Slider"):GetComponent(typeof(USlider))
+
+
+
+
+	self.Show()
 end
 
-function update()
-	local r = CS.UnityEngine.Vector3.up * CS.UnityEngine.Time.deltaTime * speed
-	self.transform:Rotate(r)
+
+function Avater.Show()
+	print("lua Show...")
+
+	self.userId.text = "ID:"..tostring(BHallData.iUserID)
+	-- if BHallData.szWXNickName == "" then
+	-- 	self.nickName.text = BHallData.szNickName
+	-- else
+	-- 	self.nickName.text = BHallData.szWXNickName
+	-- end
+	-- self.goldNum.text = tostring(BHallData.llGameCoin)
+	-- self.diaNum.text = tostring(BHallData.llDiamondNum)
+
+	self.editNameBtn.onClick:RemoveAllListeners()
+	self.confirmEditNameBtn.onClick:RemoveAllListeners()
+	self.changeGenderBtn.onClick:RemoveAllListeners()
+	self.confirmGenderBtn.onClick:RemoveAllListeners()
+
+
+	self.editNameBtn.onClick:AddListener(function()
+	self.comfirmPanel.gameObject:SetActive(true)
+		self.nameInputField.text = ""
+        self.nameInputField.placeholder:GetComponent(typeof(UText)).text = ""
+	end)
+
+	self.confirmEditNameBtn.onClick:AddListener(function()
+		if self.nameInputField.text ~= "" then
+			client.MahjongGamePlayer:ChangeNameReqDef(self.nameInputField.text);
+		else
+			--input nil ,show window
+		end
+	end)	
+
+	self.changeGenderBtn.onClick:AddListener(function()
+		self.genderConfirmPanel.gameObject:SetActive(true)
+	end)	
+
+	self.confirmGenderBtn.onClick:AddListener(function()
+		if (self.manToggle.isOn or self.womanToggle.isOn) then
+			local isMan = self.manToggle.isOn
+			print(self.manToggle.name)
+			print(isMan)
+			if isMan == true then
+				client.MahjongGamePlayer:ChangeGenderReqDef(0)
+				self.manToggle.isOn = false
+				self.womanToggle.isOn = false
+			else
+				client.MahjongGamePlayer:ChangeGenderReqDef(1)
+				self.manToggle.isOn = false
+				self.womanToggle.isOn = false
+			end
+		end
+		self.genderConfirmPanel.gameObject:SetActive(false)
+	end)	
+
+	self.Update()
+	self.LoadHeadImage()
+	self.LoadGenderImage()
 end
 
-function ondestroy()
-    print("lua destroy")
+function Avater.Update()
+	print("Avater.Update")
+	if self.coin ~= nil and self.diamond ~= nil then
+		self.coin.text = tostring(BHallData.llGameCoin)
+		self.diamond.text = tostring(BHallData.llDiamondNum)
+		print(BHallData.llGameCoin)
+		print(BHallData.llDiamondNum)
+	end
+	print(BHallData.szNickName)
+	if BHallData.szWXNickName == "" then
+		print("1111")
+		self.nickName.text = BHallData.szNickName
+	else
+		print("2222")
+		self.nickName.text = BHallData.szWXNickName
+	end
+
+	
+	self.goldNum.text = tostring(BHallData.llGameCoin)
+	self.diaNum.text = tostring(BHallData.llDiamondNum)
+	self.beanNum.text = tostring(BHallData.llGoldBean)
+	self.goldNumTop.text = tostring(BHallData.llGameCoin)
+	self.diaNumTop.text = tostring(BHallData.llDiamondNum)
+	self.vipLvText.text = tostring(BHallData.cVipLv)
+
 end
 
+
+function Avater.LoadHeadImage()
+	if BHallData.szWXIconURL == "" then
+		-- require("Login/Login").Close()
+  --       gameObject:SetActive(false)
+    else
+    	local util = require 'xlua.util'
+		local yield_return = (require 'Coroutine').yield_return
+		local co = coroutine.create(function()
+  	  		print('coroutine start!')
+    		local s = os.time()
+ 	   		yield_return(CS.UnityEngine.WaitForSeconds(3))
+    		print('wait interval:', os.time() - s)
+	
+    		local www = CS.UnityEngine.WWW(BHallData.szWXIconURL)
+    		yield_return(www)
+			if not www.error then
+    			print(www.bytes)
+    			print( "Login szWXIconURL:"..BHallData.szWXIconURL )
+    			local texture = www.texture
+            	local sprite = CS.UnityEngine.Sprite.Create(texture, CS.UnityEngine.Rect(0, 0, texture.width, texture.height), CS.UnityEngine.Vector2(0, 0))
+            	print(sprite);
+				self.headImage.sprite = sprite
+
+            	-- require("Login/Login").Close()
+            	-- gameObject:SetActive(false)
+			else
+				print('error:', www.error)
+			end
+		end)
+		assert(coroutine.resume(co))
+	end
+end
+
+function Avater.LoadGenderImage()
+	print("Avater.LoadGenderImage")
+    local sexTexture2D = nil
+    if  BHallData.cGender == 0 then
+    	print("000000")
+		sexTexture2D = CS.UnityEngine.Resources.Load("Texture_InGame/sex_man")
+		print(sexTexture2D.name)
+	else
+		print("111111")
+		sexTexture2D = CS.UnityEngine.Resources.Load("Texture_InGame/sex_women")
+    end
+    local sexSprite = CS.UnityEngine.Sprite.Create(sexTexture2D, CS.UnityEngine.Rect(0, 0, sexTexture2D.width, sexTexture2D.height), CS.UnityEngine.Vector2(0.5, 0.5))
+    self.sexImage.sprite = sexSprite
+    self.sexImage:SetNativeSize()
+end
+
+
+
+return Avater

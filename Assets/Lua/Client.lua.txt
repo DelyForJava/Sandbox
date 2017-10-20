@@ -47,8 +47,11 @@ function Start()
 end
 
 function Update()
+
+	hallScene.Update()
+	loginScene.Update()
 	-- print("current index:"..currentScene.index..",max:"..currentScene.max)
-	currentScene.Update()
+	--currentScene.Update()
 	percent = loginScene.index + hallScene.index
 	local p = percent/max
 	bar.fillAmount = p

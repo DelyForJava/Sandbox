@@ -16,6 +16,8 @@ namespace Bean.Hall
         {
             DontDestroyOnLoad(gameObject);
             canvas_ = GameObject.Find("Canvas").transform;
+            canvas_.Find("Login").gameObject.SetActive(true);
+            canvas_.Find("Loading").gameObject.SetActive(true);
             //DontDestroyOnLoad(canvas_);
             //DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
@@ -32,8 +34,15 @@ namespace Bean.Hall
         // -------------------------------------------------  logic ---------------------------------------------------------//
         bool IsNeedHotupdate()
         {
-            //AssetBundleManager.Instance.Version
-            return true;
+            uint web_cdn_version = uint.Parse(GlobalData.VerifyVersionId) ;
+            Debug.LogMsg(web_cdn_version);
+            Debug.LogMsg(AssetBundleManager.Instance.Version);
+
+            if (web_cdn_version != AssetBundleManager.Instance.Version)
+            {
+                return true;
+            }
+            return false;
         }
         IEnumerator Prepare()
         {

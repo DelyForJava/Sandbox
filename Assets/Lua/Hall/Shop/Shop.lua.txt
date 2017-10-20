@@ -1,0 +1,33 @@
+local Shop = {}
+local self = Shop
+
+self.name = "Shop"
+
+self.coin = nil
+self.diamond = nil
+
+function Shop.Show()
+	print("lua Show...")
+	self.coin = UGameObject.Find("Canvas/Hall/shopPanel/titleTab/goldPanel/coin/coinText"):GetComponent(typeof(UText))
+	self.diamond = UGameObject.Find("Canvas/Hall/shopPanel/titleTab/goldPanel/dia/diaText"):GetComponent(typeof(UText))
+	self.coin.text = tostring(BHallData.llGameCoin)
+	self.diamond.text = tostring(BHallData.llDiamondNum)
+end
+
+function Shop.Init()
+	
+	
+end
+
+function Shop.Update()
+	--print("Shop.Update")
+	if self.coin ~= nil and self.diamond ~= nil then
+		self.coin.text = tostring(BHallData.llGameCoin)
+		self.diamond.text = tostring(BHallData.llDiamondNum)
+		--print(BHallData.llGameCoin)
+		--print(BHallData.llDiamondNum)
+	end
+end
+
+
+return Shop

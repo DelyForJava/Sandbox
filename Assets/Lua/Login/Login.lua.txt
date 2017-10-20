@@ -1,3 +1,5 @@
+local Event = require("Event")
+
 local OnClickTouristLuaCallCS = OnClickTouristLuaCallCS
 
 local Login = {}
@@ -11,6 +13,14 @@ self.index = 0
 self.max = 0
 self.reloaded = false
 
+local LoginCallback = function (...)
+	print("---------------------------LoginCallback")
+	local args = {...}
+	for k,v in pairs(args) do
+		print(k,v)
+	end
+end
+
 function Login.Close()
 	self.transform.gameObject:SetActive(false)
 end
@@ -23,6 +33,8 @@ function Login.Init(transform)
 		print( ConfigData.GetVipUpgradeExpByLevel(7) )
 		--transform.gameObject:SetActive(false)
 		OnClickTouristLuaCallCS()
+		Event:Brocast("MSG_PLAY","arg1","arg2")
+
 	end)
 
 	local bt = transform:Find("wx_bg"):GetComponent( typeof(UButton) )
@@ -36,6 +48,9 @@ function Login.Init(transform)
 	self.resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
 	local images = self.resReload.images
 	self.max = images.Length-1
+
+	Event:AddListener("MSG_PLAY",LoginCallback)
+
 end
 
 

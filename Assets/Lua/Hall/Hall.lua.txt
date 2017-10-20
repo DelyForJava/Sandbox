@@ -5,6 +5,7 @@ self.name = "Hall"
 self.transform = nil
 
 self.resReload = nil
+self.shop = require("Hall/Shop/Shop")
 
 self.index = 0
 self.max = 0
@@ -12,8 +13,10 @@ self.reloaded = false
 self.hallGameObject  = nil
 self.coin = nil
 self.diamond  = nil
+self.avatarImage = nil
 
-function Hall.Show()
+
+function Hall.Show(gameObject)
 	print( "Login iUserID:"..BHallData.iUserID )
 	print( "Login serviceId:"..BHallData.serviceId )
 	print( "Login szPasswdToken:"..BHallData.szPasswdToken )
@@ -31,6 +34,39 @@ function Hall.Show()
 	print( "Login iLevelExp:"..BHallData.iLevelExp )
 	self.coin.text = tostring(BHallData.llGameCoin)
 	self.diamond.text = tostring(BHallData.llDiamondNum)
+
+
+	if BHallData.szWXIconURL == "" then
+		require("Login/Login").Close()
+        gameObject:SetActive(false)
+    else
+    	local util = require 'xlua.util'
+		local yield_return = (require 'Coroutine').yield_return
+		local co = coroutine.create(function()
+  	  		print('coroutine start!')
+    		local s = os.time()
+ 	   		yield_return(CS.UnityEngine.WaitForSeconds(3))
+    		print('wait interval:', os.time() - s)
+	
+    		local www = CS.UnityEngine.WWW(BHallData.szWXIconURL)
+    		yield_return(www)
+			if not www.error then
+    			print(www.bytes)
+    			print( "Login szWXIconURL:"..BHallData.szWXIconURL )
+    			local texture = www.texture;
+            	local sprite = CS.UnityEngine.Sprite.Create(texture, CS.UnityEngine.Rect(0, 0, texture.width, texture.height), CS.UnityEngine.Vector2(0, 0));
+            	print(sprite);
+				self.avatarImage.sprite = sprite;
+
+            	require("Login/Login").Close()
+            	gameObject:SetActive(false)
+			else
+				print('error:', www.error)
+			end
+		end)
+		assert(coroutine.resume(co))
+	end
+
 end
 
 function Hall.Init(transform)
@@ -43,19 +79,49 @@ function Hall.Init(transform)
 	self.hallGameObject = UGameObject.Find("Canvas/Hall")
 	self.coin = self.hallGameObject.transform:Find("background/goldPanel/coin/coinText"):GetComponent(typeof(UText))
 	self.diamond = self.hallGameObject.transform:Find("background/goldPanel/dia/diaText"):GetComponent(typeof(UText))
+	self.avatarImage = self.hallGameObject.transform:Find("background/infoPanel/personInfoBtn/mask/headImage"):GetComponent(typeof(UImage))
+	
+	self.transform = transform
+	local shopBtn = transform:Find("background/shopPanel/shopBtn"):GetComponent( typeof(UButton) )
+	shopBtn.onClick:AddListener(function()
+		print("on shopBtn clicked")
+		
+		self.shop.Show()
+	end)
+
+	local shopBtnBot = transform:Find("background/multiPanel/shop"):GetComponent( typeof(UButton) )
+	shopBtnBot.onClick:AddListener(function()
+		print("on shopBtn clicked")
+		
+		self.shop.Show()
+	end)
+
+	local personInfoBtn = transform:Find("background/infoPanel/personInfoBtn"):GetComponent( typeof(UButton) )
+	personInfoBtn.onClick:AddListener(function()
+		print("on personInfoBtn clicked")
+		
+		require("Hall/Avater/Avater").Init()
+	end)
 end
 
 function Hall.Update()
 
+	self.shop.Update()
+	if self.coin ~= nil and self.diamond ~= nil then
+		self.coin.text = tostring(BHallData.llGameCoin)
+		self.diamond.text = tostring(BHallData.llDiamondNum)
+		--print(BHallData.llGameCoin)
+		--print(BHallData.llDiamondNum)
+	end
 	if self.index>self.max then
 		self.reloaded = true
 		return
 	end
-	-- -- print("-------------------------------- Hall Update --------------------------------")
+	-- print("-------------------------------- Hall Update --------------------------------")
 
-	-- self.resReload:SendMessage("OnStepImage",tostring(self.index) )
+	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
 	self.index = self.index + 1
-
+	
 end
 
 return Hall

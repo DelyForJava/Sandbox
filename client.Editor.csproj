@@ -426,6 +426,8 @@
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
     <None Include="Assets\Lua\Config\config_shop.lua.txt" />
+    <None Include="Assets\Lua\Coroutine.lua.txt" />
+    <None Include="Assets\Lua\Event.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Global.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />
@@ -438,6 +440,7 @@
     <None Include="Assets\Lua\Hall\Rank\Rank.lua.txt" />
     <None Include="Assets\Lua\Hall\Recharge\Recharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Setting\Setting.lua.txt" />
+    <None Include="Assets\Lua\Hall\Shop\Shop.lua.txt" />
     <None Include="Assets\Lua\Hall\Task\Task.lua.txt" />
     <None Include="Assets\Lua\Login\Login.lua.txt" />
     <None Include="Assets\Origin\Demigiant\DOTween\DOTween.XML" />

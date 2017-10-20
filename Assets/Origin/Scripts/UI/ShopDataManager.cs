@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bean.Hall;
 using UnityEngine;
 using LitJson;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Debug = UnityEngine.Debug;
 
 public class ShopData{
     public int shop_id;
@@ -102,7 +104,7 @@ public class ShopDataManager : MonoBehaviour {
 
                 goldGridObjInstantiate.transform.Find("payBtn").GetComponent<Button>().onClick.AddListener(delegate ()
                 {
-                    if (shopData.need_money_num > UIOperation.playerLobbyInfo.llDiamondNum)
+                    if (shopData.need_money_num > HallData.llDiamondNum)
                     {
                         //弹窗 金币钻石不足
                         if (GameObject.Find("Canvas/showLog"))

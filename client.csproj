@@ -160,6 +160,7 @@
     <Compile Include="Assets\Gen\BeanHallResourcesManagerWrap.cs" />
     <Compile Include="Assets\Gen\BeanHallResReloadWrap.cs" />
     <Compile Include="Assets\Gen\Coroutine_RunnerWrap.cs" />
+    <Compile Include="Assets\Gen\CoroutineRunnerWrap.cs" />
     <Compile Include="Assets\Gen\CSCallLuaItfDBridge.cs" />
     <Compile Include="Assets\Gen\DelegatesGensBridge.cs" />
     <Compile Include="Assets\Gen\EnumWrap.cs" />
@@ -169,8 +170,10 @@
     <Compile Include="Assets\Gen\Foo2ParentWrap.cs" />
     <Compile Include="Assets\Gen\FooExtensionWrap.cs" />
     <Compile Include="Assets\Gen\FooWrap.cs" />
+    <Compile Include="Assets\Gen\GameClientWrap.cs" />
     <Compile Include="Assets\Gen\InvokeLuaICalcBridge.cs" />
     <Compile Include="Assets\Gen\LuaBehaviourWrap.cs" />
+    <Compile Include="Assets\Gen\odaoscmahjongNetworkPlayerWrap.cs" />
     <Compile Include="Assets\Gen\PackUnpack.cs" />
     <Compile Include="Assets\Gen\SystemCollectionsGenericList1SystemInt32Wrap.cs" />
     <Compile Include="Assets\Gen\SystemCollectionsIEnumeratorBridge.cs" />
@@ -343,6 +346,7 @@
     <Compile Include="Assets\Scripts\Component\Mum.cs" />
     <Compile Include="Assets\Scripts\Component\PointerImplement.cs" />
     <Compile Include="Assets\Scripts\Component\ResReload.cs" />
+    <Compile Include="Assets\Scripts\CoroutineRunner.cs" />
     <Compile Include="Assets\Scripts\Data\HallData.cs" />
     <Compile Include="Assets\Scripts\Data\Login.cs" />
     <Compile Include="Assets\Scripts\Data\LoginEvent.cs" />
@@ -665,6 +669,8 @@
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
     <None Include="Assets\Lua\Config\config_shop.lua.txt" />
+    <None Include="Assets\Lua\Coroutine.lua.txt" />
+    <None Include="Assets\Lua\Event.lua.txt" />
     <None Include="Assets\Lua\Game\Game.lua.txt" />
     <None Include="Assets\Lua\Global.lua.txt" />
     <None Include="Assets\Lua\Hall\Activity\Activity.lua.txt" />
@@ -677,6 +683,7 @@
     <None Include="Assets\Lua\Hall\Rank\Rank.lua.txt" />
     <None Include="Assets\Lua\Hall\Recharge\Recharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Setting\Setting.lua.txt" />
+    <None Include="Assets\Lua\Hall\Shop\Shop.lua.txt" />
     <None Include="Assets\Lua\Hall\Task\Task.lua.txt" />
     <None Include="Assets\Lua\Login\Login.lua.txt" />
     <None Include="Assets\Origin\Demigiant\DOTween\DOTween.XML" />

@@ -28,7 +28,7 @@ namespace Bean.Hall
     }
     public class LoginEvent : MonoSingleton<LoginEvent>
     {
-        public bool isTestModel = true;
+        public bool isTestModel = false;
 
         public Text message;
         public ShareSDK ssdk;
@@ -108,7 +108,7 @@ namespace Bean.Hall
             UnityEngine.Debug.Log("+++++++++++++++++++++++++++++++++++++++");
             //UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
             source = Source.yk;
-
+            
             if (isTestModel)
             {
                 Resolution(domain, 34, "6558a4e4e8d8", "f93f88bbd26aff9d7f7689faff32ced035e1cf19");
@@ -124,6 +124,7 @@ namespace Bean.Hall
                 Resolution(domain, Convert.ToInt32(PlayerPrefs.GetString("touristAccountId")), PlayerPrefs.GetString("touristLoginToken"),
                     machineSerial);
             }
+            
         }
 
 
@@ -278,8 +279,9 @@ namespace Bean.Hall
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             //添加header校验
-            //header.Add("Authorization", GetHeaderValue(data, url));
+            header.Add("Authorization", GetHeaderValue(data, "users/oauth", "POST"));
             header["Content-Type"] = "application/json";
+            Debug.LogMsg("WechatRegistPost header.Added");
             WWW www = new WWW(url, postBytes, header);
             yield return www;
 
@@ -329,8 +331,9 @@ namespace Bean.Hall
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             //添加header校验
-            //header.Add("Authorization", GetHeaderValue(data, url));
+            header.Add("Authorization", GetHeaderValue(data, "users/oauth", "POST"));
             header["Content-Type"] = "application/json";
+            Debug.LogMsg("TouristRegistPost header.Added");
             WWW www = new WWW(url, postBytes, header);
             yield return www;
 
@@ -363,24 +366,48 @@ namespace Bean.Hall
         /// <param name="data"></param>
         /// <param name="url"></param>
         /// <returns></returns>
-        private string GetHeaderValue(JsonData data, string url)
+        public string GetHeaderValue(JsonData data, string url,string request_method)
         {
+            string APP_SECRET_KEY = Md5Sum("Haha");
+            Debug.LogMsg("APP_SECRET_KEY" + APP_SECRET_KEY);
             //token
-            if (isWechatAuthed)
+            string token = null;
+            if (string.IsNullOrEmpty(HallData.szPasswdToken))
             {
-                RefreshToken(PlatformType.WeChat);
+                token = "12345";
             }
+            else
+            {
+                token = HallData.szPasswdToken;
+            }
+            Debug.LogMsg("token:"+token);
+            //if (isWechatAuthed)
+            //{
+            //    RefreshToken(PlatformType.WeChat);
+            //}
+
             //signature
-            string request_method = "post";
+            //string request_method = "post";
             long timestamp = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
-            string content = data.ToJson();
-            string secret = Md5Sum("IAmSecret");
+            string content;
+            if (data.Inst_Object.ContainsKey("license") )
+            {
+                content = "{}";
+            }
+            else
+            {
+                content = data.ToJson();
+            }
+            string secret = APP_SECRET_KEY;
             string signature = Md5Sum("request_url=" + url + "&content=" + content + "&request_method=" + request_method + "&timestamp=" + timestamp + "&secret=" + secret);
+
+            Debug.LogMsg("signature:" + signature);
+            Debug.LogMsg("Details signature:" + "request_url=" + url + "&content=" + content + "&request_method=" + request_method + "&timestamp=" + timestamp + "&secret=" + secret);
             //once
-            string once = Md5Sum(Md5Sum("app") + timestamp);
-            print("加密后的app：" + Md5Sum("app"));
-            string headerValue = "oauth2=" + accessToken + ";signature=" + signature + ";timestamp=" + timestamp + ";once=" + once;
-            print("headerValue:  " + headerValue);
+            string once = Md5Sum(APP_SECRET_KEY + timestamp);
+            Debug.LogMsg("once:" + once);
+            string headerValue = "oauth2=" + token + ";signature=" + signature + ";timestamp=" + timestamp + ";scene =" + "app" + ";once=" + once;
+            Debug.LogMsg("headerValue:  " + headerValue);
 
 
             //header.Add("Authorization", "oauth2=793e8fe4e23f4e51aa4fc4e03b4ccca5;signature=7a971f3e5111b3b323ffa484e78daa62;timestamp=1376993022";once=zzzz);
@@ -506,7 +533,8 @@ namespace Bean.Hall
             {
                 sb.Append(hash[i].ToString("X2"));
             }
-            return sb.ToString();
+
+            return sb.ToString().ToLower();
 
         }
 

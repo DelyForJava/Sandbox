@@ -11306,7 +11306,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 614885751}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8ed1aa5b50dc5e47a56046b09091aa5, type: 3}
   m_Name: 
@@ -14386,7 +14386,7 @@ GameObject:
   - component: {fileID: 778866914}
   - component: {fileID: 778866913}
   m_Layer: 5
-  m_Name: comfirmBtn
+  m_Name: confirmBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14610,7 +14610,7 @@ GameObject:
   - component: {fileID: 789764011}
   - component: {fileID: 789764010}
   m_Layer: 5
-  m_Name: confim
+  m_Name: confirm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22580,7 +22580,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1616830153591744, guid: 98756c44ceae3a749aeb827b7a80f91b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98756c44ceae3a749aeb827b7a80f91b, type: 2}
@@ -32906,7 +32906,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1002561217074724, guid: 01010e4e86f547f479e2221b6461303f, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01010e4e86f547f479e2221b6461303f, type: 2}

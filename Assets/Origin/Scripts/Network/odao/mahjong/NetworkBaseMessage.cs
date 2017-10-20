@@ -95,8 +95,8 @@ namespace odao.scmahjong
 
 		        if (data.cErrorCode == 0)
 		        {
-		            playerInfo.llGameCoin += data.iAddCoin;
-		            playerInfo.llDiamondNum -= data.iSubIDiamond;
+		            HallData.llGameCoin += data.iAddCoin;
+		            HallData.llDiamondNum -= data.iSubIDiamond;
                 }
                 else if(data.cErrorCode == 1)
 		        {
@@ -117,10 +117,13 @@ namespace odao.scmahjong
 
 		        if (data.cErrorCode == 0)
 		        {
-		            playerInfo.szNickName = data.szNickName;
-		            playerInfo.llDiamondNum -= data.iSubDiamond;
+		            HallData.szNickName = data.szNickName;
+		            HallData.llDiamondNum -= data.iSubDiamond;
                     //GameObject.Find("Canvas/personalInfoPanel/comfirmPanel").SetActive(false);
-		        }
+		            Loom.QueueOnMainThread(delegate () {
+		                Callback.LuaOnChangeName();
+                    });
+                }
 		        else if (data.cErrorCode == 1)
 		        {
 		            //钻石不足
@@ -140,9 +143,10 @@ namespace odao.scmahjong
 
 		        if (data.cErrorCode == 0)
 		        {
-		            playerInfo.cGender = data.cGender;
+		            HallData.cGender = data.cGender;
 		            Loom.QueueOnMainThread(delegate () {
-		                PlayerDataManager.Instance.LoadGenderImage();
+                        //PlayerDataManager.Instance.LoadGenderImage();
+		                Callback.LuaOnChangeGender();
                     });
                 }
 		        else if (data.cErrorCode == 1)
@@ -213,8 +217,8 @@ namespace odao.scmahjong
 		        switch (data.cErrorCode)
 		        {
                     case 0:
-                        playerInfo.llGoldBean = playerInfo.llGoldBean - data.iSubGoldBean;
-                        playerInfo.llGameCoin = playerInfo.llGameCoin + data.iAddCoin;
+                        HallData.llGoldBean = HallData.llGoldBean - data.iSubGoldBean;
+                        HallData.llGameCoin = HallData.llGameCoin + data.iAddCoin;
                         break;
                     case 1:
                         break;

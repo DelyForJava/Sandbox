@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bean.Hall;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -124,17 +125,18 @@ public class PlayerDataManager : SingletonBehaviour<PlayerDataManager> {
     public void LoadGenderImage()
     {
         //load Sex
-        Texture2D sexTexture2D;
-        if (player.cGender == 0)
-        {
-            sexTexture2D = (Texture2D)Resources.Load("Texture_InGame/sex_man");
-        }
-        else
-        {
-            sexTexture2D = (Texture2D)Resources.Load("Texture_InGame/sex_women");
-        }
-        Sprite sexSprite = Sprite.Create(sexTexture2D, new Rect(0, 0, sexTexture2D.width, sexTexture2D.height), new Vector2(0.5f, 0.5f));
-        sexImage.sprite = sexSprite;
-        sexImage.SetNativeSize();
+        //Texture2D sexTexture2D;
+        //if (player.cGender == 0)
+        //{
+        //    sexTexture2D = (Texture2D)Resources.Load("Texture_InGame/sex_man");
+        //}
+        //else
+        //{
+        //    sexTexture2D = (Texture2D)Resources.Load("Texture_InGame/sex_women");
+        //}
+        //Sprite sexSprite = Sprite.Create(sexTexture2D, new Rect(0, 0, sexTexture2D.width, sexTexture2D.height), new Vector2(0.5f, 0.5f));
+        //sexImage.sprite = sexSprite;
+        //sexImage.SetNativeSize();
+        Callback.LuaOnChangeGender();
     }
 }

@@ -69,6 +69,8 @@ namespace Bean.Hall
 				typeof(Bean.Hall.Callback),
 
 				typeof(Bean.Hall.HallData),
+				typeof(GameClient),
+				typeof(odao.scmahjong.NetworkPlayer),
 
             };
 
