@@ -1,6 +1,3 @@
-ccreate = coroutine.create
-cyield = coroutine.yield
-cresume = coroutine.resume
 
 require 'Event'
 
@@ -71,28 +68,3 @@ OnChangeNameCSCallLua = function()
 end
 
 -- ---------------------------------- callback ----------------------------------------
-
-
-
-
-
-
-
-StartReload = function(self)
-	print("-------------------------------- Reload --------------------------------")
-    local resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
-    -- resReload:SendMessage("OnReload",name)
-    return resReload
-end
-
-ReloadImage = function(self)
-	self.resReload:SendMessage("OnStepImage",tostring(self.index) )
-end
-
-ReloadImageAsync2 = ccreate(function(index)
-	-- for i=0,images.Length-1 do
-		self.resReload:SendMessage("OnStepImage",index)
-		return cyield()
-	-- end
-end)
-

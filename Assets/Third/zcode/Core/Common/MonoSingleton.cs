@@ -22,7 +22,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 		{
 			if (instance_ == null)
 			{
-				//instance_ = GameObject.FindObjectOfType(typeof(T)) as T;
+				instance_ = GameObject.FindObjectOfType(typeof(T)) as T;
 				if (instance_ == null)
 					instance_ = new GameObject("SingletonOf" + typeof(T).ToString(), typeof(T)).GetComponent<T>();
 

@@ -5,7 +5,7 @@ using Bean.Hall;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerDataManager:MonoBehaviour{
+public class PlayerDataManager : SingletonBehaviour<PlayerDataManager> {
 
     private PlayerLobbyInfo player = UIOperation.playerLobbyInfo;
 
@@ -84,7 +84,7 @@ public class PlayerDataManager:MonoBehaviour{
             genderConfirmPanel.SetActive(false);
         });
 
-        //StartCoroutine(LoadImage(player.szWXIconURL));
+        StartCoroutine(LoadImage(player.szWXIconURL));
         userId.text = "ID:"+player.iUserID.ToString();
         LoadGenderImage();
     }

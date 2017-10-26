@@ -10,7 +10,7 @@ namespace Bean.Hall
 {
     public class GlobalData
     {
-        public static string Url = "http://10.0.70.119:8182/plat/getLobbyVerInfo?channelId=10111&Content-Type=application/json";
+        public static string Url = "http://10.0.70.119:8182/plat-api/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
         public static int ChannelId;
         public static int AppId;
         public static string CurrentVersionId;
@@ -125,7 +125,7 @@ namespace Bean.Hall
 
 
             //string url = ;
-            UnityWebRequest request = new UnityWebRequest(GlobalData.Url, "GET");
+            UnityWebRequest request = new UnityWebRequest(GlobalData.Url, "GET"); 
             JsonData data = new JsonData(){};
             //Dictionary<string, string> header = new Dictionary<string, string>();
             ////添加header校验
@@ -138,7 +138,7 @@ namespace Bean.Hall
            // request.uploadHandler = (UploadHandler)new UploadHandlerRaw(getBytes);
             request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
             
-            request.SetRequestHeader("Authorization", LoginEvent.Instance.GetHeaderValue(data, "plat/getLobbyVerInfo", "GET"));
+            request.SetRequestHeader("Authorization", LoginEvent.Instance.GetHeaderValue(data, "plat/lobbyInfo", "GET"));
             request.SetRequestHeader("Content-Type", "application/json");
             Debug.LogMsg("header.Added");
 

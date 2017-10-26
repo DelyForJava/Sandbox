@@ -1,3 +1,7 @@
+collectgarbage("collect")
+local count = collectgarbage("count")
+print("===============before:",count)
+
 require 'Global'
 
 local canvas
@@ -76,3 +80,10 @@ local loaded = package.loaded
 for k,v in pairs(loaded) do
 	print(k,v)
 end
+
+count = collectgarbage("count")
+
+print("===============middle:",count)
+collectgarbage("collect")
+count = collectgarbage("count")
+print("===============after:",count)

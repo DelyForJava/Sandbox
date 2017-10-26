@@ -40,7 +40,7 @@ namespace Bean.Hall
         private int serviceId;
         private Source source;
         private Platform platform;
-        private int channelId;
+        private int channelId = GlobalData.ChannelId;
 
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace Bean.Hall
 
         IEnumerator WechatRegistPost()
         {
-            string url = "http://10.0.70.119:8182/users/oauth";
+            string url = "http://10.0.70.119:8182/plat-api/users/oauth";
 
             JsonData data = new JsonData();
 
@@ -268,6 +268,7 @@ namespace Bean.Hall
             data["source"] = Source.wechat.ToString();
             data["machineSerial"] = machineSerial;
             data["serviceId"] = serviceId;
+            data["channelId"] = channelId;
             byte[] postBytes = Encoding.Default.GetBytes(data.ToJson());
 
             print("code: " + data["code"]);
@@ -276,6 +277,7 @@ namespace Bean.Hall
             print("source: " + data["source"]);
             print("machineSerial: " + data["machineSerial"]);
             print("serviceId: " + data["serviceId"]);
+            print("channelId: " + data["channelId"]);
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             //添加header校验
@@ -310,7 +312,7 @@ namespace Bean.Hall
 
         IEnumerator TouristRegistPost()
         {
-            string url = "http://10.0.70.119:8182/users/oauth";
+            string url = "http://10.0.70.119:8182/plat-api/users/oauth";
 
             JsonData data = new JsonData();
 
@@ -320,6 +322,7 @@ namespace Bean.Hall
             data["source"] = Source.yk.ToString();
             data["machineSerial"] = machineSerial;
             data["serviceId"] = serviceId;
+            data["channelId"] = channelId;
             byte[] postBytes = Encoding.Default.GetBytes(data.ToJson());
 
             print("code: " + data["code"]);
@@ -328,6 +331,7 @@ namespace Bean.Hall
             print("source: " + data["source"]);
             print("machineSerial: " + data["machineSerial"]);
             print("serviceId: " + data["serviceId"]);
+            print("channelId: " + data["channelId"]);
 
             Dictionary<string, string> header = new Dictionary<string, string>();
             //添加header校验
