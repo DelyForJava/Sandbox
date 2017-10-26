@@ -108,7 +108,7 @@ namespace Bean.Hall
             UnityEngine.Debug.Log("+++++++++++++++++++++++++++++++++++++++");
             //UIDebugViewController.Instance.OpenLoadingDebug("游客登录中......");
             source = Source.yk;
-            
+
             if (isTestModel)
             {
                 Resolution(domain, 34, "6558a4e4e8d8", "f93f88bbd26aff9d7f7689faff32ced035e1cf19");
@@ -227,7 +227,7 @@ namespace Bean.Hall
 
         IEnumerator RegistWWWOrgReq()
         {
-            string urlRegist = "http://10.0.70.121:8080/v1/users/oauth";
+            string urlRegist = "http://10.0.70.119:8182/v1/users/oauth";
             // Create a form object for sending high score data to the server
             WWWForm form = new WWWForm();
             form.AddField("code", "666666");
@@ -258,7 +258,7 @@ namespace Bean.Hall
 
         IEnumerator WechatRegistPost()
         {
-            string url = "http://10.0.70.121:8080/users/oauth";
+            string url = "http://10.0.70.119:8182/users/oauth";
 
             JsonData data = new JsonData();
 
@@ -310,7 +310,7 @@ namespace Bean.Hall
 
         IEnumerator TouristRegistPost()
         {
-            string url = "http://10.0.70.121:8080/users/oauth";
+            string url = "http://10.0.70.119:8182/users/oauth";
 
             JsonData data = new JsonData();
 

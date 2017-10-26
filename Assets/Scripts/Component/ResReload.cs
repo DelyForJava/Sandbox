@@ -22,7 +22,7 @@ namespace Bean.Hall
             //Debug.LogMsg(Directory.GetDirectoryRoot(name));
             
             var path = "Assets/Art/" + gameObject.name + "/" + name;
-            Debug.LogMsg(path);
+            //Debug.LogMsg(path);
             var newSprite = ResourcesManager.Load<Sprite>(path + ".png");
             if(newSprite==null)
                newSprite = ResourcesManager.Load<Sprite>(path + ".jpg");

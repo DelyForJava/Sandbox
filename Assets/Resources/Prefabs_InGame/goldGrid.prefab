@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224064352142343832}
   m_Layer: 5
-  m_Name: goldGrid8
+  m_Name: goldGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

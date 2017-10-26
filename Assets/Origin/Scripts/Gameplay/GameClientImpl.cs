@@ -46,7 +46,7 @@ public partial class GameClient : SingletonBehaviour<GameClient>, IMonoBehaviour
 
 	public void EventFixedUpdate(float time)
 	{
-		ActionManager.Instance.Update (time);
+		//ActionManager.Instance.Update (time);
 	}
 
 	public void EventDestroy()

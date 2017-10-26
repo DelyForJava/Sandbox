@@ -10,7 +10,7 @@ namespace Bean.Hall
 {
     public class GlobalData
     {
-        public static string Url = "http://10.0.70.121:8080/plat/lobbyInfo?channelId=10111&Content-Type=application/json";
+        public static string Url = "http://10.0.70.119:8182/plat/getLobbyVerInfo?channelId=10111&Content-Type=application/json";
         public static int ChannelId;
         public static int AppId;
         public static string CurrentVersionId;
@@ -134,11 +134,11 @@ namespace Bean.Hall
             data["license"] = "";
             //data["Content-Type"] = "application/json";
             byte[] getBytes = Encoding.Default.GetBytes(data.ToJson());
-
-            request.uploadHandler = (UploadHandler)new UploadHandlerRaw(getBytes);
+            request.method = "GET";
+           // request.uploadHandler = (UploadHandler)new UploadHandlerRaw(getBytes);
             request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
             
-            request.SetRequestHeader("Authorization", LoginEvent.Instance.GetHeaderValue(data, "plat/lobbyInfo", "GET"));
+            request.SetRequestHeader("Authorization", LoginEvent.Instance.GetHeaderValue(data, "plat/getLobbyVerInfo", "GET"));
             request.SetRequestHeader("Content-Type", "application/json");
             Debug.LogMsg("header.Added");
 

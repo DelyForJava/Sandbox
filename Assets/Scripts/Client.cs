@@ -35,6 +35,8 @@ namespace Bean.Hall
         bool IsNeedHotupdate()
         {
             uint web_cdn_version = uint.Parse(GlobalData.VerifyVersionId) ;
+            if (web_cdn_version == 1000)
+                return false;
             Debug.LogMsg(web_cdn_version);
             Debug.LogMsg(AssetBundleManager.Instance.Version);
 
@@ -82,8 +84,8 @@ namespace Bean.Hall
             yield return null;
             Event.StepIndex = Event.Step.Max;
 
-            var resReload = canvas_.Find("Loading").gameObject.AddComponent<ResReload>();
-            resReload.SendMessage("OnReload","Main",SendMessageOptions.DontRequireReceiver);
+            //var resReload = canvas_.Find("Loading").gameObject.AddComponent<ResReload>();
+            //resReload.SendMessage("OnReload","Main",SendMessageOptions.DontRequireReceiver);
             luaClient_ = gameObject.AddComponent<LuaClient>();
 
         }

@@ -18,10 +18,10 @@ local max = 1
 
 function Awake()
 
-	print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
-	print("--CSharp Data:"..BUrl.."--")
-	print("--CSharp Data:"..BChannelId.."--")
-	print("--CSharp Data:"..BCdn.."--")
+	-- print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
+	-- print("--CSharp Data:"..BUrl.."--")
+	-- print("--CSharp Data:"..BChannelId.."--")
+	-- print("--CSharp Data:"..BCdn.."--")
 
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")
@@ -70,4 +70,9 @@ end
 function OnDestroy()
 		-- print("-------------------------------- OnDestroy --------------------------------")
 
+end
+
+local loaded = package.loaded
+for k,v in pairs(loaded) do
+	print(k,v)
 end
