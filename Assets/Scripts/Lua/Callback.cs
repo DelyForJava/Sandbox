@@ -11,12 +11,12 @@ namespace Bean.Hall
         // -------------------------------------------------  login ---------------------------------------------------------//
         public static void OnClickTourist()
         {
-            LoginEvent.Instance.OnClickTouristLogin();
+            LoginData.Instance.OnClickTouristLogin();
 
         }
         public static void OnClickWechat()
         {
-            LoginEvent.Instance.OnClickWechatLogin();
+            LoginData.Instance.OnClickWechatLogin();
 
         }
 
@@ -26,7 +26,7 @@ namespace Bean.Hall
 
         public static void RegistLuaAction(LuaTable table)
         {
-            var l = LoginEvent.Instance;
+            var l = LoginData.Instance;
             table.Get("OnLoginCSCallLua", out LuaOnLogin);
             table.Get("OnChangeGenderCSCallLua", out LuaOnChangeGender);
             table.Get("OnChangeNameCSCallLua", out LuaOnChangeName);

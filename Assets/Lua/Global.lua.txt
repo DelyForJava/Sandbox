@@ -1,10 +1,31 @@
+local publish = false
 
-require 'Event'
+local wrap = function(func, ... )
+	if true == publish then
+	else
+		CS.UnityEngine.Debug.Log("have not publish yet")
+		func(...)
+	end
+end
 
-require 'Config/ConfigData'
 
+local p = print
+
+function print(...)
+	wrap(p,...)
+end
 
 ULog = CS.UnityEngine.Debug.Log
+local l = ULog
+
+function ULog( ... )
+	wrap(l,...)
+
+end
+
+-- print("What fuck is this")
+-- ULog("What fuck is this too")
+------------------------------------------------------------------------------------------------------
 
 UGameObject = CS.UnityEngine.GameObject
 
@@ -28,6 +49,7 @@ BCdn = CS.Bean.Hall.GlobalData.Cdn
 
 BCallback = CS.Bean.Hall.Callback
 BHallData = CS.Bean.Hall.HallData
+
 
 
 -- ---------------------------------- callback ----------------------------------------
@@ -68,3 +90,7 @@ OnChangeNameCSCallLua = function()
 end
 
 -- ---------------------------------- callback ----------------------------------------
+
+require 'Event'
+
+require 'Config/ConfigData'

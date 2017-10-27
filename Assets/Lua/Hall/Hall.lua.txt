@@ -1,3 +1,5 @@
+-- local util = require 'xlua.util'
+local yield_return = (require 'Coroutine').yield_return
 
 local Hall = {}
 local self = Hall
@@ -40,8 +42,7 @@ function Hall.Show(gameObject)
 		require("Login/Login").Close()
         gameObject:SetActive(false)
     else
-    	local util = require 'xlua.util'
-		local yield_return = (require 'Coroutine').yield_return
+
 		local co = coroutine.create(function()
   	  		print('coroutine start!')
     		local s = os.time()
@@ -102,6 +103,24 @@ function Hall.Init(transform)
 		
 		require("Hall/Avater/Avater").Init()
 	end)
+
+
+	local step = coroutine.create(function()
+	  		print('coroutine start!')
+	  		while true do
+	  			if self.index > self.max then
+	  				break
+	  			end
+
+				self.resReload:SendMessage("OnStepImage",tostring(self.index) )
+				self.index = self.index + 1
+				yield_return("null")
+	  		end
+
+
+	end)
+	-- assert(coroutine.resume(step))
+
 end
 
 function Hall.Update()

@@ -23,9 +23,10 @@ namespace Bean.Hall
             
             var path = "Assets/Art/" + gameObject.name + "/" + name;
             //Debug.LogMsg(path);
+
             var newSprite = ResourcesManager.Load<Sprite>(path + ".png");
-            if(newSprite==null)
-               newSprite = ResourcesManager.Load<Sprite>(path + ".jpg");
+            //if(newSprite==null)
+            //   newSprite = ResourcesManager.Load<Sprite>(path + ".jpg");
 
             image.sprite = newSprite;
         }

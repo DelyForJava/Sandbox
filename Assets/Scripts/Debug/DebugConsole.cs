@@ -9,6 +9,13 @@ namespace Bean.Hall
         Vector2 v2;
         bool IsShow;
 
+        void Awake()
+        {
+# if  UNITY_EDITOR
+            Destroy(this);
+#endif
+        }
+
         void Start()
         {
             IsShow = true;

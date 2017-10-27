@@ -22,7 +22,7 @@ public partial class GameClient : SingletonBehaviour<GameClient>, IMonoBehaviour
 	void Start () 
 	{
 		Debug.Log("=============GameClient start up.=============");
-		Application.targetFrameRate = 30;
+		Application.targetFrameRate = -1;
 		gameObject.AddComponent<Loom> ();
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		EventStart();

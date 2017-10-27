@@ -1,6 +1,6 @@
-collectgarbage("collect")
-local count = collectgarbage("count")
-print("===============before:",count)
+-- collectgarbage("collect")
+-- local count = collectgarbage("count")
+-- print("===============before:",count)
 
 require 'Global'
 
@@ -76,14 +76,14 @@ function OnDestroy()
 
 end
 
-local loaded = package.loaded
-for k,v in pairs(loaded) do
-	print(k,v)
-end
+-- local loaded = package.loaded
+-- for k,v in pairs(loaded) do
+-- 	print(k,v)
+-- end
 
-count = collectgarbage("count")
+-- count = collectgarbage("count")
 
-print("===============middle:",count)
-collectgarbage("collect")
-count = collectgarbage("count")
-print("===============after:",count)
+-- print("===============middle:",count)
+-- collectgarbage("collect")
+-- count = collectgarbage("count")
+-- print("===============after:",count)

@@ -61,7 +61,7 @@ namespace odao.scmahjong
                 if (data.cErrorCode == 0)
                 {
                     var gameClient = GameClient.Instance;
-                    gameClient.MahjongGamePlayer.ConnectGameServer(LoginEvent.ipRes, 36665, delegate ()
+                    gameClient.MahjongGamePlayer.ConnectGameServer(LoginData.ipRes, 36665, delegate ()
                     {
                         gameClient.MahjongGamePlayer.LobbyLoginReqDef(data.iUserID, data.szPasswdToken);
                     });

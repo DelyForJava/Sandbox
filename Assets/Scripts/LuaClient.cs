@@ -64,11 +64,9 @@ namespace Bean.Hall
             //{
             //    scriptTable.Set(injection.name, injection.value);
             //}
-            Debug.LogMsg("LuaClient Awake1111");
 
             luaScript = ResourcesManager.Load<TextAsset>(mainPath);
             luaEnv.DoString(luaScript.text, "Client", scriptTable);
-            Debug.LogMsg("LuaClient Awake2222");
 
             Action luaAwake = scriptTable.Get<Action>("Awake");
             scriptTable.Get("Start", out luaStart);
@@ -76,15 +74,10 @@ namespace Bean.Hall
             scriptTable.Get("OnDestroy", out luaOnDestroy);
 
             Callback.RegistLuaAction(scriptTable);
-            Debug.LogMsg("LuaClient Awake33333");
-
-
 
             if (luaAwake != null)
             {
                 luaAwake();
-                Debug.LogMsg("LuaClient Awake4444");
-
             }
 
         }
@@ -106,11 +99,13 @@ namespace Bean.Hall
             {
                 luaUpdate();
             }
+
             if (Time.time - LuaBehaviour.lastGCTime > GCInterval)
             {
                 luaEnv.Tick();
                 LuaBehaviour.lastGCTime = Time.time;
             }
+
         }
 
         void OnDestroy()
