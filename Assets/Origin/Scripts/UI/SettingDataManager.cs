@@ -10,9 +10,15 @@ public class SettingDataManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    changeAccountBtn.onClick.AddListener(delegate
+        var canvas = GameObject.Find("Canvas");
+        var go = canvas.transform.Find("Login").gameObject;
+
+        changeAccountBtn.onClick.AddListener(delegate
 	    {
-	        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            go.SetActive(true);
+            gameObject.SetActive(false);
+
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         });
 
 	}

@@ -1,15 +1,76 @@
-local speed = 10
+local Event = require("Event")
+local RefreshData = "RefreshData"
 
-function start()
-	print("lua start...")
+local yield_return = (require 'Coroutine').yield_return
+
+local data =
+{
+	{name="zhanshan1",jindou=1008,yinfen=1008,caifu=1008},
+	{name="zhanshan2",jindou=1007,yinfen=1007,caifu=1007},
+	{name="zhanshan3",jindou=1006,yinfen=1006,caifu=1006},
+	{name="zhanshan4",jindou=1005,yinfen=1005,caifu=1005},
+	{name="zhanshan5",jindou=1004,yinfen=1004,caifu=1004},
+	{name="zhanshan6",jindou=1003,yinfen=1003,caifu=1003},
+	{name="zhanshan7",jindou=1002,yinfen=1002,caifu=1002},
+	{name="zhanshan8",jindou=1001,yinfen=1001,caifu=1001},
+	{name="zhanshan9",jindou=1000,yinfen=1000,caifu=1000},
+}
+
+local dataMe =
+{
+	{name="zhanshan99",jindou=99,yinfen=99,caifu=99},
+
+}
+
+local RefreshData = function(content)
+	-- local convertedData = {}
+	-- data = {}
+	-- for k,v in pairs(BRankData.map) do
+
+	-- 	convertedData.name = v.name
+	-- 	convertedData.jindou = v.jindou
+	-- 	convertedData.yinfen = v.yinfen
+	-- 	convertedData.caifu = v.caifu
+	-- 	table.insert(data,convertedData)
+
+	-- end
+
+	Rank.Show()
 end
 
-function update()
-	local r = CS.UnityEngine.Vector3.up * CS.UnityEngine.Time.deltaTime * speed
-	self.transform:Rotate(r)
+local Rank = {}
+local self = Rank
+
+function Rank.Init()
+	print("lua Init...")
+	Event:AddListener("RefreshData",RefreshData)
+
+	local co = coroutine.create(function()
+   		yield_return(CS.UnityEngine.WaitForSeconds(300))
+
+		local www = CS.UnityEngine.WWW(BRankData.url)
+		yield_return(www)
+		if not www.error then
+			local js = www.text
+
+			Event:Brocast("RefreshData",js)
+		else
+			print('error:', www.error)
+		end
+	end)
+	assert(coroutine.resume(co))
 end
 
-function ondestroy()
-    print("lua destroy")
+function Rank.Show()
+	
 end
 
+function Rank.Update()
+
+end
+
+function Rank.OnDestroy()
+
+end
+
+return Rank

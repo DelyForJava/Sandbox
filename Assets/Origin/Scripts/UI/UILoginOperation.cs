@@ -38,7 +38,7 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
     public Text message;
     public ShareSDK ssdk;
 
-    public static PlayerLobbyInfo playerLobbyInfo = new PlayerLobbyInfo();
+    public static PlayerLobbyInfo playerLobbyInfo;
 
     private string accessToken;
     private string openId;
