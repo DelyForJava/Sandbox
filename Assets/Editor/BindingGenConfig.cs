@@ -69,6 +69,7 @@ namespace Bean.Hall
 				typeof(Bean.Hall.Callback),
 
 				typeof(Bean.Hall.HallData),
+                //typeof(Bean.Hall.TableViewCell),
 				typeof(GameClient),
 				typeof(odao.scmahjong.NetworkPlayer),
 
@@ -78,9 +79,14 @@ namespace Bean.Hall
         [CSharpCallLua]
         public static List<Type> CSharpCallLua = new List<Type>() {
                 typeof(Action),
+                typeof(Action<sbyte,sbyte,int>),
+                //typeof(Action<TableViewCell>),
+                typeof(Action<float>),
+                typeof(Action<int>),
                 typeof(Func<double, double, double>),
                 typeof(Action<string>),
                 typeof(Action<double>),
+                typeof(Action<sbyte,sbyte,int>),
                 typeof(UnityEngine.Events.UnityAction),
                 typeof(System.Collections.IEnumerator)
             };

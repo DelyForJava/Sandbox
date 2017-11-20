@@ -111,7 +111,7 @@ namespace Bean.Hall
 
             if (isTestModel)
             {
-                Resolution(domain, 34, "6558a4e4e8d8", "f93f88bbd26aff9d7f7689faff32ced035e1cf19");
+                Resolution(domain, 31, "c709ea993590", "0cbe44690da8d7436039d107befa4e3074ed259c");
                 return;
             }
             //Regist();//test 22 afac70d97abe

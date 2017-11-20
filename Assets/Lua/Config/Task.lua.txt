@@ -1,0 +1,17 @@
+﻿--[[config_task
+--]]
+
+local Task = 
+{
+	['1'] = { task_id = 1, type = 1, task_name = ' 签到转盘', task_desc = '获得一次转盘奖励', task_target = 1, task_param = 0, add_degree = 10, add_exp = 10, },
+	['2'] = { task_id = 2, type = 2, task_name = '游戏分享', task_desc = '分享一次游戏', task_target = 1, task_param = 0, add_degree = 10, add_exp = 10, },
+	['3'] = { task_id = 3, type = 3, task_name = '体验1款游戏', task_desc = '玩任意1款游戏', task_target = 1, task_param = 0, add_degree = 10, add_exp = 30, },
+	['4'] = { task_id = 4, type = 4, task_name = '游戏30分钟', task_desc = '任意游戏内玩30分钟', task_target = 1800, task_param = 0, add_degree = 10, add_exp = 50, },
+	['5'] = { task_id = 5, type = 5, task_name = '玩游戏得金豆', task_desc = '任意游戏内获得2金豆', task_target = 2, task_param = 0, add_degree = 20, add_exp = 100, },
+	['6'] = { task_id = 6, type = 6, task_name = '玩游戏赢金币', task_desc = '游戏内单次赢20000积分5次', task_target = 5, task_param = 20000, add_degree = 20, add_exp = 100, },
+	['7'] = { task_id = 7, type = 7, task_name = '玩游戏累计赢金币', task_desc = '游戏累计赢50万金币', task_target = 500000, task_param = 0, add_degree = 20, add_exp = 100, },
+	['8'] = { task_id = 8, type = 8, task_name = '获得礼品', task_desc = '在大厅中获得一次礼品', task_target = 1, task_param = 0, add_degree = 20, add_exp = 100, },
+	['9'] = { task_id = 9, type = 9, task_name = '任意充值', task_desc = '充值任意金额一次', task_target = 1, task_param = 0, add_degree = 20, add_exp = 200, },
+}
+
+return Task

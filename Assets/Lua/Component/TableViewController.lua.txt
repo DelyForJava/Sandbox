@@ -1,0 +1,18 @@
+	print("TableViewController required")
+
+OnGetCellHeightCSCallLua = function(height)
+	print("OnGetCellHeightCSCallLua"..height)
+end
+
+OnGetNumberOfCellsCSCallLua = function(num)
+	print("OnGetNumberOfCellsCSCallLua"..num)
+end
+
+OnGetEveryCellCSCallLua = function(cell)
+	print("OnGetEveryCellCSCallLua"..cell.rowNumber)
+	print("OnGetEveryCellCSCallLua"..cell.height)
+end
+
+
+
+

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bean.Hall;
 using LitJson;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class ExchangeData
 {
@@ -285,8 +287,7 @@ public class ExchangeDataManager : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        var player = UIOperation.playerLobbyInfo;
-        coinTextObj.text = player.llGameCoin.ToString();
-        diaTextObj.text = player.llDiamondNum.ToString();
+        coinTextObj.text = HallData.llGameCoin.ToString();
+        diaTextObj.text = HallData.llDiamondNum.ToString();
     }
 }

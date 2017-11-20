@@ -34,8 +34,16 @@ namespace Bean.Hall
         public static string szWXNickName { get; set; }
         public static int iVipExp { get; set; }
         public static sbyte cLevel { get; set; }
-        public static sbyte iLevelExp { get; set; }
+        public static int iLevelExp { get; set; }
+        public static sbyte cFllowWechat { get; set; }
 
+        /// <summary>
+        /// 0.未充值 1.已充未领 2.已领
+        /// </summary>
+        public static sbyte cFirstRecharge { get; set; }
+        public static sbyte cMonthCardCoin { get; set; }
+        public static sbyte cMonthCardDiamond { get; set; }
+        public static sbyte cMonthCardSuper { get; set; }
     }
 
 }

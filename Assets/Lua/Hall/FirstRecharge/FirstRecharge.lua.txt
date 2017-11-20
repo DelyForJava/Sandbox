@@ -1,0 +1,27 @@
+local FirstReCharge = {}
+local self = FirstReCharge
+
+self.name = "FirstReCharge"
+local client = CS.GameClient.Instance
+
+function FirstReCharge.Init()
+	local firstRechargeBtn = UGameObject.Find("Canvas/Hall/firstRecharge/rechargeBtn"):GetComponent( typeof(UButton) )
+	firstRechargeBtn.onClick:AddListener(function()
+		print("on firstRechargeBtn clicked")
+		
+		client.MahjongGamePlayer:FirstRechargeReqDef()
+	end)
+end
+
+function FirstReCharge.HideFirstReCharge()
+	local shopBtn = UGameObject.Find("Canvas/Hall/background/shopPanel/shopBtn"):GetComponent( typeof(UButton) )
+	local firstRechargeBtn = UGameObject.Find("Canvas/Hall/background/shopPanel/giftBtn"):GetComponent( typeof(UButton) )
+	local shopBtnRect = shopBtn:GetComponent( typeof(CS.UnityEngine.RectTransform) ) 
+	local firstRechargeBtnRect = firstRechargeBtn:GetComponent( typeof(CS.UnityEngine.RectTransform) ) 
+	shopBtnRect.localPosition = firstRechargeBtnRect.localPosition
+	firstRechargeBtn.gameObject:SetActive(false)
+end
+
+FirstReCharge.Init()
+
+return FirstReCharge

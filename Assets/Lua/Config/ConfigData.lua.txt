@@ -1,4 +1,5 @@
 local config_exp_vip = require 'Config/config_exp_vip'
+local task = require 'Config/Task'
 
 ConfigData = {}
 

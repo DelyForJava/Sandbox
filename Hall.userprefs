@@ -1,11 +1,8 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Component/ResReload.cs">
+﻿<Properties StartupItem="Hall.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Wrap\TableViewCell.cs">
     <Files>
-      <File FileName="Assets/Scripts/Client.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Component/ResReload.cs" Line="28" Column="1" />
-      <File FileName="Assets/Third/zcode/AssetBundlePacker/Scripts/ResourcesManager.cs" Line="57" Column="63" />
-      <File FileName="Assets/Third/zcode/AssetBundlePacker/Scripts/AssetBundleManager.cs" Line="125" Column="26" />
+      <File FileName="Assets\Scripts\Wrap\TableViewCell.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,15 +1,119 @@
-local speed = 10
+local Monthcard = {}
+local self = Monthcard
 
-function start()
-	print("lua start...")
+self.name = "Monthcard"
+local client = CS.GameClient.Instance
+
+local monthCardCoinBuyBtn = nil
+local monthCardCoinGetBtn = nil
+
+local monthDiamondCoinBuyBtn = nil
+local monthDiamondCoinGetBtn = nil
+
+local monthCardSuperBuyBtn = nil
+local monthCardSuperGetBtn = nil
+
+
+
+function Monthcard.Init(  )
+	monthCardCoinBuyBtn = UGameObject.Find("Canvas/Hall/monthCard/grid1/buyBtn"):GetComponent( typeof(UButton) )
+	monthCardCoinGetBtn = UGameObject.Find("Canvas/Hall/monthCard/grid1/getBtn"):GetComponent( typeof(UButton) )
+
+	monthDiamondCoinBuyBtn = UGameObject.Find("Canvas/Hall/monthCard/grid2/buyBtn"):GetComponent( typeof(UButton) )
+	monthDiamondCoinGetBtn = UGameObject.Find("Canvas/Hall/monthCard/grid2/getBtn"):GetComponent( typeof(UButton) )
+
+	monthCardSuperBuyBtn = UGameObject.Find("Canvas/Hall/monthCard/grid3/buyBtn"):GetComponent( typeof(UButton) )
+	monthCardSuperGetBtn = UGameObject.Find("Canvas/Hall/monthCard/grid3/getBtn"):GetComponent( typeof(UButton) )	
+
+	monthCardCoinBuyBtn.onClick:AddListener(function()
+		print("on monthCardCoinBuyBtn clicked")
+		
+		client.MahjongGamePlayer:MonthCardReqDef(1,1)
+	end)
+		monthCardCoinGetBtn.onClick:AddListener(function()
+			print("on monthCardCoinGetBtn clicked")
+		
+			client.MahjongGamePlayer:MonthCardReqDef(1,2)
+		end)
+		monthDiamondCoinBuyBtn.onClick:AddListener(function()
+			print("on monthDiamondCoinBuyBtn clicked")
+		
+			client.MahjongGamePlayer:MonthCardReqDef(2,1)
+		end)
+		monthDiamondCoinGetBtn.onClick:AddListener(function()
+			print("on monthDiamondCoinGetBtn clicked")
+		
+			client.MahjongGamePlayer:MonthCardReqDef(2,2)
+		end)
+		monthCardSuperBuyBtn.onClick:AddListener(function()
+			print("on monthCardSuperBuyBtn clicked")
+		
+			client.MahjongGamePlayer:MonthCardReqDef(3,1)
+		end)
+		monthCardSuperGetBtn.onClick:AddListener(function()
+			print("on monthCardSuperGetBtn clicked")
+		
+			client.MahjongGamePlayer:MonthCardReqDef(3,2)
+		end)
+
+
+	if BHallData.cMonthCardCoin == 0 then
+		monthCardCoinGetBtn.gameObject:SetActive(false)
+	elseif BHallData.cMonthCardCoin == 1 then
+		monthCardCoinBuyBtn.gameObject:SetActive(false)
+	else
+		monthCardCoinGetBtn.gameObject:SetActive(false)
+		monthCardCoinBuyBtn.gameObject:SetActive(false)
+	end
+
+	if BHallData.cMonthCardDiamond == 0 then
+		monthDiamondCoinGetBtn.gameObject:SetActive(false)
+	elseif BHallData.cMonthCardDiamond == 1 then
+		monthDiamondCoinBuyBtn.gameObject:SetActive(false)
+	else
+		monthDiamondCoinGetBtn.gameObject:SetActive(false)
+		monthDiamondCoinBuyBtn.gameObject:SetActive(false)
+	end
+
+	if BHallData.cMonthCardSuper == 0 then
+		monthCardSuperGetBtn.gameObject:SetActive(false)
+	elseif BHallData.cMonthCardSuper == 1 then
+		monthCardSuperBuyBtn.gameObject:SetActive(false)
+	else
+		monthCardSuperGetBtn.gameObject:SetActive(false)
+		monthCardSuperBuyBtn.gameObject:SetActive(false)
+	end
+
 end
 
-function update()
-	local r = CS.UnityEngine.Vector3.up * CS.UnityEngine.Time.deltaTime * speed
-	self.transform:Rotate(r)
+function Monthcard.ChangeCardStatus(cErrorCode,cCardType,cCardStatus)
+	if cErrorCode==0 then
+		if cCardType==1 and cCardStatus==1 then
+			monthCardCoinBuyBtn.gameObject:SetActive(false)
+			monthCardCoinGetBtn.gameObject:SetActive(true)
+		elseif cCardType==2 and cCardStatus==1 then
+			monthDiamondCoinBuyBtn.gameObject:SetActive(false)
+			monthDiamondCoinGetBtn.gameObject:SetActive(true)
+		elseif cCardType==3 and cCardStatus==1 then
+			monthCardSuperBuyBtn.gameObject:SetActive(false)
+			monthCardSuperGetBtn.gameObject:SetActive(true)
+
+		elseif cCardType==1 and cCardStatus==0 then
+			monthCardCoinBuyBtn.gameObject:SetActive(false)
+			monthCardCoinGetBtn.gameObject:SetActive(false)
+		elseif cCardType==2 and cCardStatus==0 then
+			monthDiamondCoinBuyBtn.gameObject:SetActive(false)
+			monthDiamondCoinGetBtn.gameObject:SetActive(false)
+		elseif cCardType==3 and cCardStatus==0 then
+			monthCardSuperBuyBtn.gameObject:SetActive(false)
+			monthCardSuperGetBtn.gameObject:SetActive(false)
+		else
+		end
+	
+	else
+	end
 end
 
-function ondestroy()
-    print("lua destroy")
-end
+Monthcard.Init()
 
+return Monthcard

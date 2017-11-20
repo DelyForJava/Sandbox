@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224468474036349346}
   m_Layer: 5
-  m_Name: item
+  m_Name: item_room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x5555
+  m_Text: x15
 --- !u!114 &114866448264422562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,7 +316,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 9}
-  m_SizeDelta: {x: 304, y: 282}
+  m_SizeDelta: {x: 454, y: 366}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224355172203952742
 RectTransform:

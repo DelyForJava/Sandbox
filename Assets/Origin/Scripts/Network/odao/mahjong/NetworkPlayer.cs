@@ -7,8 +7,9 @@ using NetworkInterface;
 using MsgPack;
 using MsgPack.Serialization;
 using MP;
-using UnityEngine;
 using System.IO;
+using Bean.Hall;
+using Debug = UnityEngine.Debug;
 
 namespace odao.scmahjong
 {    
@@ -178,6 +179,77 @@ namespace odao.scmahjong
             Debug.Log("OnClick" + "ExchangeReqDef    Success:  szUserAddress:" + szUserAddress);
         }
 
+        public void FirstRechargeReqDef()
+        {
+            BaseMessage.FirstRechargeReqDef FirstRechargeReq = new BaseMessage.FirstRechargeReqDef();
+            FirstRechargeReq.iUserID = HallData.iUserID;
+            var serializer = MessagePackSerializer.Get<BaseMessage.FirstRechargeReqDef>();
+            byte[] msg = serializer.PackSingleObject(FirstRechargeReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_FIRST_RECHARGE_REQ_MSG, msg);
+            Debug.Log("FirstRechargeReqDef    Success");
+        }
+
+        public void MonthCardReqDef(sbyte cCardType, sbyte cOption)
+        {
+            BaseMessage.MonthCardReqDef MonthCardReq = new BaseMessage.MonthCardReqDef();
+            MonthCardReq.cCardType = cCardType;
+            MonthCardReq.cOption = cOption;
+            var serializer = MessagePackSerializer.Get<BaseMessage.MonthCardReqDef>();
+            byte[] msg = serializer.PackSingleObject(MonthCardReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_MONTH_CARD_REQ_MSG, msg);
+            Debug.Log("OnClick" + "ExchangeReqDef    Success:  usType:" + cCardType);
+        }
+
+        public void TaskInfoReqDef()
+        {
+            BaseMessage.TaskInfoReqDef TaskInfoReq = new BaseMessage.TaskInfoReqDef();
+            TaskInfoReq.iUserID = HallData.iUserID;
+            var serializer = MessagePackSerializer.Get<BaseMessage.TaskInfoReqDef>();
+            byte[] msg = serializer.PackSingleObject(TaskInfoReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_TASK_LIST_REQ_MSG, msg);
+            Debug.Log("OnClick" + "TaskInfoReq    Success");
+        }
+
+        /// <summary>
+        /// 领取任务发包
+        /// </summary>
+        public void TaskSubmitReqDef(int iTaskID)
+        {
+            BaseMessage.TaskSubmitReqDef TaskSubmitReq = new BaseMessage.TaskSubmitReqDef();
+            TaskSubmitReq.iTaskID = iTaskID;
+            var serializer = MessagePackSerializer.Get<BaseMessage.TaskSubmitReqDef>();
+            byte[] msg = serializer.PackSingleObject(TaskSubmitReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_TASK_SUBMIT_REQ_MSG, msg);
+            Debug.Log("OnClick" + "TaskSubmitReq    Success");
+        }
+
+        /// <summary>
+        /// 更新任务发包
+        /// </summary>
+        public void TaskProgressUpdateReqDef(int iTaskID,int iAddProgress)
+        {
+            BaseMessage.TaskProgressUpdateReqDef TaskProgressUpdateReq = new BaseMessage.TaskProgressUpdateReqDef();
+            TaskProgressUpdateReq.iTaskID = iTaskID;
+            TaskProgressUpdateReq.iAddProgress = iAddProgress;
+            var serializer = MessagePackSerializer.Get<BaseMessage.TaskProgressUpdateReqDef>();
+            byte[] msg = serializer.PackSingleObject(TaskProgressUpdateReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_TASK_PROGRESS_UPDATE_REQ_MSG, msg);
+            Debug.Log("OnClick" + "TaskProgressUpdateReqDef    Success");
+        }
+
+        /// <summary>
+        /// 领取活跃度发包
+        /// </summary>
+        public void TaskDegreeGetReqDef(sbyte cType, sbyte cIndex)
+        {
+            BaseMessage.TaskDegreeGetReqDef TaskDegreeGetReq = new BaseMessage.TaskDegreeGetReqDef();
+            TaskDegreeGetReq.cType = cType;
+            TaskDegreeGetReq.cIndex = cIndex;
+            var serializer = MessagePackSerializer.Get<BaseMessage.TaskDegreeGetReqDef>();
+            byte[] msg = serializer.PackSingleObject(TaskDegreeGetReq);
+            _gsProxy.notifyMP(BaseMessage.LOBBY_TASK_DEGREE_GET_REQ_MSG, msg);
+            Debug.Log("OnClick" + "TaskDegreeGetReq    Success");
+        }
 
         #region 历史
 

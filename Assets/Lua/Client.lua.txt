@@ -26,6 +26,7 @@ function Awake()
 	-- print("--CSharp Data:"..BUrl.."--")
 	-- print("--CSharp Data:"..BChannelId.."--")
 	-- print("--CSharp Data:"..BCdn.."--")
+	
 
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")

@@ -38,7 +38,7 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
     public Text message;
     public ShareSDK ssdk;
 
-    public static PlayerLobbyInfo playerLobbyInfo;
+    public static PlayerLobbyInfo playerLobbyInfo = new PlayerLobbyInfo();
 
     private string accessToken;
     private string openId;
@@ -73,7 +73,7 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
     void Start()
     {
         touristBtn = GameObject.Find("Canvas/TouristBtn").GetComponent<Button>();
-        weChatBtn = GameObject.Find("CanvasWeChatBtn").GetComponent<Button>();
+        weChatBtn = GameObject.Find("Canvas/WeChatBtn").GetComponent<Button>();
         //message = GameObject.Find("Canvas/MessageText").GetComponent<Text>();
         ssdk = GameObject.Find("Canvas").GetComponent<ShareSDK>();
 

@@ -20,7 +20,7 @@ namespace XLua.CSObjectWrap
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			Utils.BeginObjectRegister(typeof(odao.scmahjong.NetworkPlayer), L, translator, 0, 41, 1, 1);
+			Utils.BeginObjectRegister(typeof(odao.scmahjong.NetworkPlayer), L, translator, 0, 43, 1, 1);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InitBaseMessage", _m_InitBaseMessage);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InitGameMessage", _m_InitGameMessage);
@@ -33,6 +33,8 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "PackageRemoveItemReqDef", _m_PackageRemoveItemReqDef);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "PackageUpdateItemReqDef", _m_PackageUpdateItemReqDef);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ExchangeReqDef", _m_ExchangeReqDef);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "FirstRechargeReqDef", _m_FirstRechargeReqDef);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "MonthCardReqDef", _m_MonthCardReqDef);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "StartAuth", _m_StartAuth);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "NoMsgLoginReqDef", _m_NoMsgLoginReqDef);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "StartAuth2", _m_StartAuth2);
@@ -402,6 +404,62 @@ namespace XLua.CSObjectWrap
                     string szUserAddress = LuaAPI.lua_tostring(L, 6);
                     
                     __cl_gen_to_be_invoked.ExchangeReqDef( usType, usItemIndex, szUserMobile, szUserTel, szUserAddress );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_FirstRechargeReqDef(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                odao.scmahjong.NetworkPlayer __cl_gen_to_be_invoked = (odao.scmahjong.NetworkPlayer)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                    __cl_gen_to_be_invoked.FirstRechargeReqDef(  );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_MonthCardReqDef(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                odao.scmahjong.NetworkPlayer __cl_gen_to_be_invoked = (odao.scmahjong.NetworkPlayer)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    sbyte cCardType = (sbyte)LuaAPI.xlua_tointeger(L, 2);
+                    sbyte cOption = (sbyte)LuaAPI.xlua_tointeger(L, 3);
+                    
+                    __cl_gen_to_be_invoked.MonthCardReqDef( cCardType, cOption );
                     
                     
                     

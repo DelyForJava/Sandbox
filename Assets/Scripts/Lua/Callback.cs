@@ -23,6 +23,8 @@ namespace Bean.Hall
         public static Action LuaOnLogin;
         public static Action LuaOnChangeGender;
         public static Action LuaOnChangeName;
+        public static Action LuaOnFirstRecharge;
+        public static Action<sbyte, sbyte, int> LuaOnMonthcard;
 
         public static void RegistLuaAction(LuaTable table)
         {
@@ -30,6 +32,8 @@ namespace Bean.Hall
             table.Get("OnLoginCSCallLua", out LuaOnLogin);
             table.Get("OnChangeGenderCSCallLua", out LuaOnChangeGender);
             table.Get("OnChangeNameCSCallLua", out LuaOnChangeName);
+            table.Get("OnFirstRechargeCSCallLua", out LuaOnFirstRecharge);
+            table.Get("OnMonthcardCSCallLua", out LuaOnMonthcard);
         }
         // -------------------------------------------------  hall ---------------------------------------------------------//
         

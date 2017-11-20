@@ -30,6 +30,25 @@ public class BaseMessage
     public const ushort LOBBY_GOLD_BEAN_EXCHANGE_REQ_MSG = 0xA010;
     public const ushort LOBBY_GOLD_BEAN_EXCHANGE_RES_MSG = 0xA011;
 
+    public const ushort LOBBY_FIRST_RECHARGE_REQ_MSG = 0xA012;
+    public const ushort LOBBY_FIRST_RECHARGE_RES_MSG = 0xA013;
+    public const ushort LOBBY_MONTH_CARD_REQ_MSG = 0xA014;
+    public const ushort LOBBY_MONTH_CARD_RES_MSG = 0xA015;
+
+    public const ushort LOBBY_TASK_LIST_REQ_MSG = 0xA016;
+    public const ushort LOBBY_TASK_LIST_RES_MSG = 0xA017;
+
+    public const ushort LOBBY_TASK_SUBMIT_REQ_MSG = 0xA018;
+    public const ushort LOBBY_TASK_SUBMIT_RES_MSG = 0xA019;
+
+    public const ushort LOBBY_TASK_PROGRESS_UPDATE_REQ_MSG = 0xA01A;
+    public const ushort LOBBY_TASK_PROGRESS_UPDATE_RES_MSG = 0xA01B;
+
+    public const ushort LOBBY_TASK_DEGREE_GET_REQ_MSG = 0xA01C;
+    public const ushort LOBBY_TASK_DEGREE_GET_RES_MSG = 0xA01D;
+
+
+
 
     public const ushort AUTHEN_REQ_MSG = 0xA0;
     public const ushort AUTHEN_RES_MSG = 0xA1;
@@ -166,9 +185,17 @@ public class BaseMessage
         [MessagePackMember(15)]
         public sbyte cLevel;
         [MessagePackMember(16)]
-        public sbyte iLevelExp;
+        public int iLevelExp;
         [MessagePackMember(17)]
         public sbyte cFllowWechat;
+        [MessagePackMember(18)]
+        public sbyte cFirstRecharge;
+        [MessagePackMember(19)]
+        public sbyte cMonthCardCoin;
+        [MessagePackMember(20)]
+        public sbyte cMonthCardDiamond;
+        [MessagePackMember(21)]
+        public sbyte cMonthCardSuper;
     };
 
     /// <summary>
@@ -469,16 +496,242 @@ public class BaseMessage
     };
 
 
+    /// <summary>
+    /// 首充
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class FirstRechargeReqDef
+    {
+        public FirstRechargeReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iUserID;
+    };
+
+    /// <summary>
+    /// 首充收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class FirstRechargeResDef
+    {
+        public FirstRechargeResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;//0,ok
+        [MessagePackMember(1)]
+        public sbyte cFirstRecharge;
+        [MessagePackMember(2)]
+        public int iAddCoin;
+        //[MessagePackMember(2)]
+        //public int iAddItemID1;
+        //[MessagePackMember(3)]
+        //public int iAddItemNum1;
+        //[MessagePackMember(4)]
+        //public int iAddItemID2;
+        //[MessagePackMember(5)]
+        //public int iAddItemNum2;
+    };
+
+
+    /// <summary>
+    /// 月卡发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class MonthCardReqDef
+    {
+        public MonthCardReqDef()
+        {
+        }
+        //[MessagePackMember(0)]
+        //public int iUserID;
+        [MessagePackMember(0)]
+        public sbyte cCardType;//1,2,3
+        [MessagePackMember(1)]
+        public sbyte cOption;//1.充 2.领
+    };
+
+    /// <summary>
+    /// 月卡收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class MonthCardResDef
+    {
+        public MonthCardResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;//0,ok
+        [MessagePackMember(1)]
+        public sbyte cCardType;//1,2,3
+        [MessagePackMember(2)]
+        public int cCardStatus;//1.可领取
+        [MessagePackMember(3)]
+        public int iAddCoin;
+        [MessagePackMember(4)]
+        public int iAddDiamond;
+    };
 
 
 
+    /// <summary>
+    /// 获取任务信息发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskInfoReqDef
+    {
+        public TaskInfoReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public int iUserID;
+    };
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskInfo
+    {
+        [MessagePackMember(0)]
+        public int iTaskID;
+        [MessagePackMember(1)]
+        public int iTaskProgress;
+        [MessagePackMember(2)]
+        public sbyte cIsGet;
+    }
+
+    /// <summary>
+    /// 获取任务道具信息收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskInfoResDef
+    {
+        public TaskInfoResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public List<TaskInfo> TaskInfoList;
+
+        [MessagePackMember(1)]
+        public int iDailyDegree;
+        [MessagePackMember(2)]
+        public int iWeeklyDegree;
+        [MessagePackMember(3)]
+        public short sDailyFlag;
+        [MessagePackMember(4)]
+        public short sWeeklyFlag;
+    };
 
 
+    /// <summary>
+    /// 领取任务发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskSubmitReqDef
+    {
+        public TaskSubmitReqDef()
+        {
+        }
 
+        [MessagePackMember(0)]
+        public int iTaskID;
+    };
 
+    /// <summary>
+    /// 领取任务收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskSubmitResDef
+    {
+        public TaskSubmitResDef()
+        {
+        }
 
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;
+        [MessagePackMember(1)]
+        public sbyte cIsGet;
+        [MessagePackMember(2)]
+        public int iTaskID;
+        [MessagePackMember(3)]
+        public int iAddDegree;
+        [MessagePackMember(4)]
+        public int iAddExp;
+    };
 
+    /// <summary>
+    /// 更新任务发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskProgressUpdateReqDef
+    {
+        public TaskProgressUpdateReqDef()
+        {
+        }
 
+        [MessagePackMember(0)]
+        public int iTaskID;
+        [MessagePackMember(1)]
+        public int iAddProgress;
+    };
+
+    /// <summary>
+    /// 更新任务收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskProgressUpdateResDef
+    {
+        public TaskProgressUpdateResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;
+        [MessagePackMember(1)]
+        public int iTaskID;
+        [MessagePackMember(2)]
+        public int iCurProgress;
+    };
+
+    /// <summary>
+    /// 领取活跃度发包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskDegreeGetReqDef
+    {
+        public TaskDegreeGetReqDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cType;//1 daily 2 weekly
+        [MessagePackMember(1)]
+        public sbyte cIndex;//1:1~4 2:1~2
+    };
+
+    /// <summary>
+    /// 领取活跃度收包
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class TaskDegreeGetResDef
+    {
+        public TaskDegreeGetResDef()
+        {
+        }
+        [MessagePackMember(0)]
+        public sbyte cErrorCode;
+        [MessagePackMember(1)]
+        public sbyte cType;
+        [MessagePackMember(2)]
+        public short sDegressFlag;
+        [MessagePackMember(3)]
+        public short iAddExp;
+        [MessagePackMember(4)]
+        public short iAddCoin;
+        [MessagePackMember(5)]
+        public short iAddBean;
+        //[MessagePackMember(6)]
+        //public short iAddItemID;
+        //[MessagePackMember(7)]
+        //public short iAddItemItemNum;
+    };
 
 
     #region 历史

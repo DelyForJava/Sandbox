@@ -42,6 +42,7 @@ local Rank = {}
 local self = Rank
 
 function Rank.Init()
+	
 	print("lua Init...")
 	Event:AddListener("RefreshData",RefreshData)
 

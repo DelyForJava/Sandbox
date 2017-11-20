@@ -29,7 +29,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(typeof(Bean.Hall.Callback), L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(typeof(Bean.Hall.Callback), L, __CreateInstance, 4, 2, 2);
+		    Utils.BeginClassRegister(typeof(Bean.Hall.Callback), L, __CreateInstance, 4, 5, 5);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "OnClickTourist", _m_OnClickTourist_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "OnClickWechat", _m_OnClickWechat_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RegistLuaAction", _m_RegistLuaAction_xlua_st_);
@@ -38,9 +38,15 @@ namespace XLua.CSObjectWrap
             
 			Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnLogin", _g_get_LuaOnLogin);
             Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnChangeGender", _g_get_LuaOnChangeGender);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnChangeName", _g_get_LuaOnChangeName);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnFirstRecharge", _g_get_LuaOnFirstRecharge);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "LuaOnMonthcard", _g_get_LuaOnMonthcard);
             
 			Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnLogin", _s_set_LuaOnLogin);
             Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnChangeGender", _s_set_LuaOnChangeGender);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnChangeName", _s_set_LuaOnChangeName);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnFirstRecharge", _s_set_LuaOnFirstRecharge);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "LuaOnMonthcard", _s_set_LuaOnMonthcard);
             
 			Utils.EndClassRegister(typeof(Bean.Hall.Callback), L, translator);
         }
@@ -157,6 +163,42 @@ namespace XLua.CSObjectWrap
             return 1;
         }
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_LuaOnChangeName(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    translator.Push(L, Bean.Hall.Callback.LuaOnChangeName);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_LuaOnFirstRecharge(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    translator.Push(L, Bean.Hall.Callback.LuaOnFirstRecharge);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_LuaOnMonthcard(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    translator.Push(L, Bean.Hall.Callback.LuaOnMonthcard);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -178,6 +220,45 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    Bean.Hall.Callback.LuaOnChangeGender = translator.GetDelegate<System.Action>(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_LuaOnChangeName(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    Bean.Hall.Callback.LuaOnChangeName = translator.GetDelegate<System.Action>(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_LuaOnFirstRecharge(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    Bean.Hall.Callback.LuaOnFirstRecharge = translator.GetDelegate<System.Action>(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_LuaOnMonthcard(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			    Bean.Hall.Callback.LuaOnMonthcard = translator.GetDelegate<System.Action<sbyte, sbyte, int>>(L, 1);
             
             } catch(System.Exception __gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);

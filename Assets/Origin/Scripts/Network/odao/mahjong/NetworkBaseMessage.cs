@@ -49,6 +49,11 @@ namespace odao.scmahjong
                 HallData.iVipExp = data.iVipExp;
                 HallData.cLevel = data.cLevel;
                 HallData.iLevelExp = data.iLevelExp;
+                HallData.cFllowWechat = data.cFllowWechat;
+                HallData.cFirstRecharge = data.cFirstRecharge;
+                HallData.cMonthCardCoin = data.cMonthCardCoin;
+                HallData.cMonthCardDiamond = data.cMonthCardDiamond;
+                HallData.cMonthCardSuper = data.cMonthCardSuper;
 
 
 
@@ -234,6 +239,137 @@ namespace odao.scmahjong
                         break;
                 }
 
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_FIRST_RECHARGE_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.FirstRechargeResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_FIRST_RECHARGE_RES_MSG: " + BaseMessage.LOBBY_FIRST_RECHARGE_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iAddCoin:" + data.iAddCoin);
+		        switch (data.cErrorCode)
+		        {
+		            case 0:
+		                HallData.llGameCoin = HallData.llGameCoin + data.iAddCoin;
+		                Loom.QueueOnMainThread(delegate () {
+		                    Callback.LuaOnFirstRecharge();
+		                });
+                        break;
+		            case 1:
+		                break;
+		            case 2:
+		                break;
+		            case 3:
+		                break;
+		            case 4:
+		                break;
+		            case 5:
+		                break;
+		            default:
+		                break;
+		        }
+
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_MONTH_CARD_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.MonthCardResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_MONTH_CARD_RES_MSG: " + BaseMessage.LOBBY_MONTH_CARD_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", cCardStatus:" + data.cCardStatus + ", cCardType:" + data.cCardType);
+
+                Loom.QueueOnMainThread(delegate () {
+		            Callback.LuaOnMonthcard(data.cErrorCode, data.cCardType, data.cCardStatus);
+		        });
+
+                switch (data.cErrorCode)
+		        {
+		            case 0:
+		                HallData.llGameCoin = HallData.llGameCoin + data.iAddCoin;
+		                HallData.llDiamondNum = HallData.llDiamondNum + data.iAddDiamond;
+		                if (data.cCardStatus ==1)
+		                {
+		                    //可领取
+		                }
+		                break;
+		            case 1:
+                        //卡类型错误
+		                break;
+		            case 2:
+                        //未充值该类型
+		                break;
+		            case 3:
+                        //过期
+		                break;
+		            case 4:
+                        //已领取
+		                break;
+		            case 5:
+		                break;
+		            default:
+		                break;
+		        }
+
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_TASK_LIST_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.TaskInfoResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_TASK_LIST_RES_MSG: " + BaseMessage.LOBBY_TASK_LIST_RES_MSG + ", TaskInfoList.Count:" + data.TaskInfoList.Count + ", iDailyDegree:" + data.iDailyDegree + ", iWeeklyDegree:" + data.iWeeklyDegree + ", sDailyFlag:" + data.sDailyFlag + ", sWeeklyFlag:" + data.sWeeklyFlag);
+		        if (data.TaskInfoList.Count != 0)
+		        {
+		            Loom.QueueOnMainThread(delegate () {
+		                TaskDataManager.Instance.RefreshDataToPanel(data.TaskInfoList, data.iDailyDegree, data.iWeeklyDegree,data.sDailyFlag, data.sWeeklyFlag);
+		            });
+		        }
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_TASK_SUBMIT_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.TaskSubmitResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_TASK_SUBMIT_RES_MSG: " + BaseMessage.LOBBY_TASK_SUBMIT_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iTaskID:" + data.iTaskID + ", cIsGet:" + data.cIsGet + ", iAddDegree:" + data.iAddDegree + ", iAddExp:" + data.iAddExp);
+		        if (data.cErrorCode == 0)
+		        {
+		            var gameClient = GameClient.Instance;
+                    Loom.QueueOnMainThread(delegate () {
+		                gameClient.MahjongGamePlayer.TaskInfoReqDef();
+                    });
+		        }
+
+		    });
+
+
+		    _gsProxy.on(BaseMessage.LOBBY_TASK_PROGRESS_UPDATE_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.TaskProgressUpdateResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_TASK_PROGRESS_UPDATE_RES_MSG: " + BaseMessage.LOBBY_TASK_PROGRESS_UPDATE_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", iTaskID:" + data.iTaskID + ", iCurProgress:" + data.iCurProgress );
+		        if (data.cErrorCode == 0)
+		        {
+		            var gameClient = GameClient.Instance;
+		            Loom.QueueOnMainThread(delegate () {
+		                gameClient.MahjongGamePlayer.TaskInfoReqDef();
+		            });
+                }
+
+		    });
+
+		    _gsProxy.on(BaseMessage.LOBBY_TASK_DEGREE_GET_RES_MSG, delegate (Message obj) {
+		        OdaoMessage msg = (OdaoMessage)obj;
+		        var serializer = MessagePackSerializer.Get<BaseMessage.TaskDegreeGetResDef>();
+		        var data = serializer.UnpackSingleObject(msg.data);
+		        Debug.LogError("LOBBY_TASK_DEGREE_GET_RES_MSG: " + BaseMessage.LOBBY_TASK_DEGREE_GET_RES_MSG + ", cErrorCode:" + data.cErrorCode + ", cType:" + data.cType + ", sDegressFlag:" + data.sDegressFlag + ", iAddExp:" + data.iAddExp + ", iAddCoin:" + data.iAddCoin + ", iAddBean:" + data.iAddBean);
+		        if (data.cErrorCode == 0)
+		        {
+		            var gameClient = GameClient.Instance;
+		            Loom.QueueOnMainThread(delegate () {
+		                gameClient.MahjongGamePlayer.TaskInfoReqDef();
+		            });
+                }
 
 		    });
 

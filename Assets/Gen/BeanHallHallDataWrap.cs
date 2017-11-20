@@ -29,7 +29,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(typeof(Bean.Hall.HallData), L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(typeof(Bean.Hall.HallData), L, __CreateInstance, 1, 16, 16);
+		    Utils.BeginClassRegister(typeof(Bean.Hall.HallData), L, __CreateInstance, 1, 21, 21);
 			
 			
             
@@ -49,6 +49,11 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "iVipExp", _g_get_iVipExp);
             Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cLevel", _g_get_cLevel);
             Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "iLevelExp", _g_get_iLevelExp);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cFllowWechat", _g_get_cFllowWechat);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cFirstRecharge", _g_get_cFirstRecharge);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cMonthCardCoin", _g_get_cMonthCardCoin);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cMonthCardDiamond", _g_get_cMonthCardDiamond);
+            Utils.RegisterFunc(L, Utils.CLS_GETTER_IDX, "cMonthCardSuper", _g_get_cMonthCardSuper);
             
 			Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "iUserID", _s_set_iUserID);
             Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "accountId", _s_set_accountId);
@@ -66,6 +71,11 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "iVipExp", _s_set_iVipExp);
             Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cLevel", _s_set_cLevel);
             Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "iLevelExp", _s_set_iLevelExp);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cFllowWechat", _s_set_cFllowWechat);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cFirstRecharge", _s_set_cFirstRecharge);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cMonthCardCoin", _s_set_cMonthCardCoin);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cMonthCardDiamond", _s_set_cMonthCardDiamond);
+            Utils.RegisterFunc(L, Utils.CLS_SETTER_IDX, "cMonthCardSuper", _s_set_cMonthCardSuper);
             
 			Utils.EndClassRegister(typeof(Bean.Hall.HallData), L, translator);
         }
@@ -295,6 +305,66 @@ namespace XLua.CSObjectWrap
             return 1;
         }
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_cFllowWechat(RealStatePtr L)
+        {
+		    try {
+            
+			    LuaAPI.xlua_pushinteger(L, Bean.Hall.HallData.cFllowWechat);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_cFirstRecharge(RealStatePtr L)
+        {
+		    try {
+            
+			    LuaAPI.xlua_pushinteger(L, Bean.Hall.HallData.cFirstRecharge);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_cMonthCardCoin(RealStatePtr L)
+        {
+		    try {
+            
+			    LuaAPI.xlua_pushinteger(L, Bean.Hall.HallData.cMonthCardCoin);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_cMonthCardDiamond(RealStatePtr L)
+        {
+		    try {
+            
+			    LuaAPI.xlua_pushinteger(L, Bean.Hall.HallData.cMonthCardDiamond);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_cMonthCardSuper(RealStatePtr L)
+        {
+		    try {
+            
+			    LuaAPI.xlua_pushinteger(L, Bean.Hall.HallData.cMonthCardSuper);
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 1;
+        }
+        
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -498,6 +568,71 @@ namespace XLua.CSObjectWrap
 		    try {
                 
 			    Bean.Hall.HallData.iLevelExp = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_cFllowWechat(RealStatePtr L)
+        {
+		    try {
+                
+			    Bean.Hall.HallData.cFllowWechat = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_cFirstRecharge(RealStatePtr L)
+        {
+		    try {
+                
+			    Bean.Hall.HallData.cFirstRecharge = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_cMonthCardCoin(RealStatePtr L)
+        {
+		    try {
+                
+			    Bean.Hall.HallData.cMonthCardCoin = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_cMonthCardDiamond(RealStatePtr L)
+        {
+		    try {
+                
+			    Bean.Hall.HallData.cMonthCardDiamond = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+            
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_cMonthCardSuper(RealStatePtr L)
+        {
+		    try {
+                
+			    Bean.Hall.HallData.cMonthCardSuper = (sbyte)LuaAPI.xlua_tointeger(L, 1);
             
             } catch(System.Exception __gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);

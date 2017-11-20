@@ -123,6 +123,7 @@
   <ItemGroup>
     <None Include="Assets\Gen\link.xml" />
     <None Include="Assets\Lua\Client.lua.txt" />
+    <None Include="Assets\Lua\Component\TableViewController.lua.txt" />
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
     <None Include="Assets\Lua\Config\config_shop.lua.txt" />
@@ -134,11 +135,10 @@
     <None Include="Assets\Lua\Hall\Avater\Avater.lua.txt" />
     <None Include="Assets\Lua\Hall\Bag\Bag.lua.txt" />
     <None Include="Assets\Lua\Hall\Exchange\Exchange.lua.txt" />
-    <None Include="Assets\Lua\Hall\Firstbill\Firstbill.lua.txt" />
+    <None Include="Assets\Lua\Hall\FirstRecharge\FirstRecharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Hall.lua.txt" />
     <None Include="Assets\Lua\Hall\Monthcard\Monthcard.lua.txt" />
     <None Include="Assets\Lua\Hall\Rank\Rank.lua.txt" />
-    <None Include="Assets\Lua\Hall\Recharge\Recharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Setting\Setting.lua.txt" />
     <None Include="Assets\Lua\Hall\Shop\Shop.lua.txt" />
     <None Include="Assets\Lua\Hall\Task\Task.lua.txt" />

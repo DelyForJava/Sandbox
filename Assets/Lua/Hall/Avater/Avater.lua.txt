@@ -37,21 +37,21 @@ self.expSlider = nil
 
 function Avater.Init()
 	
-	print( "Login iUserID:"..BHallData.iUserID )
-	print( "Login serviceId:"..BHallData.serviceId )
-	print( "Login szPasswdToken:"..BHallData.szPasswdToken )
-	print( "Login cGender:"..BHallData.cGender )
-	print( "Login cVipLv:"..BHallData.cVipLv )
-	print( "Login llGameCoin:"..BHallData.llGameCoin )
-	print( "Login llBankCoin:"..BHallData.llBankCoin )
-	print( "Login llDiamondNum:"..BHallData.llDiamondNum )
-	print( "Login llGoldBean:"..BHallData.llGoldBean )
-	print( "Login szNickName:"..BHallData.szNickName )
-	print( "Login szWXIconURL:"..BHallData.szWXIconURL )
-	print( "Login szWXNickName:"..BHallData.szWXNickName )
-	print( "Login iVipExp:"..BHallData.iVipExp )
-	print( "Login cLevel:"..BHallData.cLevel )
-	print( "Login iLevelExp:"..BHallData.iLevelExp )
+	-- print( "Login iUserID:"..BHallData.iUserID )
+	-- print( "Login serviceId:"..BHallData.serviceId )
+	-- print( "Login szPasswdToken:"..BHallData.szPasswdToken )
+	-- print( "Login cGender:"..BHallData.cGender )
+	-- print( "Login cVipLv:"..BHallData.cVipLv )
+	-- print( "Login llGameCoin:"..BHallData.llGameCoin )
+	-- print( "Login llBankCoin:"..BHallData.llBankCoin )
+	-- print( "Login llDiamondNum:"..BHallData.llDiamondNum )
+	-- print( "Login llGoldBean:"..BHallData.llGoldBean )
+	-- print( "Login szNickName:"..BHallData.szNickName )
+	-- print( "Login szWXIconURL:"..BHallData.szWXIconURL )
+	-- print( "Login szWXNickName:"..BHallData.szWXNickName )
+	-- print( "Login iVipExp:"..BHallData.iVipExp )
+	-- print( "Login cLevel:"..BHallData.cLevel )
+	-- print( "Login iLevelExp:"..BHallData.iLevelExp )
 	self.personalInfoPanelTransform = UGameObject.Find("Canvas/Hall/personalInfoPanel").transform
 
 	self.userId = UGameObject.Find("Canvas/Hall/personalInfoPanel/leftTab/upFlag/id/Text"):GetComponent(typeof(UText))
@@ -161,10 +161,10 @@ function Avater.Update()
 	end
 	print(BHallData.szNickName)
 	if BHallData.szWXNickName == "" then
-		print("1111")
+		--print("1111")
 		self.nickName.text = BHallData.szNickName
 	else
-		print("2222")
+		--print("2222")
 		self.nickName.text = BHallData.szWXNickName
 	end
 

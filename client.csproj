@@ -318,6 +318,7 @@
     <Compile Include="Assets\Scripts\HotupdateClient.cs" />
     <Compile Include="Assets\Scripts\Lua\Callback.cs" />
     <Compile Include="Assets\Scripts\LuaClient.cs" />
+    <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\Wrap\AssetBundleManager.cs" />
     <Compile Include="Assets\Scripts\Wrap\LoadPattern.cs" />
     <Compile Include="Assets\Scripts\Wrap\ResourcesManager.cs" />
@@ -337,6 +338,14 @@
     <Compile Include="Assets\Third\7zip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="Assets\Third\7zip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="Assets\Third\7zip\ICoder.cs" />
+    <Compile Include="Assets\Third\TSTableView\Examples\DynamicCellHeight\DynamicHeightCell.cs" />
+    <Compile Include="Assets\Third\TSTableView\Examples\DynamicCellHeight\DynamicHeightTableViewController.cs" />
+    <Compile Include="Assets\Third\TSTableView\Examples\Simple\ScrollingEventsHandler.cs" />
+    <Compile Include="Assets\Third\TSTableView\Examples\Simple\SimpleTableViewController.cs" />
+    <Compile Include="Assets\Third\TSTableView\Examples\Simple\VisibleCounterCell.cs" />
+    <Compile Include="Assets\Third\TSTableView\ITableViewDataSource.cs" />
+    <Compile Include="Assets\Third\TSTableView\TableView.cs" />
+    <Compile Include="Assets\Third\TSTableView\TableViewCell.cs" />
     <Compile Include="Assets\Third\XLua\Examples\01_Helloworld\Helloworld.cs" />
     <Compile Include="Assets\Third\XLua\Examples\02_U3DScripting\LuaBehaviour.cs" />
     <Compile Include="Assets\Third\XLua\Examples\04_LuaObjectOrented\InvokeLua.cs" />
@@ -410,6 +419,7 @@
   <ItemGroup>
     <None Include="Assets\Gen\link.xml" />
     <None Include="Assets\Lua\Client.lua.txt" />
+    <None Include="Assets\Lua\Component\TableViewController.lua.txt" />
     <None Include="Assets\Lua\Config\ConfigData.lua.txt" />
     <None Include="Assets\Lua\Config\config_exp_vip.lua.txt" />
     <None Include="Assets\Lua\Config\config_shop.lua.txt" />
@@ -421,11 +431,10 @@
     <None Include="Assets\Lua\Hall\Avater\Avater.lua.txt" />
     <None Include="Assets\Lua\Hall\Bag\Bag.lua.txt" />
     <None Include="Assets\Lua\Hall\Exchange\Exchange.lua.txt" />
-    <None Include="Assets\Lua\Hall\Firstbill\Firstbill.lua.txt" />
+    <None Include="Assets\Lua\Hall\FirstRecharge\FirstRecharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Hall.lua.txt" />
     <None Include="Assets\Lua\Hall\Monthcard\Monthcard.lua.txt" />
     <None Include="Assets\Lua\Hall\Rank\Rank.lua.txt" />
-    <None Include="Assets\Lua\Hall\Recharge\Recharge.lua.txt" />
     <None Include="Assets\Lua\Hall\Setting\Setting.lua.txt" />
     <None Include="Assets\Lua\Hall\Shop\Shop.lua.txt" />
     <None Include="Assets\Lua\Hall\Task\Task.lua.txt" />

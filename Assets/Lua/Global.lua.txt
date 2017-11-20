@@ -3,7 +3,7 @@ local publish = false
 local wrap = function(func, ... )
 	if true == publish then
 	else
-		CS.UnityEngine.Debug.Log("have not publish yet")
+		--CS.UnityEngine.Debug.Log("have not publish yet")
 		func(...)
 	end
 end
@@ -89,8 +89,23 @@ OnChangeNameCSCallLua = function()
 	require("Hall/Avater/Avater").Update()
 end
 
+OnFirstRechargeCSCallLua = function()
+	print("I am callback from csharp: HideFirstReCharge")
+	require("Hall/FirstRecharge/FirstRecharge").HideFirstReCharge()
+end
+
+OnMonthcardCSCallLua = function(cErrorCode,cCardType,cCardStatus)
+	print("I am callback from csharp: ChangeCardStatus"..cErrorCode)
+	print("I am callback from csharp: ChangeCardStatus"..cCardType)
+	print("I am callback from csharp: ChangeCardStatus"..cCardStatus)
+	
+	require("Hall/Monthcard/Monthcard").ChangeCardStatus(cErrorCode,cCardType,cCardStatus)
+end
+
 -- ---------------------------------- callback ----------------------------------------
 
 require 'Event'
 
 require 'Config/ConfigData'
+
+require 'Component/TableViewController'

@@ -16,6 +16,7 @@ self.hallGameObject  = nil
 self.coin = nil
 self.diamond  = nil
 self.avatarImage = nil
+self.nickName = nil
 
 
 function Hall.Show(gameObject)
@@ -34,9 +35,20 @@ function Hall.Show(gameObject)
 	print( "Login iVipExp:"..BHallData.iVipExp )
 	print( "Login cLevel:"..BHallData.cLevel )
 	print( "Login iLevelExp:"..BHallData.iLevelExp )
+	print( "Login cFllowWechat:"..BHallData.cFllowWechat )
+	print( "Login cFirstRecharge:"..BHallData.cFirstRecharge )
+	print( "Login cMonthCardCoin:"..BHallData.cMonthCardCoin )
+	print( "Login cMonthCardDiamond:"..BHallData.cMonthCardDiamond )
+	print( "Login cMonthCardSuper:"..BHallData.cMonthCardSuper )
 	self.coin.text = tostring(BHallData.llGameCoin)
 	self.diamond.text = tostring(BHallData.llDiamondNum)
-
+	if BHallData.szWXNickName == "" then
+		--print("111111111111111111111")
+		self.nickName.text = BHallData.szNickName
+	else
+		--print("222222222222222222222")
+		self.nickName.text = BHallData.szWXNickName
+	end
 
 	if BHallData.szWXIconURL == "" then
 		require("Login/Login").Close()
@@ -68,6 +80,15 @@ function Hall.Show(gameObject)
 		assert(coroutine.resume(co))
 	end
 
+
+	if BHallData.cFirstRecharge == 2 then
+		local shopBtn = UGameObject.Find("Canvas/Hall/background/shopPanel/shopBtn"):GetComponent( typeof(UButton) )
+		local firstRechargeBtn = UGameObject.Find("Canvas/Hall/background/shopPanel/giftBtn"):GetComponent( typeof(UButton) )
+		local shopBtnRect = shopBtn:GetComponent( typeof(CS.UnityEngine.RectTransform) ) 
+		local firstRechargeBtnRect = firstRechargeBtn:GetComponent( typeof(CS.UnityEngine.RectTransform) ) 
+		shopBtnRect.localPosition = firstRechargeBtnRect.localPosition
+		firstRechargeBtn.gameObject:SetActive(false)
+	end
 end
 
 function Hall.Init(transform)
@@ -82,6 +103,9 @@ function Hall.Init(transform)
 	self.diamond = self.hallGameObject.transform:Find("background/goldPanel/dia/diaText"):GetComponent(typeof(UText))
 	self.avatarImage = self.hallGameObject.transform:Find("background/infoPanel/personInfoBtn/mask/headImage"):GetComponent(typeof(UImage))
 	
+	self.nickName = self.hallGameObject.transform:Find("background/infoPanel/name/nameText"):GetComponent(typeof(UText))
+
+
 	self.transform = transform
 	local shopBtn = transform:Find("background/shopPanel/shopBtn"):GetComponent( typeof(UButton) )
 	shopBtn.onClick:AddListener(function()
@@ -104,6 +128,19 @@ function Hall.Init(transform)
 		require("Hall/Avater/Avater").Init()
 	end)
 
+	local firstReChargeBtn = transform:Find("background/shopPanel/giftBtn"):GetComponent( typeof(UButton) )
+	firstReChargeBtn.onClick:AddListener(function()
+		print("on FirstReCharge clicked")
+		
+		require("Hall/FirstReCharge/FirstReCharge")
+	end)
+
+	local monthCardBtn = transform:Find("background/shopPanel/monthCardBtn"):GetComponent( typeof(UButton) )
+	monthCardBtn.onClick:AddListener(function()
+		print("on monthCardBtn clicked")
+		
+		require("Hall/Monthcard/Monthcard")
+	end)
 
 	local step = coroutine.create(function()
 	  		print('coroutine start!')
@@ -132,6 +169,13 @@ function Hall.Update()
 		--print(BHallData.llGameCoin)
 		--print(BHallData.llDiamondNum)
 	end
+
+	if BHallData.szWXNickName == "" then
+		self.nickName.text = BHallData.szNickName
+	else
+		self.nickName.text = BHallData.szWXNickName
+	end
+
 	if self.index>self.max then
 		self.reloaded = true
 		return
