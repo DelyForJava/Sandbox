@@ -27,6 +27,7 @@ end
 -- ULog("What fuck is this too")
 ------------------------------------------------------------------------------------------------------
 
+
 UGameObject = CS.UnityEngine.GameObject
 
 USceneManager=CS.UnityEngine.SceneManagement.SceneManager
@@ -103,10 +104,3 @@ OnMonthcardCSCallLua = function(cErrorCode,cCardType,cCardStatus)
 end
 
 -- ---------------------------------- callback ----------------------------------------
--- require 'Json'
-
-require 'Event'
-
-require 'Config/ConfigData'
-
-require 'Component/TableViewController'

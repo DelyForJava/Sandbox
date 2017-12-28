@@ -1,9 +1,39 @@
 -- collectgarbage("collect")
 -- local count = collectgarbage("count")
 -- print("===============before:",count)
+
+
 local Json = require 'Json'
 
+require 'Event'
+
+require 'Config/ConfigData'
+
+
 require 'Global'
+
+
+
+
+local base = _G
+
+Vars = {}
+setmetatable(Vars, {
+    __newindex = function(_, name, value)
+        rawset(base, name, value)
+    end,
+    __index = function(_, name)
+        return rawget(base, name)
+    end
+})
+
+setmetatable(base, {
+    __newindex = function(_, name, value)
+        local msg = "Cannot define globle various,use Vars instead please"
+        error(string.format(msg, name), 0)
+    end
+})
+
 
 local canvas
 local hall
@@ -21,30 +51,50 @@ local index = 0
 local percent = 0
 local max = 1
 
+Vars.Myt1 = 2
+
+Myt2 = nil
+
+
 function Awake()
-	if true then
-		return
-	end
+
 
 
 	-- print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
 	-- print("--CSharp Data:"..BUrl.."--")
 	-- print("--CSharp Data:"..BChannelId.."--")
 	-- print("--CSharp Data:"..BCdn.."--")
-	-- local tb = {}
-	-- tb.name = "gaga"
-	-- tb.level = 1
-	-- tb.what ="0.0"
-	-- tb.fuck = 2
-	-- tb.is = true
-	-- tb.this = 3.3
+	local tb = {}
+	tb.name = "gaga"
+	tb.level = 1
+	tb.what ="0.0"
+	tb.fuck = 2
+	tb.is = true
+	tb.this = 3.3
+	tb.cards = {
+		cname = "kaka",
+		clevel = 10,
+		objects = {
+			oname='wawa',
+			olevel = 100
+		},
+	}
+	local tbStr = Json.encode(tb)
+	print("=============== Client Awake :"..tbStr)
 
-	-- local tbStr = Json.encode(tb)
-	-- print("=============== Client Awake :"..tbStr)
-
-	-- local tb2 = Json.decode(tbStr)
+	local tb2 = Json.decode(tbStr)
 	-- local tb2 = Json.decode("Config/netMessage.json")
-	-- print("=============== Client Awake2 :"..tb2.name..tb2.level..tb2.what..tb2.fuck..tb2.this)
+	print(tb2)
+
+	for k,v in pairs(_G) do
+		print(k,v)
+		if k==Myt then
+			print("detected!!!!!!!!!!!!!!!!!!!")
+		end
+	end
+	if true then
+		return
+	end
 
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")
