@@ -97,7 +97,7 @@ namespace Bean.Hall
         {
             if (luaUpdate != null)
             {
-                luaUpdate();
+                //luaUpdate();
             }
 
             if (Time.time - LuaBehaviour.lastGCTime > GCInterval)

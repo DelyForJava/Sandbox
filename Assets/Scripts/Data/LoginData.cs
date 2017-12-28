@@ -446,10 +446,10 @@ namespace Bean.Hall
             UnityEngine.Debug.Log("第三方IP解析结果=====！！！！！！！！！！！！！！=======：" + decryptStr);
 
             var client = GameClient.Instance;
-            client.MahjongGamePlayer.ConnectGameServer(ipRes, 36667, delegate ()
-            {
-                client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
-            });
+            //client.MahjongGamePlayer.ConnectGameServer(ipRes, 36667, delegate ()
+            //{
+            //    client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
+            //});
 
         }
 
@@ -468,6 +468,7 @@ namespace Bean.Hall
             {
                 client.MahjongGamePlayer.OriginMsgLoginReqDef(accountId, loginToken, machineSerial, source);
             });
+
         }
 
         /// <summary>  

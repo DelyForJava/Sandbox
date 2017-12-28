@@ -87,7 +87,7 @@ public partial class GameClient : SingletonBehaviour<GameClient>, IMonoBehaviour
 			Debug.Log ("disconnected");
 			var client = GameClient.Instance;
 			client.MahjongGamePlayer.ConnectGameServer ("login.dv.7pmigame.com", Port, delegate() {
-				client.MahjongGamePlayer.StartAuth(GameClient.Instance.UserId);
+				//client.MahjongGamePlayer.StartAuth(GameClient.Instance.UserId);
 			});
 		}
 

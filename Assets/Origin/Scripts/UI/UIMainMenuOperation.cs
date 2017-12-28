@@ -20,13 +20,13 @@ public partial class UIOperation : SingletonBehaviour<UIOperation> {
         }
     }
 
-	public void OnClickMatchXL(UIController ctrl)
-	{
-		Debug.Log ("click xl");
-		GameClient.Instance.MahjongGamePlayer.Match ();
-        //StartCoroutine (_debugInfo ("正在匹配中......"));
-        UIDebugViewController.Instance.OpenLoadingDebug("正在匹配中......");
-	}
+	//public void OnClickMatchXL(UIController ctrl)
+	//{
+	//	Debug.Log ("click xl");
+	//	GameClient.Instance.MahjongGamePlayer.Match ();
+ //       //StartCoroutine (_debugInfo ("正在匹配中......"));
+ //       UIDebugViewController.Instance.OpenLoadingDebug("正在匹配中......");
+	//}
 
 	public void OnClickMatchXZ(UIController ctrl)
 	{

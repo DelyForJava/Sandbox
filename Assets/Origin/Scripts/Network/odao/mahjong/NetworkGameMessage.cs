@@ -17,6 +17,7 @@ namespace odao.scmahjong
 	{	
 		public void InitGameMessage(OdaoClient client)
 		{
+		    return;
 			_gsProxy = client;
 
 			//客户端发送换牌消息
@@ -49,31 +50,31 @@ namespace odao.scmahjong
 
 			//2：Server 服务器通知客户端消息（将某玩家的动作告诉所有桌上的玩家）
 			//出牌通知
-			_gsProxy.on(GameMessage.s2c_SendCardNoticeDef, delegate (Message obj)
-				{
-                    Debug.Log("SEND_CARDS_NOTICE_MSG");
-                    OdaoMessage msg = (OdaoMessage)obj;
-#if USE_MSGPACK2
+//			_gsProxy.on(GameMessage.s2c_SendCardNoticeDef, delegate (Message obj)
+//				{
+//                    Debug.Log("SEND_CARDS_NOTICE_MSG");
+//                    OdaoMessage msg = (OdaoMessage)obj;
+//#if USE_MSGPACK2
 
-                    var serializer = MsgPack.Serialization.MessagePackSerializer.Get<GameMessage.SendCardNoticeDef>();
-                    var data = serializer.UnpackSingleObject(msg.data);
-#else 
-                    GameMessage.SendCardNoticeDef data = XConvert.ConvertToObject<GameMessage.SendCardNoticeDef>(msg.data);
-#endif
+//                    var serializer = MsgPack.Serialization.MessagePackSerializer.Get<GameMessage.SendCardNoticeDef>();
+//                    var data = serializer.UnpackSingleObject(msg.data);
+//#else 
+//                    GameMessage.SendCardNoticeDef data = XConvert.ConvertToObject<GameMessage.SendCardNoticeDef>(msg.data);
+//#endif
 
 
 
-                    TileDef def = TileDef.Create(data.cCard);
-					Debug.Log(string.Format("椅子号{0},出牌{1}", data.cTableNumExtra, def.ToString()));
+//                    TileDef def = TileDef.Create(data.cCard);
+//					Debug.Log(string.Format("椅子号{0},出牌{1}", data.cTableNumExtra, def.ToString()));
 
-					#if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-					Loom.QueueOnMainThread(delegate() {
-						GameClient.Instance.MG.AutoPlay(data.cTableNumExtra, def, data.flag);
-					},delegate() {
-						return GameClient.Instance.MG!=null;
-					});
-					#endif
-				});
+//					#if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
+//					Loom.QueueOnMainThread(delegate() {
+//						GameClient.Instance.MG.AutoPlay(data.cTableNumExtra, def, data.flag);
+//					},delegate() {
+//						return GameClient.Instance.MG!=null;
+//					});
+//					#endif
+//				});
 
 			//吃杠碰胡请求
 			_gsProxy.on(GameMessage.s2c_SpecialCardDef, delegate (Message obj)
@@ -511,41 +512,41 @@ namespace odao.scmahjong
 				});
 
 			//match 返回，换桌也会返回
-			_gsProxy.on (GameMessage.s2c_MatchGameRes, delegate(Message obj) {
-				Debug.Log("MatchGameRes");
-				OdaoMessage msg = (OdaoMessage)obj;
-				GameMessage.MatchGameRes data= XConvert.ConvertToObject<GameMessage.MatchGameRes>(msg.data);
+			//_gsProxy.on (GameMessage.s2c_MatchGameRes, delegate(Message obj) {
+			//	Debug.Log("MatchGameRes");
+			//	OdaoMessage msg = (OdaoMessage)obj;
+			//	GameMessage.MatchGameRes data= XConvert.ConvertToObject<GameMessage.MatchGameRes>(msg.data);
 
-				#if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-				if(data.errorCode<0)
-				{
-					Debug.Log("ErrorCode " + data.errorCode);
-				}
+			//	#if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
+			//	if(data.errorCode<0)
+			//	{
+			//		Debug.Log("ErrorCode " + data.errorCode);
+			//	}
 
-				Loom.QueueOnMainThread(()=> {
+			//	Loom.QueueOnMainThread(()=> {
 
-					UIOperation.Instance.Matching = false;
+			//		UIOperation.Instance.Matching = false;
 
-					for(int i=0; i<data.playerIndex.Length; ++i)
-					{
-						if(data.playerIndex[i] == Info.UserId)
-						{
-							if(!GameClient.Instance.IsInMahjongGame())
-							{
-								Index = i;
-								UIOperation.Instance.SelfIndex = Index;
-								GameLoading.SwitchScene(3);
-							}
-							else
-							{
-								GameClient.Instance.MG.ArrangePlayer(i,4);
-							}
-							break;
-						}
-					}
-				});
-				#endif
-			});
+			//		for(int i=0; i<data.playerIndex.Length; ++i)
+			//		{
+			//			if(data.playerIndex[i] == Info.UserId)
+			//			{
+			//				if(!GameClient.Instance.IsInMahjongGame())
+			//				{
+			//					Index = i;
+			//					UIOperation.Instance.SelfIndex = Index;
+			//					GameLoading.SwitchScene(3);
+			//				}
+			//				else
+			//				{
+			//					GameClient.Instance.MG.ArrangePlayer(i,4);
+			//				}
+			//				break;
+			//			}
+			//		}
+			//	});
+			//	#endif
+			//});
 
 			_gsProxy.on (GameMessage.s2c_GameResultServerDef, delegate(Message obj) {
 				#if UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN

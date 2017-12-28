@@ -1,0 +1,525 @@
+{
+    "C2S":{
+        "0x9000":{
+        "msg_len" : 292,
+        "game_data":[
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szUserName","value_type":"OP_CS","value_byte":32,"value_offset":4},
+        {"value_name":"szPassword","value_type":"OP_CS","value_byte":33,"value_offset":32},
+        {"value_name":"iAppID","value_type":"OP_INT","value_byte":4,"value_offset":36},
+        {"value_name":"szGUID","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"szMachineSerial","value_type":"OP_CS","value_byte":64,"value_offset":64},
+        {"value_name":"iGpsX","value_type":"OP_INT","value_byte":4,"value_offset":64},
+        {"value_name":"iGpsY","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szAppChannelInfo","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"iPlatform","value_type":"OP_INT","value_byte":4,"value_offset":64},
+        {"value_name":"iShortChannelId","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                     ]
+        },
+
+        "0xE1":{
+        "msg_len" : 80,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szOldPassWd","value_type":"OP_CS","value_byte":33,"value_offset":4},
+        {"value_name":"szNewPassWd","value_type":"OP_CS","value_byte":33,"value_offset":33}
+                     ]
+        },
+
+        "0xA1":{
+        "msg_len" : 88,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iLobbySiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+		{"value_name":"szChannelID","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"iPlatform","value_type":"OP_INT","value_byte":4,"value_offset":64}
+                     ]
+        },
+        "0xA4":{
+        "msg_len" : 16,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"usGameID","value_type":"OP_USHORT","value_byte":2,"value_offset":4},
+        {"value_name":"usLevel","value_type":"OP_USHORT","value_byte":2,"value_offset":2}
+                     ]
+        },
+       "0xC5":{
+        "msg_len" : 12,
+        "game_data" :[
+        {"value_name":"id","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                     ]
+        },
+        "0xD3":{
+        "msg_len" : 48,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szBankPass","value_type":"OP_CS","value_byte":33,"value_offset":4}
+                     ]
+        },
+        "0xD5":{
+        "msg_len" : 20,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"llGetNum","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xD7":{
+        "msg_len" : 20,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"llSavingNum","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xD9":{
+        "msg_len" : 80,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szOldPassWd","value_type":"OP_CS","value_byte":33,"value_offset":4},
+        {"value_name":"szNewPassWd","value_type":"OP_CS","value_byte":33,"value_offset":33}
+                     ]
+        },
+        "0xC25":{
+        "msg_len" : 12,
+        "game_data" :[
+        {"value_name":"iGameID","value_type":"OP_INT","value_byte":4,"value_offset":0} 
+                     ]
+        },
+        "0xB01A":{
+        "msg_len" : 20,
+        "game_data":[
+        {"value_name":"iEmailID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC28":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        },
+        "0xC2A":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        },
+        "0xC2D":{
+        "msg_len" : 16,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iIndex","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC30":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        }
+    },
+    
+    "S2C":
+    {
+        "0x9000":{
+        "game_data":[
+        {"value_name":"cErrorCode","value_type":"OP_CHAR","value_byte":1,"value_offset":0},
+        {"value_name":"cGender","value_type":"OP_CHAR","value_byte":1,"value_offset":1},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":3},
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iGameID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iServerID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iCoin2Award","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iYBNum","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iAwardScore","value_type":"OP_INT","value_byte":4,"value_offset": 4},
+        {"value_name":"iAccountType","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iIfBindUKey","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"llGameCoin","value_type":"OP_LLONG","value_byte":8,"value_offset":4},
+        {"value_name":"llBankCoin","value_type":"OP_LLONG","value_byte":8,"value_offset":8},
+        {"value_name":"llRedPacket","value_type":"OP_LLONG","value_byte":8,"value_offset":8},
+        {"value_name":"iExpValue","value_type":"OP_INT","value_byte":4,"value_offset":8},
+        {"value_name":"iSysPhoto","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szCustomPhoto","value_type":"OP_CS","value_byte":25,"value_offset":4},
+        {"value_name":"szCustomSign","value_type":"OP_CS","value_byte":255,"value_offset":25},
+        {"value_name":"szUserName","value_type":"OP_CS","value_byte":32,"value_offset":255},
+        {"value_name":"szNickName","value_type":"OP_CS","value_byte":32,"value_offset":32},
+        {"value_name":"szServerIP","value_type":"OP_CS","value_byte":16,"value_offset":32},
+        {"value_name":"lServerPort","value_type":"OP_ULONG","value_byte":4,"value_offset":16},
+        {"value_name":"iChangeNickNameTimes","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szPasswdToken","value_type":"OP_CS","value_byte":33,"value_offset":4},
+        {"value_name":"iVIPExp","value_type":"OP_INT","value_byte":4,"value_offset":36},
+        {"value_name":"iIsDayFirstLogin","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iVipExpToday","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szVipGiftInfo","value_type":"OP_CS","value_byte":250,"value_offset":4},
+        {"value_name":"iRealNameAuthen","value_type":"OP_INT","value_byte":4,"value_offset":252},
+        {"value_name":"iFirstRecharge","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iShowLYGame","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                     ]
+        },
+
+        "0x9001":{
+         "game_data":[
+          {"value_name":"usListCount","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+          {"value_name":"ServerInfo","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+         ]
+        },
+
+         "0x9003":{
+         "game_data":[
+         ]
+        },
+
+        "0xE2":{
+        "game_data":[
+        {"value_name":"ucResultType","value_type":"OP_BYTE","value_byte":1,"value_offset":0}
+                     ]
+        },
+
+        "0xA3":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iUserPropType","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"cErrorCode","value_type":"OP_CHAR","value_byte":1,"value_offset":4},
+        {"value_name":"cChangeType","value_type":"OP_CHAR","value_byte":1,"value_offset":4},
+        {"value_name":"ulPropCounts","value_type":"OP_ULONG","value_byte":4,"value_offset":4}
+                     ]
+        },
+        "0xA5":{
+        "game_data" :[
+        {"value_name":"cError","value_type":"OP_CHAR","value_byte":1,"value_offset":0},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"usGameID","value_type":"OP_USHORT","value_byte":2,"value_offset":4},
+        {"value_name":"usServerID","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+        {"value_name":"usLevel","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+        {"value_name":"szServerIP","value_type":"OP_CS","value_byte":32,"value_offset":2},
+        {"value_name":"ulServerPort","value_type":"OP_ULONG","value_byte":4,"value_offset":34},
+        {"value_name":"szDsnInfo","value_type":"OP_CS","value_byte":32,"value_offset":4}
+                     ]
+        },
+        "0xC3":{
+        "game_data" :[
+        {"value_name":"loginDays","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"isCanGetReward","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"isCanGetExtraReward","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"extraRewardDays","value_type":"OP_CC","value_byte":5,"value_offset":1}
+                     ]
+        },
+        "0xC2":{
+        "game_data" :[
+        {"value_name":"cError","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"dailyloginRewardNum","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"dailyloginRewardExtraNum","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"dailyloginRewardAccountsNum","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"dailyloginReward","value_type":"OP_STRUCT_A_FIX","value_byte":8,"value_offset":1,"arrary_num":5,"struct_type":"DailyloginReward"},
+        {"value_name":"dailyloginExtraReward","value_type":"OP_STRUCT_A_FIX","value_byte":8,"value_offset":0,"arrary_num":5,"struct_type":"DailyloginReward"},
+        {"value_name":"dailyloginRewardAccounts","value_type":"OP_STRUCT_A_FIX","value_byte":8,"value_offset":0,"arrary_num":5,"struct_type":"DailyloginReward"},
+        {"value_name":"dailyVipReward","value_type":"OP_STRUCT_A_FIX","value_byte":8,"value_offset":0,"arrary_num":1,"struct_type":"DailyloginReward"}
+                     ]
+        },
+        "0xC4":{
+        "game_data" :[
+        {"value_name":"id","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iState","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iCurValue","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                     ]
+        },
+
+        "0xC6":{
+        "game_data" :[
+        {"value_name":"cError","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"id","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"ucCount","value_type":"OP_BYTE","value_byte":1,"value_offset":4},
+        {"value_name":"RewardItem","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xC7":{
+        "game_data" :[
+        {"value_name":"usCounts","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+        {"value_name":"ShowWarefare","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xC8":{
+        "game_data" :[
+        {"value_name":"iProListNum","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"BackProInfo","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xD4":{
+        "game_data" :[
+        {"value_name":"ucResultType","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"llGameCoin","value_type":"OP_LLONG","value_byte":8,"value_offset":4},
+        {"value_name":"llBankCoin","value_type":"OP_LLONG","value_byte":8,"value_offset":8}
+                     ]
+        },
+        "0xD6":{
+        "game_data" :[
+        {"value_name":"ucResultType","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"llGetCoinNum","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xD8":{
+        "game_data" :[
+        {"value_name":"ucResultType","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"llSelfCoin","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xDA":{
+        "game_data" :[
+        {"value_name":"ucResultType","value_type":"OP_BYTE","value_byte":1,"value_offset":0}
+                     ]
+        },
+        "0xC9":{
+        "game_data" :[
+        {"value_name":"iNewsType","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                     ]
+        },
+        "0xC11":{
+        "game_data" :[
+        {"value_name":"iBulletinCount","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"GameHongBaoBulletin","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xC14":{
+        "game_data" :[
+        {"value_name":"iLuckDrawCounts","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iPoolDisplayTypeNum","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"LuckDrawPrizeInfo","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xC16":{
+        "game_data":[
+        {"value_name":"iError","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"prize","value_type":"OP_STRUCT_A_FIX","value_byte":8,"value_offset":4,"arrary_num":1,"struct_type":"LuckDrawPrizeInfo"}
+                     ]
+        },
+		"0xC17":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iDataSize","value_type":"OP_INT","value_byte":4,"value_offset":4},
+		{"value_name":"szData","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+		"0xB3":{
+		"game_data":[
+		{"value_name":"configNum","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+        {"value_name":"isFinish","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+		{"value_name":"wxShareConfig","value_type":"OP_STRUCT_A_FIX","value_byte":528,"value_offset":2,"arrary_num":6,"struct_type":"WxShareConfig"}
+			         ]
+		},
+
+        "0xD085":{
+        "game_data":[
+        {"value_name":"iCount","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"SglSysSpeakerCltDef","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xD086":{
+        "game_data":[
+        {"value_name":"iCount","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"SglOpSpeakreCltDef","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xC26":{
+        "game_data" :[
+        {"value_name":"iCount","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"GameHongBaoBulletin","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                     ]
+        },
+        "0xB01B":{
+        "game_data" :[
+        {"value_name":"iErrorCode","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iGameCoin","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iFreeBullet","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iRedpacket","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iStrawberry","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iExtra1","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iExtra2","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                     ]
+        },
+        "0xC29":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iMissionCount","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"SingleMissionState","value_type":"OP_STRUCT","value_byte":0,"value_offset":4}
+                    ]
+        },
+        "0xC2B":{
+        "game_data":[
+        {"value_name":"iErrCode","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iPrizeNum","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC31":{
+        "game_data":[
+        {"value_name":"iErrCode","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC32":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        },
+        "0xC34":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iCommonCard","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iSpecialCard","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]  
+        },
+        "0xC36":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"ulJingFen","value_type":"OP_ULONG","value_byte":4,"value_offset":4}
+                    ]  
+        }
+   },
+
+    "ERRORCODE":
+    {
+      "0xA3":{
+          "1":"0xA3_1"
+      },
+      "0xC2":{
+          "1":"0xC2_1"
+      }
+    },
+
+    "ERRORMSG":
+    {
+        "0xA3_1":{
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iUserPropType","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"cErrorCode","value_type":"OP_CHAR","value_byte":1,"value_offset":4},
+        {"value_name":"szProperty","value_type":"OP_CS","value_byte":255,"value_offset":4}
+                    ]
+
+        },
+        "0xC2_1":{
+        "game_data":[
+        {"value_name":"cError","value_type":"OP_BYTE","value_byte":1,"value_offset":0}
+                    ]
+
+        }
+
+    },
+
+    "STRUCT":{
+       "ServerInfo":{
+        "game_data":[
+        {"value_name":"usGameID","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+        {"value_name":"usServerID","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+        {"value_name":"szServerName","value_type":"OP_CS","value_byte":32,"value_offset":2},
+        {"value_name":"szTelecomIP","value_type":"OP_CS","value_byte":16,"value_offset":32},
+        {"value_name":"ulLimitPoint","value_type":"OP_ULONG","value_byte":4,"value_offset":16},
+        {"value_name":"ulBaseTime","value_type":"OP_ULONG","value_byte":4,"value_offset":4},
+        {"value_name":"ulBasePoint","value_type":"OP_ULONG","value_byte":4,"value_offset":4},
+        {"value_name":"ulMaxPoint","value_type":"OP_ULONG","value_byte":4,"value_offset":4},
+        {"value_name":"ulMinPoint","value_type":"OP_ULONG","value_byte":4,"value_offset":4},
+        {"value_name":"usOnlineCount","value_type":"OP_USHORT","value_byte":2,"value_offset":4},
+        {"value_name":"usServerPort","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+        {"value_name":"ucServerType","value_type":"OP_CHAR","value_byte":1,"value_offset":2},
+        {"value_name":"ucOpenFlag","value_type":"OP_CHAR","value_byte":1,"value_offset":1},
+        {"value_name":"usLevel","value_type":"OP_USHORT","value_byte":2,"value_offset":1},
+        {"value_name":"iMaxUserNum","value_type":"OP_INT","value_byte":4,"value_offset":2},
+        {"value_name":"szDsnInfo","value_type":"OP_CS","value_byte":32,"value_offset":4}
+                    ]
+      },
+        "DailyloginReward":{
+        "game_data":[
+        {"value_name":"rewardID","value_type":"OP_BYTE","value_byte":1,"value_offset":0},
+        {"value_name":"rewardType","value_type":"OP_BYTE","value_byte":1,"value_offset":1},
+        {"value_name":"rewardCount","value_type":"OP_INT","value_byte":4,"value_offset":3}
+                    ]
+      },
+       "ShowWarefare":{
+        "game_data":[
+        {"value_name":"id","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+       },
+        "RewardItem":{
+        "game_data":[
+        {"value_name":"usRewardType","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+        {"value_name":"iRewardCount","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+      },
+        "BackProInfo":{
+        "game_data":[
+        {"value_name":"iProType","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iProNum","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"ulActivedTime","value_type":"OP_ULONG","value_byte":4,"value_offset":4},
+        {"value_name":"ulEffectiveTime","value_type":"OP_ULONG","value_byte":4,"value_offset":4}
+                    ]
+      },
+         "GameHongBaoBulletin":{
+         "game_data":[
+         {"value_name":"szNickName","value_type":"OP_CS","value_byte":32,"value_offset":0},
+         {"value_name":"iGameID","value_type":"OP_INT","value_byte":4,"value_offset":32},
+         {"value_name":"iHongBao","value_type":"OP_INT","value_byte":4,"value_offset":4},
+         {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+         {"value_name":"iHeaderID","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+      },
+        "LuckDrawPrizeInfo":{
+        "game_data":[
+        {"value_name":"cBigType","value_type":"OP_CHAR","value_byte":1,"value_offset":0},
+        {"value_name":"cDetailType","value_type":"OP_CHAR","value_byte":1,"value_offset":1},
+        {"value_name":"iCount","value_type":"OP_LLONG","value_byte":8,"value_offset":3}
+                    ]
+      },
+        "SglSysSpeakerCltDef":{
+        "game_data":[
+        {"value_name":"iRecordID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iSpeakerType","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szSpeakerContent","value_type":"OP_CS","value_byte":100,"value_offset":4},
+        {"value_name":"iSendInterval","value_type":"OP_INT","value_byte":4,"value_offset":100},
+        {"value_name":"iSpearkerPriority","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szLimitSites","value_type":"OP_CS","value_byte":50,"value_offset":4}
+                    ]
+      },
+        "SglOpSpeakreCltDef":{
+        "game_data":[
+        {"value_name":"iGameID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szNickName","value_type":"OP_CS","value_byte":32,"value_offset":4},
+        {"value_name":"szGameName","value_type":"OP_CS","value_byte":32,"value_offset":32},
+        {"value_name":"iOperationType","value_type":"OP_INT","value_byte":4,"value_offset":32},
+        {"value_name":"iOperationNum","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iSpearkerPriority","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szLimitSites","value_type":"OP_CS","value_byte":50,"value_offset":4}
+                    ]
+      },
+        "SingleMissionState":{
+        "game_data":[
+        {"value_name":"iProgress","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iMissionState","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+
+	  "szData":{
+      "game_data":[
+        {"value_name":"cChar","value_type":"OP_CHAR","value_byte":1,"value_offset":0}
+        ]
+      },
+	  "WxShareConfig":{
+		"game_data":[
+			{"value_name":"purposeType","value_type":"OP_USHORT","value_byte":2,"value_offset":0},
+			{"value_name":"iosShareScene","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"iosShareType","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"androidPlatformID","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"rewardType","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"isOpen","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"rewardTimes","value_type":"OP_USHORT","value_byte":2,"value_offset":2},
+			{"value_name":"rewardNum","value_type":"OP_INT","value_byte":4,"value_offset":4},
+			{"value_name":"channelID","value_type":"OP_CS","value_byte":64,"value_offset":4},
+			{"value_name":"wxShareUrl","value_type":"OP_CS","value_byte":128,"value_offset":64},
+			{"value_name":"wxShareTitle","value_type":"OP_CS","value_byte":64,"value_offset":128},
+			{"value_name":"wxShareImgUrl","value_type":"OP_CS","value_byte":128,"value_offset":64},
+			{"value_name":"wxShareText","value_type":"OP_CS","value_byte":128,"value_offset":128}
+	  
+			]
+		}
+    } 
+}

@@ -567,7 +567,7 @@ namespace XLua.CSObjectWrap
         {
 		    try {
                 
-			    Bean.Hall.HallData.iLevelExp = (sbyte)LuaAPI.xlua_tointeger(L, 1);
+			    Bean.Hall.HallData.iLevelExp = LuaAPI.xlua_tointeger(L, 1);
             
             } catch(System.Exception __gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);

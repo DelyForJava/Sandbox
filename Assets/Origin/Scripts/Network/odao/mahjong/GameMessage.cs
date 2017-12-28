@@ -221,7 +221,7 @@ namespace CPP
         }
 
         //自己的换牌结果
-        public const ushort s2c_Notice_HuanPaiDef = 0x45;  //服务器给玩家发送换的牌
+        //public const ushort s2c_Notice_HuanPaiDef = 0x45;  //服务器给玩家发送换的牌
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public class HuanPaiDef
         {

@@ -318,19 +318,19 @@ public class MahjongGame : GameMode
 	}
 
 	float _beatTime = 0f;
-	public override void Tick()
-	{
-		_beatTime += Time.deltaTime;
-		if (_beatTime > 3f) {
-			if (_self.Proxy != null && _self.Proxy is odao.scmahjong.NetworkPlayer) {
-				((odao.scmahjong.NetworkPlayer)_self.Proxy).HeartBeat ();
-			}
-			_beatTime = 0f;
-		}
+	//public override void Tick()
+	//{
+	//	_beatTime += Time.deltaTime;
+	//	if (_beatTime > 3f) {
+	//		if (_self.Proxy != null && _self.Proxy is odao.scmahjong.NetworkPlayer) {
+	//			((odao.scmahjong.NetworkPlayer)_self.Proxy).HeartBeat ();
+	//		}
+	//		_beatTime = 0f;
+	//	}
 
-		if (_shuffle_initpocket_state <= 0)
-			return;
-	}
+	//	if (_shuffle_initpocket_state <= 0)
+	//		return;
+	//}
 
 	#region GamePlay
 	public void PlaceExchangeMahjongTile(int index, int num)

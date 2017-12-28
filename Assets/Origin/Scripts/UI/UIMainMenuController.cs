@@ -15,7 +15,7 @@ public class UIMainMenuController : SingletonBehaviour<UIMainMenuController>, UI
 		_view = GameObject.Find ("Canvas").GetComponent<UIMainMenu> ();
 
 		_view._btnMatchXL.onClick.RemoveAllListeners ();
-		_view._btnMatchXL.onClick.AddListener(delegate () { UIOperation.Instance.OnClickMatchXL(this); });
+		//_view._btnMatchXL.onClick.AddListener(delegate () { UIOperation.Instance.OnClickMatchXL(this); });
 
 		return true;
 	}

@@ -103,6 +103,7 @@ OnMonthcardCSCallLua = function(cErrorCode,cCardType,cCardStatus)
 end
 
 -- ---------------------------------- callback ----------------------------------------
+-- require 'Json'
 
 require 'Event'
 

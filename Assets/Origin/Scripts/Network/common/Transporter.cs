@@ -149,7 +149,7 @@ namespace NetworkInterface
 			}
             finally
             {
-                if(length <= 0)
+                if(length < 0)
                 {
 					Console.WriteLine("FIN OR RST " + this.onDisconnect);
 

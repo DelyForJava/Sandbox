@@ -14,10 +14,12 @@ namespace Bean.Hall
 
         void Awake()
         {
+            var client = GameClient.Instance;
+
             DontDestroyOnLoad(gameObject);
             canvas_ = GameObject.Find("Canvas").transform;
-            canvas_.Find("Login").gameObject.SetActive(true);
-            canvas_.Find("Loading").gameObject.SetActive(true);
+            canvas_.Find("Login").gameObject.SetActive(false);
+            canvas_.Find("Loading").gameObject.SetActive(false);
             //DontDestroyOnLoad(canvas_);
             //DontDestroyOnLoad(GameObject.Find("EventSystem"));
 

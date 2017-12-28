@@ -47,7 +47,7 @@ namespace odao.scmahjong
             _gsProxy.initClient(host, port, () => {
                 _gsProxy.connect();
 				InitBaseMessage(_gsProxy);
-                InitGameMessage(_gsProxy);
+                //InitGameMessage(_gsProxy);
                 callback();
             });
         }

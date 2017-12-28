@@ -48,7 +48,8 @@ function Login.Init(transform)
 	end)
 
 	-- self.resReload = StartReload(self)
-	self.resReload = UGameObject.Find("Canvas/"..self.transform.gameObject.name):AddComponent( typeof(BResReload) )
+	local cavas = UGameObject.Find("Canvas")
+	self.resReload = cavas.transform.Find(self.transform.gameObject.name).gameObject:AddComponent( typeof(BResReload) )
 	local images = self.resReload.images
 	self.max = images.Length-1
 

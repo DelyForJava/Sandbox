@@ -1,0 +1,159 @@
+﻿local model = {
+    "0x9000" = {
+        "msg_len" = 292,
+        "game_data" = {
+            {"value_name" = "iSiteID","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 0},
+            {"value_name" = "szUserName","value_type" = "OP_CS","value_byte" = 32,"value_offset" = 4},
+            {"value_name" = "szPassword","value_type" = "OP_CS","value_byte" = 33,"value_offset" = 32},
+            {"value_name" = "iAppID","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 36},
+            {"value_name" = "szGUID","value_type" = "OP_CS","value_byte" = 64,"value_offset" = 4},
+            {"value_name" = "szMachineSerial","value_type" = "OP_CS","value_byte" = 64,"value_offset" = 64},
+            {"value_name" = "iGpsX","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 64},
+            {"value_name" = "iGpsY","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 4},
+            {"value_name" = "szAppChannelInfo","value_type" = "OP_CS","value_byte" = 64,"value_offset" = 4},
+            {"value_name" = "iPlatform","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 64},
+            {"value_name" = "iShortChannelId","value_type" = "OP_INT","value_byte" = 4,"value_offset" = 4}
+        }
+
+
+
+    },
+    "0xE1" = {},
+    "0xA1" = {},
+    "0xC5" = {},
+    "0xD3" = {},
+    "0xD5" = {},
+    "0xD7" = {},
+    "0xD9" = {},
+    "0xC25" = {},
+    "0xB01A" = {},
+    "0xC28" = {},
+    "0xC2A" = {},
+    "0xC2D" = {},
+    "0xC30" = {},
+
+
+
+
+}
+
+
+
+        "0x9000":{
+        "msg_len" : 292,
+        "game_data":[
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szUserName","value_type":"OP_CS","value_byte":32,"value_offset":4},
+        {"value_name":"szPassword","value_type":"OP_CS","value_byte":33,"value_offset":32},
+        {"value_name":"iAppID","value_type":"OP_INT","value_byte":4,"value_offset":36},
+        {"value_name":"szGUID","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"szMachineSerial","value_type":"OP_CS","value_byte":64,"value_offset":64},
+        {"value_name":"iGpsX","value_type":"OP_INT","value_byte":4,"value_offset":64},
+        {"value_name":"iGpsY","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"szAppChannelInfo","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"iPlatform","value_type":"OP_INT","value_byte":4,"value_offset":64},
+        {"value_name":"iShortChannelId","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                     ]
+        },
+
+        "0xE1":{
+        "msg_len" : 80,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szOldPassWd","value_type":"OP_CS","value_byte":33,"value_offset":4},
+        {"value_name":"szNewPassWd","value_type":"OP_CS","value_byte":33,"value_offset":33}
+                     ]
+        },
+
+        "0xA1":{
+        "msg_len" : 88,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iLobbySiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+		{"value_name":"szChannelID","value_type":"OP_CS","value_byte":64,"value_offset":4},
+        {"value_name":"iPlatform","value_type":"OP_INT","value_byte":4,"value_offset":64}
+                     ]
+        },
+        "0xA4":{
+        "msg_len" : 16,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"usGameID","value_type":"OP_USHORT","value_byte":2,"value_offset":4},
+        {"value_name":"usLevel","value_type":"OP_USHORT","value_byte":2,"value_offset":2}
+                     ]
+        },
+       "0xC5":{
+        "msg_len" : 12,
+        "game_data" :[
+        {"value_name":"id","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                     ]
+        },
+        "0xD3":{
+        "msg_len" : 48,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szBankPass","value_type":"OP_CS","value_byte":33,"value_offset":4}
+                     ]
+        },
+        "0xD5":{
+        "msg_len" : 20,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"llGetNum","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xD7":{
+        "msg_len" : 20,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"llSavingNum","value_type":"OP_LLONG","value_byte":8,"value_offset":4}
+                     ]
+        },
+        "0xD9":{
+        "msg_len" : 80,
+        "game_data" :[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"szOldPassWd","value_type":"OP_CS","value_byte":33,"value_offset":4},
+        {"value_name":"szNewPassWd","value_type":"OP_CS","value_byte":33,"value_offset":33}
+                     ]
+        },
+        "0xC25":{
+        "msg_len" : 12,
+        "game_data" :[
+        {"value_name":"iGameID","value_type":"OP_INT","value_byte":4,"value_offset":0} 
+                     ]
+        },
+        "0xB01A":{
+        "msg_len" : 20,
+        "game_data":[
+        {"value_name":"iEmailID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iSiteID","value_type":"OP_INT","value_byte":4,"value_offset":4},
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC28":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        },
+        "0xC2A":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        },
+        "0xC2D":{
+        "msg_len" : 16,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0},
+        {"value_name":"iIndex","value_type":"OP_INT","value_byte":4,"value_offset":4}
+                    ]
+        },
+        "0xC30":{
+        "msg_len" : 12,
+        "game_data":[
+        {"value_name":"iUserID","value_type":"OP_INT","value_byte":4,"value_offset":0}
+                    ]
+        }

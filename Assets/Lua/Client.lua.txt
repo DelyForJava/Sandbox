@@ -1,6 +1,7 @@
 -- collectgarbage("collect")
 -- local count = collectgarbage("count")
 -- print("===============before:",count)
+local Json = require 'Json'
 
 require 'Global'
 
@@ -21,12 +22,29 @@ local percent = 0
 local max = 1
 
 function Awake()
+	if true then
+		return
+	end
+
 
 	-- print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
 	-- print("--CSharp Data:"..BUrl.."--")
 	-- print("--CSharp Data:"..BChannelId.."--")
 	-- print("--CSharp Data:"..BCdn.."--")
-	
+	-- local tb = {}
+	-- tb.name = "gaga"
+	-- tb.level = 1
+	-- tb.what ="0.0"
+	-- tb.fuck = 2
+	-- tb.is = true
+	-- tb.this = 3.3
+
+	-- local tbStr = Json.encode(tb)
+	-- print("=============== Client Awake :"..tbStr)
+
+	-- local tb2 = Json.decode(tbStr)
+	-- local tb2 = Json.decode("Config/netMessage.json")
+	-- print("=============== Client Awake2 :"..tb2.name..tb2.level..tb2.what..tb2.fuck..tb2.this)
 
 	canvas = UGameObject.Find("Canvas").transform
 	hall = canvas:Find("Hall")
@@ -49,10 +67,15 @@ end
 
 function Start()
 		--print("-------------------------------- Start --------------------------------")
+
+
+
 end
 
 function Update()
-
+	if true then
+		return
+	end
 	hallScene.Update()
 	loginScene.Update()
 	-- print("current index:"..currentScene.index..",max:"..currentScene.max)
