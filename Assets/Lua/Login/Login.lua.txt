@@ -1,3 +1,8 @@
+print("where am i6666666")
+Vars.Myt1 = 3
+print("where am i7777777"..Vars.Myt1)
+Myt2 = 3.2
+
 local yield_return = (require 'Coroutine').yield_return
 
 

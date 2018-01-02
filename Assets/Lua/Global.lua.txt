@@ -26,6 +26,7 @@ end
 -- print("What fuck is this")
 -- ULog("What fuck is this too")
 ------------------------------------------------------------------------------------------------------
+Vars = {}
 
 
 UGameObject = CS.UnityEngine.GameObject

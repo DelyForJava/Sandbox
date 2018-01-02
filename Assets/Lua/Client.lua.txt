@@ -2,7 +2,6 @@
 -- local count = collectgarbage("count")
 -- print("===============before:",count)
 
-
 local Json = require 'Json'
 
 require 'Event'
@@ -17,22 +16,22 @@ require 'Global'
 
 local base = _G
 
-Vars = {}
+
 setmetatable(Vars, {
     __newindex = function(_, name, value)
-        rawset(base, name, value)
+        rawset(_, name, value)
     end,
     __index = function(_, name)
-        return rawget(base, name)
+        return rawget(_, name)
     end
 })
 
-setmetatable(base, {
-    __newindex = function(_, name, value)
-        local msg = "Cannot define globle various,use Vars instead please"
-        error(string.format(msg, name), 0)
-    end
-})
+-- setmetatable(base, {
+--     __newindex = function(_, name, value)
+--         local msg = "%s Cannot define globle various named %s,use Vars instead please! Value:%s"
+--         error(string.format(msg, _,name,value), 0)
+--     end
+-- })
 
 
 local canvas
@@ -51,13 +50,13 @@ local index = 0
 local percent = 0
 local max = 1
 
-Vars.Myt1 = 2
 
-Myt2 = nil
 
 
 function Awake()
+	loginScene = require("Login/Login")
 
+	hallScene = require("Hall/Hall")
 
 
 	-- print("-------------------------------- Awake:"..BAssetBundleManager.Instance.Version.." --------------------------------")
@@ -78,20 +77,28 @@ function Awake()
 			oname='wawa',
 			olevel = 100
 		},
+		vars = Vars
 	}
 	local tbStr = Json.encode(tb)
+	print(tb)
+	print(tb.cards)
+	print(tb.cards.objects)
+	print(tb.cards.vars)
 	print("=============== Client Awake :"..tbStr)
 
 	local tb2 = Json.decode(tbStr)
 	-- local tb2 = Json.decode("Config/netMessage.json")
 	print(tb2)
 
-	for k,v in pairs(_G) do
+	local baseLen = 0
+	for k,v in pairs(base) do
 		print(k,v)
-		if k==Myt then
+		if v==Myt2 then
 			print("detected!!!!!!!!!!!!!!!!!!!")
 		end
+		baseLen = baseLen + 1
 	end
+	print("the length of the _G is:"..baseLen)
 	if true then
 		return
 	end
@@ -117,8 +124,6 @@ end
 
 function Start()
 		--print("-------------------------------- Start --------------------------------")
-
-
 
 end
 
