@@ -20,7 +20,7 @@ namespace XLua.CSObjectWrap
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			Utils.BeginObjectRegister(typeof(odao.scmahjong.NetworkPlayer), L, translator, 0, 32, 1, 1);
+			Utils.BeginObjectRegister(typeof(odao.scmahjong.NetworkPlayer), L, translator, 0, 33, 1, 1);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "DispenseSend", _m_DispenseSend);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ReDispenseSend", _m_ReDispenseSend);
@@ -28,6 +28,7 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetChannelInfoSend", _m_GetChannelInfoSend);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GameMatchSend", _m_GameMatchSend);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GameExchangeCardsSend", _m_GameExchangeCardsSend);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GameFixTypeSend", _m_GameFixTypeSend);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InitCallBack", _m_InitCallBack);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InitBaseMessage", _m_InitBaseMessage);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InitGameMessage", _m_InitGameMessage);
@@ -240,6 +241,34 @@ namespace XLua.CSObjectWrap
                     sbyte iCardNum = (sbyte)LuaAPI.xlua_tointeger(L, 5);
                     
                     __cl_gen_to_be_invoked.GameExchangeCardsSend( HuanPai_1, HuanPai_2, HuanPai_3, iCardNum );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GameFixTypeSend(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                odao.scmahjong.NetworkPlayer __cl_gen_to_be_invoked = (odao.scmahjong.NetworkPlayer)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    sbyte cDingqueCard = (sbyte)LuaAPI.xlua_tointeger(L, 2);
+                    
+                    __cl_gen_to_be_invoked.GameFixTypeSend( cDingqueCard );
                     
                     
                     

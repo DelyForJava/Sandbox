@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bean.Hall
@@ -12,6 +12,18 @@ namespace Bean.Hall
 
        Transform canvas_;
 
+        void DownloadAssetBundlePackage()
+        {
+            StartCoroutine(Flow());
+
+        }
+
+        void DownloadAssetBundle()
+        {
+            StartCoroutine(Flow());
+
+        }
+
         void Awake()
         {
             var client = GameClient.Instance;
@@ -23,7 +35,8 @@ namespace Bean.Hall
             //DontDestroyOnLoad(canvas_);
             //DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
-            StartCoroutine(Flow());
+            DownloadAssetBundle();
+            //StartCoroutine(Flow());
         }
         void OnDestroy()
         {

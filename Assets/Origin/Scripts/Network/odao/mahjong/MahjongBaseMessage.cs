@@ -38,6 +38,7 @@ public partial class BaseMessage {
 
     public const ushort GAME_GET_CARD_RES = 0x43; //抓牌
     public const ushort GAME_PLAY_CARD_RES = 0x31; //出牌
+    public const ushort GAME_PLAY_CARD_REQ = 0x11; //自己打牌
 
     public const ushort GAME_PENG_GANG_HU_POP_RES = 0x44; //碰杠胡提示
     public const ushort GAME_PENG_GANG_HU_REQ = 0x12; //打出碰杠胡
@@ -396,6 +397,16 @@ public partial class BaseMessage {
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class GamePlayCardReqDef
+    {
+        public GamePlayCardReqDef()
+        {
+
+        }
+        public sbyte cCard;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public class GamePengGangHuPopRes
     {
         public GamePengGangHuPopRes()
@@ -511,11 +522,13 @@ public partial class BaseMessage {
 namespace odao.scmahjong
 {
     public partial class NetworkPlayer : Player
-    { 
+    {
+
+        private int iUserID = 20088;
         public void DispenseSend()
         {
             BaseMessage.DispenseReqDef data = new BaseMessage.DispenseReqDef();
-            data.iUserID = 20000;
+            data.iUserID = iUserID;
             data.usGameID = 172;
             data.usLevel = 11;
 
@@ -528,7 +541,7 @@ namespace odao.scmahjong
         public void ReDispenseSend()
         {
             BaseMessage.RedispenseReqDef data = new BaseMessage.RedispenseReqDef();
-            data.iUserID = 20000;
+            data.iUserID = iUserID;
             data.usGameID = 172;
             data.usLevel = 11;
 
@@ -541,7 +554,7 @@ namespace odao.scmahjong
         public void LoginToRoomServerSend()
         {
             BaseMessage.LoginRoomServerReqDef data = new BaseMessage.LoginRoomServerReqDef();
-            data.iUserID = 20000;
+            data.iUserID = iUserID;
             data.iRoomID = 102;
             data.szPasswd = "670b14728ad9902aecba32e22fa4f6bd";
             data.cLoginType = 2;
@@ -610,8 +623,16 @@ namespace odao.scmahjong
         }
 
 
+        
+        public void GamePlayCardSend(sbyte cCard)
+        {
+            BaseMessage.GamePlayCardReqDef data = new BaseMessage.GamePlayCardReqDef();
+            data.cCard = cCard;
+            byte[] msg = XConvert.ConvertToByte(data);
 
 
+            _gsProxy.notify(BaseMessage.GAME_PLAY_CARD_REQ, msg);
+        }
 
 
 
@@ -645,7 +666,6 @@ namespace odao.scmahjong
                 if (data.cError == 0)
                 {
                     Loom.QueueOnMainThread(delegate () {
-                        GameObject.Find("Canvas").transform.Find("Waiting").gameObject.SetActive(false);
                         HallDataManager.Instance.LoadScene();
                     });
                 }
@@ -705,6 +725,8 @@ namespace odao.scmahjong
                     {
                         //开始计时（匹配）
                         MahjongDisplay.Instance.ShowTime("匹配中...",0);
+                        MahjongDisplay.Instance.WaitForPlayersSpecialShow();
+
                     });
                 }
             });
@@ -752,25 +774,32 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameMatchSuccessResDef data = XConvert.ConvertToObject<BaseMessage.GameMatchSuccessResDef>(msg.data);
 
-                Debug.LogError("GAME_MATCH_SUCCESS_RES: " + BaseMessage.GAME_MATCH_SUCCESS_RES);
-                Debug.LogError("errorCode:" + data.errorCode);
-                Debug.LogError("playerIndex_1:" + data.playerIndex_1);
-                Debug.LogError("playerIndex_2:" + data.playerIndex_2);
-                Debug.LogError("playerIndex_3:" + data.playerIndex_3);
-                Debug.LogError("playerIndex_4:" + data.playerIndex_4);
-                Debug.LogError("room_tax:" + data.room_tax);
-                Debug.LogError("iBankerIndex:" + data.iBankerIndex);
-                Debug.LogError("imageurl_1:" + data.imageurl_1);
-                Debug.LogError("imageurl_2:" + data.imageurl_2);
-                Debug.LogError("imageurl_3:" + data.imageurl_3);
-                Debug.LogError("imageurl_4:" + data.imageurl_4);
+                //Debug.LogError("GAME_MATCH_SUCCESS_RES: " + BaseMessage.GAME_MATCH_SUCCESS_RES);
+                //Debug.LogError("errorCode:" + data.errorCode);
+                //Debug.LogError("playerIndex_1:" + data.playerIndex_1);
+                //Debug.LogError("playerIndex_2:" + data.playerIndex_2);
+                //Debug.LogError("playerIndex_3:" + data.playerIndex_3);
+                //Debug.LogError("playerIndex_4:" + data.playerIndex_4);
+                //Debug.LogError("room_tax:" + data.room_tax);
+                //Debug.LogError("iBankerIndex:" + data.iBankerIndex);
+                //Debug.LogError("imageurl_1:" + data.imageurl_1);
+                //Debug.LogError("imageurl_2:" + data.imageurl_2);
+                //Debug.LogError("imageurl_3:" + data.imageurl_3);
+                //Debug.LogError("imageurl_4:" + data.imageurl_4);
 
                 //结束倒计时
+                MahjongDisplay.Instance.remainTileCount = 56;
+                MahjongDisplay.Instance.showStop = true;
                 if (data.errorCode==0)
                 {
                     Loom.QueueOnMainThread(delegate ()
                     {
+                        MahjongDisplay.Instance.handTileContainer_1.SetActive(true);
+                        MahjongDisplay.Instance.handTileContainer_2.SetActive(true);
+                        MahjongDisplay.Instance.handTileContainer_3.SetActive(true);
+                        MahjongDisplay.Instance.RefreshWallTile();
                         MahjongDisplay.Instance.CloseTime();
+                        MahjongDisplay.Instance.StartGame();
                     });
                 }
             });
@@ -780,24 +809,25 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameSelfInfoResDef data = XConvert.ConvertToObject<BaseMessage.GameSelfInfoResDef>(msg.data);
 
-                Debug.LogError("GAME_SELFINFO_RES: " + BaseMessage.GAME_SELFINFO_RES);
-                Debug.LogError("BankerID:" + data.BankerID);
-                for (int i = 0; i < 14; i++)
-                {
-                    Debug.LogError("cCards:" + data.cCards[i]);
-                    //  val/10 = 0万1条2筒
-                }
-                Debug.LogError("BankerRemain:" + data.BankerRemain);
-                Debug.LogError("dices:" + data.dices[0]);
-                Debug.LogError("dices:" + data.dices[1]);
-                Debug.LogError("iAllCardNum:" + data.iAllCardNum);
-                Debug.LogError("iBaseTimes:" + data.iBaseTimes);
-                Debug.LogError("llNowMoney:" + data.llNowMoney);
+                //Debug.LogError("GAME_SELFINFO_RES: " + BaseMessage.GAME_SELFINFO_RES);
+                //Debug.LogError("BankerID:" + data.BankerID);
+                //for (int i = 0; i < 14; i++)
+                //{
+                //    Debug.LogError("cCards:" + data.cCards[i]);
+                //    //  val/10 = 0万1条2筒
+                //}
+                //Debug.LogError("BankerRemain:" + data.BankerRemain);
+                //Debug.LogError("dices:" + data.dices[0]);
+                //Debug.LogError("dices:" + data.dices[1]);
+                //Debug.LogError("iAllCardNum:" + data.iAllCardNum);
+                //Debug.LogError("iBaseTimes:" + data.iBaseTimes);
+                //Debug.LogError("llNowMoney:" + data.llNowMoney);
 
                 //牌局开始
                 Loom.QueueOnMainThread(delegate ()
                 {
-                    MahjongGameManager.Instance.GetHandCardData(data.cCards);
+                    MahjongDisplay.Instance.GetHandCardData(data.cCards);
+                    MahjongDisplay.Instance.SetDerection(data.BankerID);
                 });
             });
 
@@ -806,34 +836,82 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameStartExchangeResDef data = XConvert.ConvertToObject<BaseMessage.GameStartExchangeResDef>(msg.data);
 
-                Debug.LogError("GAME_START_EXCHANGE_RES: " + BaseMessage.GAME_START_EXCHANGE_RES);
-                Debug.LogError("hadDo:" + data.hadDo);
-                Debug.LogError("time_left:" + data.time_left);
+                //Debug.LogError("GAME_START_EXCHANGE_RES: " + BaseMessage.GAME_START_EXCHANGE_RES);
+                //Debug.LogError("hadDo:" + data.hadDo);
+                //Debug.LogError("time_left:" + data.time_left);
                 Loom.QueueOnMainThread(delegate ()
                 {
-                    MahjongDisplay.Instance.ShowTime("请换牌",data.time_left);
+                    MahjongDisplay.Instance.ExchangeTiles(data.time_left);
+                    MahjongDisplay.Instance.isYourTurn = true;
                 });
 
             });
 
             _gsProxy.on(BaseMessage.GAME_EXCHANGE_CARDS_RES, delegate (Message obj)
             {
-                //return;
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameExchangeCardsResDef data = XConvert.ConvertToObject<BaseMessage.GameExchangeCardsResDef>(msg.data);
 
-                Debug.LogError("GAME_EXCHANGE_CARDS_RES: " + BaseMessage.GAME_EXCHANGE_CARDS_RES);
-                for (int i = 0; i < data.sCards.Length; i++)
+                //Debug.LogError("GAME_EXCHANGE_CARDS_RES: " + BaseMessage.GAME_EXCHANGE_CARDS_RES);
+                //for (int i = 0; i < data.sCards.Length; i++)
+                //{
+                //    Debug.LogError("sCards:" + data.sCards[i]);
+                //}
+                //for (int i = 0; i < data.cCards.Length; i++)
+                //{
+                //    Debug.LogError("cCards:" + data.cCards[i]);
+                //}
+                //Debug.LogError("iCardNum:" + data.iCardNum);
+
+
+                Loom.QueueOnMainThread(delegate ()
                 {
-                    Debug.LogError("sCards:" + data.sCards[i]);
-                }
-                for (int i = 0; i < data.cCards.Length; i++)
-                {
-                    Debug.LogError("cCards:" + data.cCards[i]);
-                }
-                Debug.LogError("iCardNum:" + data.iCardNum);
-                
-                
+                    MahjongDisplay.Instance.isYourTurn = false;
+                    //for (int i = 0; i < data.sCards.Length; i++)
+                    //{
+                    //    for (int j = 0; j < MahjongDisplay.Instance.handTileList.Count; j++)
+                    //    {
+                    //        if (MahjongDisplay.Instance.handTileList[j].ValueSbyte == data.sCards[i])
+                    //        {
+                    //            MahjongDisplay.Instance.handTileList.Remove(MahjongDisplay.Instance.handTileList[j]);
+                    //            break;
+                    //        }
+                    //    }
+                    //}
+
+                    HandTile.Instance.DeleteTile(data.sCards);
+                    
+
+
+                    List<Tile> addTileList = new List<Tile>();
+                    //List<Tile> totalTileList = new List<Tile>();
+                    for (int i = 0; i < data.cCards.Length; i++)
+                    {
+                        Tile tile = new Tile();
+                        tile.ValueSbyte = data.cCards[i];
+                        addTileList.Add(tile);
+                    }
+                    //totalTileList.AddRange(addTileList);
+
+                    HandTile.Instance.AddTile(addTileList);
+
+                    //totalTileList.AddRange(MahjongDisplay.Instance.handTileList);
+                    //for (int i = 0; i < totalTileList.Count; i++)
+                    //{
+                    //    if (totalTileList[i].ValueSbyte == 0)
+                    //    {
+                    //        totalTileList.Remove(totalTileList[i]);
+                    //    }
+                    //}
+                    //totalTileList.Sort((x, y) => x.ValueSbyte.CompareTo(y.ValueSbyte));
+                    //MahjongDisplay.Instance.handTileList.Clear();
+                    //MahjongDisplay.Instance.handTileList.AddRange(totalTileList);
+                    
+                    //MahjongDisplay.Instance.RefreshHandTileData();
+                    //totalTileList.Clear();
+                    //此处应有插牌动画
+                });
+
             });
 
             //_gsProxy.on(BaseMessage.GAME_EXCHANGE_CARDS_TABLE_INFO_RES, delegate (Message obj)
@@ -858,14 +936,14 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameStartFixResDef data = XConvert.ConvertToObject<BaseMessage.GameStartFixResDef>(msg.data);
 
-                Debug.LogError("GAME_START_FIX_RES: " + BaseMessage.GAME_START_FIX_RES);
+                //Debug.LogError("GAME_START_FIX_RES: " + BaseMessage.GAME_START_FIX_RES);
 
-                Debug.LogError("hadDo:" + data.hadDo);
-                Debug.LogError("time_left:" + data.time_left);
+                //Debug.LogError("hadDo:" + data.hadDo);
+                //Debug.LogError("time_left:" + data.time_left);
 
                 Loom.QueueOnMainThread(delegate ()
                 {
-                    MahjongDisplay.Instance.ShowTime("请定缺", data.time_left);
+                    MahjongDisplay.Instance.FixTiles(data.time_left);
                 });
             });
 
@@ -875,16 +953,18 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameFixTypeResDef data = XConvert.ConvertToObject<BaseMessage.GameFixTypeResDef>(msg.data);
 
-                Debug.LogError("GAME_FIX_TYPE_RES: " + BaseMessage.GAME_FIX_TYPE_RES);
+                //Debug.LogError("GAME_FIX_TYPE_RES: " + BaseMessage.GAME_FIX_TYPE_RES);
 
-                for (int i = 0; i < 3; i++)
-                {
-                    Debug.LogError("cques:" + data.cques[i]);
-                }
+                //for (int i = 0; i < 3; i++)
+                //{
+                //    Debug.LogError("cques:" + data.cques[i]);
+                //}
 
                 Loom.QueueOnMainThread(delegate ()
                 {
-
+                    MahjongDisplay.Instance.CloseTime();
+                    MahjongDisplay.Instance.ShowFixUI(data.cques);
+                    //移动定缺的牌，并置灰色
                 });
             });
 
@@ -894,17 +974,37 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GameGetCardResDef data = XConvert.ConvertToObject<BaseMessage.GameGetCardResDef>(msg.data);
 
-                Debug.LogError("GAME_GET_CARD_RES: " + BaseMessage.GAME_GET_CARD_RES);
+                //Debug.LogError("GAME_GET_CARD_RES: " + BaseMessage.GAME_GET_CARD_RES);
 
 
-                Debug.LogError("cTableNumExtra:" + data.cTableNumExtra);
-                Debug.LogError("cGetMj:" + data.cGetMj);
-                Debug.LogError("iSpeciaType:" + data.iSpeciaType);
-                Debug.LogError("time_left:" + data.time_left);
+                //Debug.LogError("cTableNumExtra:" + data.cTableNumExtra);
+                //Debug.LogError("cGetMj:" + data.cGetMj);
+                //Debug.LogError("iSpeciaType:" + data.iSpeciaType);
+                //Debug.LogError("time_left:" + data.time_left);
+
+                Debug.Log(data.cTableNumExtra + "号玩家摸牌：" + data.cGetMj);
 
                 Loom.QueueOnMainThread(delegate ()
                 {
-
+                    //var type = MahjongDisplay.Instance.SpecialTypeAnalysis(Convert.ToSByte(data.iSpeciaType));
+                    //if (type != SpecialType.SPECIAL_TYPE_PENG )
+                    //{
+                        
+                    //}
+                    MahjongDisplay.Instance.remainTileCount--;
+                    MahjongDisplay.Instance.RefreshWallTile();
+                    MahjongDisplay.Instance.ShowTurn(data.cTableNumExtra);
+                    MahjongDisplay.Instance.ShowTime("出牌倒计时：",data.time_left);
+                    if (data.cTableNumExtra == 0 && data.cGetMj != 0)
+                    {
+                        HandTile.Instance.HoldTile.ValueSbyte = data.cGetMj;
+                        MahjongDisplay.Instance.PengGangHuDeal(data.iSpeciaType);
+                        MahjongDisplay.Instance.GetTingAndShowHu();
+                    }
+                    if (data.cTableNumExtra == 0)
+                    {
+                        MahjongDisplay.Instance.isYourTurn = true;
+                    }
                 });
             });
 
@@ -914,15 +1014,50 @@ namespace odao.scmahjong
                 OdaoMessage msg = (OdaoMessage)obj;
                 BaseMessage.GamePlayCardResDef data = XConvert.ConvertToObject<BaseMessage.GamePlayCardResDef>(msg.data);
 
-                Debug.LogError("GAME_PLAY_CARD_RES: " + BaseMessage.GAME_PLAY_CARD_RES);
+                //Debug.LogError("GAME_PLAY_CARD_RES: " + BaseMessage.GAME_PLAY_CARD_RES);
 
-                Debug.LogError("cTableNumExtra:" + data.cTableNumExtra);
-                Debug.LogError("cCard:" + data.cCard);
-                Debug.LogError("flag:" + data.flag);
+                //Debug.LogError("cTableNumExtra:" + data.cTableNumExtra);
+                //Debug.LogError("cCard:" + data.cCard);
+                //Debug.LogError("flag:" + data.flag);
+
+
+                Debug.Log(data.cTableNumExtra+"号玩家打出：" + data.cCard);
+
+
 
                 Loom.QueueOnMainThread(delegate ()
                 {
+                    MahjongDisplay.Instance.lastPlayedCard = data.cCard;
+                    if (data.cTableNumExtra == 0)
+                    {
+                        //Debug.LogError("isHu:=======" + MahjongDisplay.Instance.isHued);
+                        if (MahjongDisplay.Instance.isPlayedHoldTile|| MahjongDisplay.Instance.isHued)
+                        {
+                            HandTile.Instance.HoldTile.ValueSbyte = 0;
+                            MahjongDisplay.Instance.isPlayedHoldTile = false;
+                        }
+                        else
+                        {
+                            HandTile.Instance.DeleteTile(data.cCard);
+                            HandTile.Instance.AddTile(HandTile.Instance.HoldTile.ValueSbyte);
+                            HandTile.Instance.HoldTile.ValueSbyte = 0;
+                        }
 
+                        var holdTile = HandTile.Instance.HoldTile;
+                        holdTile.SelfObj.transform.position = new Vector3(holdTile.SelfObj.transform.position.x, MahjongDisplay.Instance.handTileY, holdTile.SelfObj.transform.position.z);
+
+                        //听牌整理
+                        foreach (var tile in HandTile.Instance.ObjList)
+                        {
+                            //Debug.LogError("handeTile.SelfObj.name: " + handeTile.SelfObj.name);
+                            tile.transform.Find("tingObj").gameObject.SetActive(false);
+                        }
+                        HandTile.Instance.HoldTile.SelfObj.transform.Find("tingObj").gameObject.SetActive(false);
+
+                        MahjongDisplay.Instance.ClearCanHuTileList();
+
+                    }
+                    MahjongDisplay.Instance.RefreshDeskTileData(data.cTableNumExtra, data.cCard);
                 });
             });
 
@@ -935,12 +1070,21 @@ namespace odao.scmahjong
                 Debug.LogError("GAME_PENG_GANG_HU_POP_RES: " + BaseMessage.GAME_PENG_GANG_HU_POP_RES.ToString("x8"));
 
                 Debug.LogError("cExtraTableNum:" + data.cExtraTableNum);
-                Debug.LogError("iSpecialTypeTotal:" + data.iSpecialTypeTotal);
-                Debug.LogError("time_left:" + data.time_left);
+                //Debug.LogError("iSpecialTypeTotal:" + data.iSpecialTypeTotal);
+                //Debug.LogError("time_left:" + data.time_left);
 
                 Loom.QueueOnMainThread(delegate ()
                 {
-
+                    if (data.cExtraTableNum==0)
+                    {
+                        MahjongDisplay.Instance.ShowTime("是否碰胡", data.time_left);
+                        //分自摸和点炮,这里是点炮
+                        MahjongDisplay.Instance.PengGangHuDeal(data.iSpecialTypeTotal);
+                    }
+                    else
+                    {
+                        MahjongDisplay.Instance.ShowTime("等待他人碰胡", data.time_left);
+                    }
                 });
             });
 
@@ -952,8 +1096,9 @@ namespace odao.scmahjong
                 Debug.LogError("GAME_PENG_GANG_HU_INFO_RES: " + BaseMessage.GAME_PENG_GANG_HU_INFO_RES.ToString("x8"));
 
                 Debug.LogError("cExtraTableNum:" + data.cExtraTableNum);
-                Debug.LogError("iSpecialTypeTotal:" + data.cSpecialType);
-                Debug.LogError("iSpecialTypeTotal:" + data.cDianPaoer);
+                Debug.LogError("cSpecialType:" + data.cSpecialType);
+                Debug.LogError("cCard:" + data.cCard);
+                Debug.LogError("cDianPaoer:" + data.cDianPaoer);
                 Debug.LogError("time_left:" + data.cCard);
                 Debug.LogError("huType_1:"  + data.huType_1);
                 Debug.LogError("huType_2:"  + data.huType_2);
@@ -978,6 +1123,25 @@ namespace odao.scmahjong
 
                 Loom.QueueOnMainThread(delegate ()
                 {
+                    //碰杠（加杠）：查找对应河牌，list+1数据，刷新
+                    var type = MahjongDisplay.Instance.SpecialTypeAnalysis(data.cSpecialType);
+                    if (type == SpecialType.SPECIAL_TYPE_PENG || type == SpecialType.SPECIAL_TYPE_ANGANG || type == SpecialType.SPECIAL_TYPE_MINGGANG )
+                    {
+                        MahjongDisplay.Instance.remainTileCount++;
+                        MahjongDisplay.Instance.RefreshWallTile();
+                        MahjongDisplay.Instance.RefreshRiverTileData(data.cExtraTableNum, MahjongDisplay.Instance.lastPlayedCard, type, MahjongDisplay.Instance.pengGangHuCount);
+                        MahjongDisplay.Instance.pengGangHuCount++;
+                    }
+                    else if (type == SpecialType.SPECIAL_TYPE_PENGGANG)
+                    {
+                        MahjongDisplay.Instance.remainTileCount++;
+                        MahjongDisplay.Instance.RefreshWallTile();
+                        MahjongDisplay.Instance.RefreshRiverTileData(data.cExtraTableNum, MahjongDisplay.Instance.lastPlayedCard, type, MahjongDisplay.Instance.pengGangHuCount);
+                    }
+                    else if(type == SpecialType.SPECIAL_TYPE_HU)
+                    {
+                        MahjongDisplay.Instance.RefreshHuTileData(data.cExtraTableNum, MahjongDisplay.Instance.lastPlayedCard);
+                    }
                     
                 });
             });
@@ -1046,7 +1210,7 @@ namespace odao.scmahjong
 
                 Loom.QueueOnMainThread(delegate ()
                 {
-
+                    MahjongDisplay.Instance.ShowTime("牌局结束",0);
                 });
             });
 

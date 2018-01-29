@@ -73,7 +73,7 @@ namespace zcode.AssetBundlePacker
         {
             MAIN_MANIFEST_FILE_NAME,
             RESOURCES_MANIFEST_FILE_NAME,
-            //RESOURCES_PACKAGE_FILE_NAME,
+            RESOURCES_PACKAGE_FILE_NAME,
         };
 
         /// <summary>

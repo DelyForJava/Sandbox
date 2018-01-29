@@ -16,15 +16,18 @@ namespace NetworkInterface
             IPAddress ipAddress = null;
             try
             {
-                IPAddress[] addresses = Dns.GetHostEntry(host).AddressList;
-                foreach (var item in addresses)
-                {
-                    if (item.AddressFamily == AddressFamily.InterNetworkV6)
-                    {
-                        ipAddress = item;
-                        break;
-                    }
-                }
+                //IPAddress[] addresses = Dns.GetHostEntry(host).AddressList;
+                ipAddress = IPAddress.Parse(host);
+            
+
+                //foreach (var item in addresses)
+                //{
+                //    if (item.AddressFamily == AddressFamily.InterNetworkV6)
+                //    {
+                //        ipAddress = item;
+                //        break;
+                //    }
+                //}
             }
             catch (Exception e)
             {
@@ -43,15 +46,16 @@ namespace NetworkInterface
             IPAddress ipAddress = null;
             try
             {
-                IPAddress[] addresses = Dns.GetHostEntry(host).AddressList;
-                foreach (var item in addresses)
-                {
-                    if (item.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        ipAddress = item;
-                        break;
-                    }
-                }
+                ipAddress = IPAddress.Parse(host);
+                //IPAddress[] addresses = Dns.GetHostEntry(host).AddressList;
+                //foreach (var item in addresses)
+                //{
+                //    if (item.AddressFamily == AddressFamily.InterNetwork)
+                //    {
+                //        ipAddress = item;
+                //        break;
+                //    }
+                //}
             }
             catch (Exception e)
             {

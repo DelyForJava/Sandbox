@@ -1,0 +1,63 @@
+local Event = {}
+
+
+function Event:AddListener(name,callback)
+	local tb = self[name]
+	if not tb then
+		tb = {}
+	end
+	local exist =false
+	for k,v in pairs(tb) do
+		if callback==v then
+			exist = true
+			return
+		end
+
+	end
+	if false==exist then
+		table.insert(tb,callback)
+		self[name] = tb
+	end
+
+end
+
+function Event:RemoveListener(name,callback)
+	local tb = self[name]
+	if not tb then
+		print("RemoveListener failed because the event is not exist")
+		return
+	end
+
+	if not callback then
+		self[name] = nil
+		return
+	end
+
+	local key
+	for k,v in pairs(tb) do
+		if v==callback then
+			key = k
+			break
+		end
+	end
+	if key then
+		table.remove(tb,key)
+	end
+end
+
+
+function Event:Brocast(name,...)
+	local tb = self[name]
+
+	if not tb then
+		print("Brocast failed because the event is not exist")
+		return
+	end	
+
+	for k,v in pairs(tb) do
+		v(...)
+	end
+end
+
+
+return Event

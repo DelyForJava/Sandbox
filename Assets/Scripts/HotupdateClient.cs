@@ -75,6 +75,38 @@ namespace Bean.Hall
             OnViewChanged();
         }
         // -------------------------------------------------  logic ---------------------------------------------------------//
+        public IEnumerator FlowPackage()
+        {
+            while (true)
+            {
+                if (!panel_)
+                    break;
+                if (!AssetBundleManager.Instance.WaitForLaunch())
+                {
+                    if (GlobalData.CompressIndex != compress_index_)
+                    {
+                        changed_ = true;
+                    }
+                    compress_index_ = GlobalData.CompressIndex;
+                    GlobalData.CompressIndex = 0;
+                    panel_.gameObject.SetActive(false);
+                }
+                else
+                {
+                    if (AssetBundleManager.Instance.IsReady)
+                        Ready();
+                    else if (AssetBundleManager.Instance.IsFailed)
+                        Failed();
+                    panel_.gameObject.SetActive(true);
+                }
+                state_.text = GlobalData.CompressTips[GlobalData.CompressIndex];
+
+                //if (changed_)
+                //    gameObject.SendMessage(Event.HotupdateToClient, SendMessageOptions.DontRequireReceiver);
+                changed_ = false;
+                yield return null;
+            }
+        }
 
         public IEnumerator Flow()
         {

@@ -186,11 +186,16 @@ namespace zcode.AssetBundlePacker
             UpdateCompleteValue(0f, 1f);
 
             //下载地址重定向为根文件夹
+            var tmp_url_gourp = new List<string>();
             for (int i = 0; i < url_group_.Count; ++i)
-                url_group_[i] = Common.CalcAssetBundleDownloadURL(url_group_[i]);
+            {
+                tmp_url_gourp.Add(url_group_[i]);
+            }
+            for (int i = 0; i < url_group_.Count; ++i)
+                tmp_url_gourp[i] = Common.CalcAssetBundleDownloadURL(url_group_[i]);
 
             //找到合适的资源服务器
-            verifier_ = new URLVerifier(url_group_);
+            verifier_ = new URLVerifier(tmp_url_gourp);
             verifier_.Start();
             while (!verifier_.IsDone)
             {
@@ -202,7 +207,8 @@ namespace zcode.AssetBundlePacker
                 Error(emErrorCode.InvalidURL);
                 yield break;
             }
-
+            tmp_url_gourp.Clear();
+            tmp_url_gourp = null;
             verifier_ = null;
             UpdateCompleteValue(1f, 1f);
         }
@@ -243,7 +249,13 @@ namespace zcode.AssetBundlePacker
                     return File.Exists(Common.GetFileFullName(assetbundle_name));
                 });
             if (ab_list.Count == 0)
+            {
+                Debug.LogError("Already downloaded");
+                //zcode.AssetBundlePacker.SceneResourcesManager.LoadSceneAsync("Poker", null, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+                //do sthing
                 yield break;
+
+            }
 
             //载入资源信息描述文件
             ResourcesManifest resources_manifest = AssetBundleManager.Instance.ResourcesManifest;

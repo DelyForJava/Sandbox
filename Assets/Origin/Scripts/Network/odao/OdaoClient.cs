@@ -39,19 +39,20 @@ namespace NetworkInterface
 
 			IPAddress ipAddress = null;
 
-			ipAddress = GetIPv6 (host);
+            //ipAddress = GetIPv6(host);
+            ipAddress = GetIPv4(host);
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //if (ipAddress != null) {
+            //	_socket = new Socket (AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
+            //} 
+            //else {
+            //	ipAddress = GetIPv4 (host);
+            //	if (ipAddress != null) {
+            //		_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //	}
+            //}
 
-			if (ipAddress != null) {
-				_socket = new Socket (AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
-			} 
-			else {
-				ipAddress = GetIPv4 (host);
-				if (ipAddress != null) {
-					_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-				}
-			}
-
-			if (ipAddress == null) {
+            if (ipAddress == null) {
 				CloseClient ();
 				return;
 			}

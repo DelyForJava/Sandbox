@@ -26,6 +26,7 @@ namespace odao.scmahjong
             var playerInfo = UIOperation.playerLobbyInfo;
 		    InitCallBack();
             return;
+		    return;
             _gsProxy.on(BaseMessage.LOGIN_RES_MSG, delegate (Message obj) {
                 OdaoMessage msg = (OdaoMessage)obj;
                 //BaseMessage.LoginResDef data = XConvert.ConvertToObject<BaseMessage.LoginResDef>(msg.data);
