@@ -58,20 +58,6 @@ namespace Bean.Hall
                  typeof(UnityEngine.SceneManagement.SceneManager),
 
                 //custom
-                typeof(Bean.Hall.AssetBundleManager),
-           
-                //typeof(zcode.AssetBundlePacker.ResourcesManager),
-                typeof(Bean.Hall.ResourcesManager),
-                typeof(Bean.Hall.LuaClient),
-                typeof(Bean.Hall.ResReload),
-				typeof(Bean.Hall.GlobalData),
-
-				typeof(Bean.Hall.Callback),
-
-				typeof(Bean.Hall.HallData),
-                //typeof(Bean.Hall.TableViewCell),
-				typeof(GameClient),
-				typeof(odao.scmahjong.NetworkPlayer),
 
             };
 

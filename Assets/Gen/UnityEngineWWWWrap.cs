@@ -20,10 +20,13 @@ namespace XLua.CSObjectWrap
         public static void __Register(RealStatePtr L)
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-			Utils.BeginObjectRegister(typeof(UnityEngine.WWW), L, translator, 0, 2, 14, 1);
+			Utils.BeginObjectRegister(typeof(UnityEngine.WWW), L, translator, 0, 5, 14, 1);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "LoadImageIntoTexture", _m_LoadImageIntoTexture);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Dispose", _m_Dispose);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetAudioClip", _m_GetAudioClip);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetAudioClipCompressed", _m_GetAudioClipCompressed);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetMovieTexture", _m_GetMovieTexture);
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "assetBundle", _g_get_assetBundle);
@@ -119,61 +122,6 @@ namespace XLua.CSObjectWrap
         
         
         
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_LoadImageIntoTexture(RealStatePtr L)
-        {
-		    try {
-            
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-            
-            
-                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
-            
-            
-                
-                {
-                    UnityEngine.Texture2D texture = (UnityEngine.Texture2D)translator.GetObject(L, 2, typeof(UnityEngine.Texture2D));
-                    
-                    __cl_gen_to_be_invoked.LoadImageIntoTexture( texture );
-                    
-                    
-                    
-                    return 0;
-                }
-                
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
-            }
-            
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_Dispose(RealStatePtr L)
-        {
-		    try {
-            
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-            
-            
-                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
-            
-            
-                
-                {
-                    
-                    __cl_gen_to_be_invoked.Dispose(  );
-                    
-                    
-                    
-                    return 0;
-                }
-                
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
-            }
-            
-        }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_EscapeURL_xlua_st_(RealStatePtr L)
@@ -353,6 +301,212 @@ namespace XLua.CSObjectWrap
             }
             
             return LuaAPI.luaL_error(L, "invalid arguments to UnityEngine.WWW.LoadFromCacheOrDownload!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_LoadImageIntoTexture(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    UnityEngine.Texture2D texture = (UnityEngine.Texture2D)translator.GetObject(L, 2, typeof(UnityEngine.Texture2D));
+                    
+                    __cl_gen_to_be_invoked.LoadImageIntoTexture( texture );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_Dispose(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                    __cl_gen_to_be_invoked.Dispose(  );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetAudioClip(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
+            
+            
+			    int __gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(__gen_param_count == 1) 
+                {
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClip(  );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(__gen_param_count == 2&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 2)) 
+                {
+                    bool threeD = LuaAPI.lua_toboolean(L, 2);
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClip( threeD );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(__gen_param_count == 3&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 2)&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 3)) 
+                {
+                    bool threeD = LuaAPI.lua_toboolean(L, 2);
+                    bool stream = LuaAPI.lua_toboolean(L, 3);
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClip( threeD, stream );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(__gen_param_count == 4&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 2)&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 3)&& translator.Assignable<UnityEngine.AudioType>(L, 4)) 
+                {
+                    bool threeD = LuaAPI.lua_toboolean(L, 2);
+                    bool stream = LuaAPI.lua_toboolean(L, 3);
+                    UnityEngine.AudioType audioType;translator.Get(L, 4, out audioType);
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClip( threeD, stream, audioType );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to UnityEngine.WWW.GetAudioClip!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetAudioClipCompressed(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
+            
+            
+			    int __gen_param_count = LuaAPI.lua_gettop(L);
+            
+                if(__gen_param_count == 1) 
+                {
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClipCompressed(  );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(__gen_param_count == 2&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 2)) 
+                {
+                    bool threeD = LuaAPI.lua_toboolean(L, 2);
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClipCompressed( threeD );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                if(__gen_param_count == 3&& LuaTypes.LUA_TBOOLEAN == LuaAPI.lua_type(L, 2)&& translator.Assignable<UnityEngine.AudioType>(L, 3)) 
+                {
+                    bool threeD = LuaAPI.lua_toboolean(L, 2);
+                    UnityEngine.AudioType audioType;translator.Get(L, 3, out audioType);
+                    
+                        UnityEngine.AudioClip __cl_gen_ret = __cl_gen_to_be_invoked.GetAudioClipCompressed( threeD, audioType );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
+            
+            return LuaAPI.luaL_error(L, "invalid arguments to UnityEngine.WWW.GetAudioClipCompressed!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetMovieTexture(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                UnityEngine.WWW __cl_gen_to_be_invoked = (UnityEngine.WWW)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                        UnityEngine.MovieTexture __cl_gen_ret = __cl_gen_to_be_invoked.GetMovieTexture(  );
+                        translator.Push(L, __cl_gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception __gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            }
             
         }
         

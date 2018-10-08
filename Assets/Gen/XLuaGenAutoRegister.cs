@@ -79,30 +79,6 @@ namespace XLua.CSObjectWrap
 				
 				translator.DelayWrapLoader(typeof(UnityEngine.SceneManagement.SceneManager), UnityEngineSceneManagementSceneManagerWrap.__Register);
 				
-				translator.DelayWrapLoader(typeof(Bean.Hall.AssetBundleManager), BeanHallAssetBundleManagerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.ResourcesManager), BeanHallResourcesManagerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.LuaClient), BeanHallLuaClientWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.ResReload), BeanHallResReloadWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.GlobalData), BeanHallGlobalDataWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.Callback), BeanHallCallbackWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(Bean.Hall.HallData), BeanHallHallDataWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(GameClient), GameClientWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(odao.scmahjong.NetworkPlayer), odaoscmahjongNetworkPlayerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(CoroutineRunner), CoroutineRunnerWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(UnityEngine.WaitForSeconds), UnityEngineWaitForSecondsWrap.__Register);
-				
-				translator.DelayWrapLoader(typeof(UnityEngine.WaitForEndOfFrame), UnityEngineWaitForEndOfFrameWrap.__Register);
-				
 				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);
@@ -114,6 +90,10 @@ namespace XLua.CSObjectWrap
 				translator.DelayWrapLoader(typeof(XLuaTest.NoGc), XLuaTestNoGcWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(Coroutine_Runner), Coroutine_RunnerWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.WaitForSeconds), UnityEngineWaitForSecondsWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(UnityEngine.WaitForEndOfFrame), UnityEngineWaitForEndOfFrameWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(Foo1Parent), Foo1ParentWrap.__Register);
 				
